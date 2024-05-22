@@ -1,0 +1,13 @@
+*.js
+*.tsx
+*.ts
+*.json
+*.png
+*.eot
+*.ttf
+*.woff
+*.cjs
+/dist
+node_modules
+.vscode
+.husky

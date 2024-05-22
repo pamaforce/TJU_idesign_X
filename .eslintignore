@@ -1,0 +1,8 @@
+/dist
+node_modules
+.eslintrc.cjs
+.eslintrc.js
+vite.config.ts
+env.d.ts
+components.d.ts
+.husky
