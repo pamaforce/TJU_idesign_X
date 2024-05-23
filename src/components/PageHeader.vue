@@ -62,7 +62,10 @@ const goToSearch = () => {
 };
 const updateLine = (element: HTMLElement | null, animate = true) => {
   if (!element) {
-    if (activeTab.value !== -1) return;
+    if (activeTab.value !== -1) {
+      updateLine(tabRefs.value[activeTab.value]);
+      return;
+    }
     let lastEl = lastElement.value as HTMLElement;
     lineStyle.value = {
       width: '0px',
