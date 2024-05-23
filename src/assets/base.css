@@ -3,12 +3,18 @@
   --color-background: #fff;
 }
 
+@font-face {
+    font-family: "PingFang SC";
+    src: url('@/assets/font/PingFang-Regular.ttf');
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  font-family: 'PingFang SC';
 }
 
 body {

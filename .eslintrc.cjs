@@ -28,12 +28,8 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': ['error', {
             argsIgnorePattern: '^_'
         }],
-        'vue/multi-word-component-names': [
-            'error',
-            {
-                ignores: ['Home', 'Header'] //需要忽略的组件名
-            }
-        ],
+        'vue/multi-word-component-names': 'off',
+        'vue/html-self-closing': 'off',
         'vue/no-multiple-template-root': 'off',
         "object-curly-spacing": ["error", "never"],
         'vue/comma-dangle': 'off',

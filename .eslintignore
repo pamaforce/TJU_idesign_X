@@ -6,3 +6,4 @@ vite.config.ts
 env.d.ts
 components.d.ts
 .husky
+eslint.config.js
