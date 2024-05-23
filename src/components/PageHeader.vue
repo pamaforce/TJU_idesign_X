@@ -36,9 +36,10 @@ interface LineStyle {
 }
 const router = useRouter();
 const route = useRoute();
-const activeTab = ref(0);
+const activeTab = ref(-1);
 const lineStyle = ref<LineStyle>({width: '0px', left: '0px'});
 const hasLineAnimated = ref(false);
+const lastElement = ref<HTMLElement | null>(null);
 const tabs = ref<Tab[]>([
   {name: '展厅', route: '/exhibition'},
   {name: '毕业生', route: '/graduate'},
@@ -61,10 +62,11 @@ const goToSearch = () => {
 };
 const updateLine = (element: HTMLElement | null, animate = true) => {
   if (!element) {
+    if (activeTab.value !== -1) return;
+    let lastEl = lastElement.value as HTMLElement;
     lineStyle.value = {
       width: '0px',
-      left: '0px',
-      transition: 'none'
+      left: `${lastEl.offsetLeft + lastEl.offsetWidth/2 }px`
     };
     hasLineAnimated.value = false;
   }
@@ -72,14 +74,22 @@ const updateLine = (element: HTMLElement | null, animate = true) => {
     const computedStyle = window.getComputedStyle(element);
     const paddingLeft = parseInt(computedStyle.paddingLeft, 10);
     const paddingRight = parseInt(computedStyle.paddingRight, 10);
-    lineStyle.value = {
-      width: `${element.offsetWidth  - paddingLeft - paddingRight + 10}px`,
-      left: `${element.offsetLeft + paddingLeft - 5}px`,
-      transition: hasLineAnimated.value && animate ? 'all 0.3s ease' : 'none'
-    };
     if (!hasLineAnimated.value) {
+      lineStyle.value = {
+        width: '0px',
+        left: `${element.offsetLeft + element.offsetWidth/2 }px`,
+        transition: 'none'
+      };
       hasLineAnimated.value = true;
     }
+    nextTick(() => {
+      lineStyle.value = {
+        width: `${element.offsetWidth  - paddingLeft - paddingRight + 10}px`,
+        left: `${element.offsetLeft + paddingLeft - 5}px`,
+        transition: hasLineAnimated.value && animate ? 'all 0.3s ease' : 'none'
+      };
+    })
+    lastElement.value = element;
   }
 };
 
