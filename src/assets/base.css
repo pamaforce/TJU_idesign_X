@@ -1,29 +1,30 @@
 :root {
-  --color-text: rgba(0,0,0,0.85);
-  --color-background: #fff;
+    --color-text: rgba(0, 0, 0, 0.85);
+    --color-background: #fff;
 }
 
 @font-face {
     font-family: "PingFang SC";
-    src: url('@/assets/font/PingFang-Regular.ttf');
+    src: url('@/assets/font/PingFang-Regular.woff') format('woff');
+    font-display: swap;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-  font-family: 'PingFang SC';
-  font-feature-settings: "kern" on;
-  font-variation-settings: "opsz" auto;
+    box-sizing: border-box;
+    margin: 0;
+    font-weight: normal;
+    font-family: 'PingFang SC';
+    font-feature-settings: "kern" on;
+    font-variation-settings: "opsz" auto;
 }
 
 body {
-  min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    color: var(--color-text);
+    background: var(--color-background);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

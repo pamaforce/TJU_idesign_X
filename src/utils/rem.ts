@@ -31,6 +31,15 @@ function debounce(func: () => void, wait: number): () => void {
     };
 }
 
+export function getRootFontSize(): number {
+    // 获取HTML的DOM元素
+    const htmlDom: HTMLElement = document.getElementsByTagName('html')[0];
+    // 获取根元素的字体大小，并解析为数字
+    const fontSizeString: string = window.getComputedStyle(htmlDom).fontSize;
+    // 将fontSizeString（如 "16px"）转换为纯数字
+    return parseFloat(fontSizeString);
+}
+
 // 初始化
 setRem();
 
