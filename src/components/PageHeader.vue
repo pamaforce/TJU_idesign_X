@@ -22,7 +22,7 @@
   </div>
 </template>
 <script setup lang='ts'>
-import {nextTick, onMounted, ref, watch} from 'vue';
+import {nextTick, onMounted, onUnmounted, ref, watch} from 'vue';
 import {useRouter, useRoute} from 'vue-router';
 
 interface Tab {
@@ -41,90 +41,99 @@ const lineStyle = ref<LineStyle>({width: '0px', left: '0px'});
 const hasLineAnimated = ref(false);
 const lastElement = ref<HTMLElement | null>(null);
 const tabs = ref<Tab[]>([
-  {name: '展厅', route: '/exhibition'},
-  {name: '毕业生', route: '/graduate'},
-  {name: '年展组', route: '/sponsor'}
+    {name: '展厅', route: '/exhibition'},
+    {name: '毕业生', route: '/graduate'},
+    {name: '年展组', route: '/sponsor'}
 ]);
 const tabRefs = ref<HTMLElement[]>([]);
 
 const changeTab = (index: number) => {
-  activeTab.value = index;
-  router.push(tabs.value[index].route);
-  updateLine(tabRefs.value[index]);
+    activeTab.value = index;
+    router.push(tabs.value[index].route);
+    updateLine(tabRefs.value[index]);
 };
 
 const goToHome = () => {
-  router.push('/');
+    router.push('/');
 };
 
 const goToSearch = () => {
-  router.push('/search');
+    router.push('/search');
 };
 const updateLine = (element: HTMLElement | null, animate = true) => {
-  if (!element) {
-    if (activeTab.value !== -1) {
-      updateLine(tabRefs.value[activeTab.value]);
-      return;
+    if (!element) {
+        if (activeTab.value !== -1) {
+            updateLine(tabRefs.value[activeTab.value]);
+            return;
+        }
+        let lastEl = lastElement.value as HTMLElement;
+        lineStyle.value = {
+            width: '0px',
+            left: `${lastEl.offsetLeft + lastEl.offsetWidth/2 }px`
+        };
+        hasLineAnimated.value = false;
     }
-    let lastEl = lastElement.value as HTMLElement;
-    lineStyle.value = {
-      width: '0px',
-      left: `${lastEl.offsetLeft + lastEl.offsetWidth/2 }px`
-    };
-    hasLineAnimated.value = false;
-  }
-  else {
-    const computedStyle = window.getComputedStyle(element);
-    const paddingLeft = parseInt(computedStyle.paddingLeft, 10);
-    const paddingRight = parseInt(computedStyle.paddingRight, 10);
-    if (!hasLineAnimated.value) {
-      lineStyle.value = {
-        width: '0px',
-        left: `${element.offsetLeft + element.offsetWidth/2 }px`,
-        transition: 'none'
-      };
-      hasLineAnimated.value = true;
+    else {
+        const computedStyle = window.getComputedStyle(element);
+        const paddingLeft = parseInt(computedStyle.paddingLeft, 10);
+        const paddingRight = parseInt(computedStyle.paddingRight, 10);
+        if (!hasLineAnimated.value) {
+            lineStyle.value = {
+                width: '0px',
+                left: `${element.offsetLeft + element.offsetWidth/2 }px`,
+                transition: 'none'
+            };
+            hasLineAnimated.value = true;
+        }
+        nextTick(() => {
+            lineStyle.value = {
+                width: `${element.offsetWidth  - paddingLeft - paddingRight + 10}px`,
+                left: `${element.offsetLeft + paddingLeft - 5}px`,
+                transition: hasLineAnimated.value && animate ? 'all 0.3s ease' : 'none'
+            };
+        })
+        lastElement.value = element;
     }
-    nextTick(() => {
-      lineStyle.value = {
-        width: `${element.offsetWidth  - paddingLeft - paddingRight + 10}px`,
-        left: `${element.offsetLeft + paddingLeft - 5}px`,
-        transition: hasLineAnimated.value && animate ? 'all 0.3s ease' : 'none'
-      };
-    })
-    lastElement.value = element;
-  }
 };
 
 const updateActiveTabFromRoute = () => {
-  if (route.path === '/' || route.path === '/search') {
-    activeTab.value = -1;
-    lineStyle.value = {width: '0px', left: '0px', transition: 'none'};
-  }
- else {
-    const foundIndex = tabs.value.findIndex(tab => route.path.includes(tab.route));
-    if (foundIndex !== -1) {
-      activeTab.value = foundIndex;
-      nextTick(() => {
-        const initialTabElement = tabRefs.value[activeTab.value];
-        if (initialTabElement) {
-          updateLine(initialTabElement);
+    if (route.path === '/' || route.path === '/search') {
+        activeTab.value = -1;
+        lineStyle.value = {width: '0px', left: '0px', transition: 'none'};
+    }
+    else {
+        const foundIndex = tabs.value.findIndex(tab => route.path.includes(tab.route));
+        if (foundIndex !== -1) {
+            activeTab.value = foundIndex;
+            nextTick(() => {
+                const initialTabElement = tabRefs.value[activeTab.value];
+                if (initialTabElement) {
+                    updateLine(initialTabElement);
+                }
+            });
         }
-      });
+        else {
+            activeTab.value = -1;
+            lineStyle.value = {width: '0px', left: '0px', transition: 'none'};
+        }
     }
- else {
-      activeTab.value = -1;
-      lineStyle.value = {width: '0px', left: '0px', transition: 'none'};
-    }
-  }
 };
 
 onMounted(() => {
-  updateActiveTabFromRoute();
+    updateActiveTabFromRoute();
+    window.addEventListener('resize', () => {
+        updateLine(tabRefs.value[activeTab.value]);
+    });
 });
 
 watch(() => route.path, () => {
-  updateActiveTabFromRoute();
+    updateActiveTabFromRoute();
+});
+
+onUnmounted(() => {
+    window.removeEventListener('resize', () => {
+        updateLine(tabRefs.value[activeTab.value]);
+    });
 });
 </script>
 <style scoped>
@@ -144,7 +153,7 @@ watch(() => route.path, () => {
     top: 0;
     left: 0;
     z-index: 1000;
-    
+
     & .icon {
         height: 56px;
         cursor: pointer;
@@ -155,7 +164,7 @@ watch(() => route.path, () => {
         align-items: center;
         position: relative;
         height: 100%;
-        
+
         & .tab {
             font-size: 16px;
             padding: 0 50px;

@@ -27,37 +27,44 @@
   </div>
 </template>
 <script setup lang='ts'>
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 import {exhibitionList as rawExhibitionList,type Exhibition} from '@/utils/constant';
-const exhibitionList = ref<Exhibition[]>(rawExhibitionList);
+const exhibitionList = ref<Exhibition[]>(resetExhibitionList());
 const hoverItem = ref(-1);
 function getClass(statue: number) {
-  return `status-${statue}`;
+    return `status-${statue}`;
 }
 function handleMouseOver(index: number) {
-  if(exhibitionList.value[index].status !== 1 && exhibitionList.value[index].status !== 3) return;
-  hoverItem.value = index;
+    if(exhibitionList.value[index].status !== 1 && exhibitionList.value[index].status !== 3) return;
+    hoverItem.value = index;
 }
 function handleMouseLeave() {
-  hoverItem.value = -1;
+    hoverItem.value = -1;
 }
 function handleClick(index: number) {
-  if(exhibitionList.value[index].status !== 1 && exhibitionList.value[index].status !== 3) return;
-  hoverItem.value = -1;
-  if (index === 0) index = exhibitionList.value.length - 2;
-  if (index === exhibitionList.value.length - 1) index = 1;
-  for(let i = 0; i < exhibitionList.value.length; i++) {
-    if(i === index) {
-      exhibitionList.value[i].status = 2;
+    if(exhibitionList.value[index].status !== 1 && exhibitionList.value[index].status !== 3) return;
+    hoverItem.value = -1;
+    if (index === 0) index = exhibitionList.value.length - 2;
+    if (index === exhibitionList.value.length - 1) index = 1;
+    for(let i = 0; i < exhibitionList.value.length; i++) {
+        if(i === index) {
+            exhibitionList.value[i].status = 2;
+        }
+        else if(i === index - 1 || i === index + 1 ) {
+            exhibitionList.value[i].status = 3;
+        }
+        else {
+            exhibitionList.value[i].status = 0;
+        }
     }
-    else if(i === index - 1 || i === index + 1 ) {
-      exhibitionList.value[i].status = 3;
-    }
-    else {
-      exhibitionList.value[i].status = 0;
-    }
-  }
 }
+function resetExhibitionList() {
+    return rawExhibitionList.map(item => ({...item}));
+}
+
+onMounted(() => {
+    exhibitionList.value = resetExhibitionList();
+});
 </script>
 <style scoped>
 .exhibition{
@@ -131,7 +138,7 @@ function handleClick(index: number) {
     & .item:nth-child(odd) {
         animation-name: fadeInMoveUp;
     }
-    
+
     & .status-0 {
       width: 0 !important;
 
@@ -142,7 +149,7 @@ function handleClick(index: number) {
       & .name {
         opacity: 0;
       }
-      
+
       & .desc {
         opacity: 0;
       }
@@ -151,11 +158,11 @@ function handleClick(index: number) {
         opacity: 0;
       }
     }
-    
+
     & .status-2 {
       width: 1800px !important;
     }
-    
+
     & .status-3 {
       width: 60px !important;
 
@@ -167,7 +174,7 @@ function handleClick(index: number) {
       & .name {
         opacity: 0;
       }
-      
+
       & .desc {
         opacity: 0;
       }
