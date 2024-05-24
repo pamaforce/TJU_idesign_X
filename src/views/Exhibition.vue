@@ -5,7 +5,7 @@
       :key="index"
       class="item"
       :class="getClass(item.status)"
-      :style="{background: hoverItem===index?item.background_active:(item.status===3?item.background_default:item.background), animationDelay: `${index * 0.1}s`}"
+      :style="{background: hoverItem===index?item.background_active:(item.status===3?item.background_default:item.background), animationDelay: `${index * 0.1}s`, cursor: item.status===2?'auto':'pointer'}"
       @mouseover="handleMouseOver(index)"
       @mouseleave="handleMouseLeave"
       @click="handleClick(index)"
@@ -13,12 +13,12 @@
       <img
         :ref="(el) => setFormulaRef(el, index)"
         :src="hoverItem===index?item.formula_active:(item.status===3?item.formula_default:item.formula)"
-        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===7?(marginTypeB+'px'):0)):0}"
+        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===7?(marginTypeB+'px'):0)):0,cursor: item.status===2?'pointer':'auto'}"
         alt="formula"
         class="formula"
         @click.stop="handleBack(index)"
       >
-      <p class="name" :style="{color:hoverItem===index?'#fff':item.color, marginLeft:item.status===2? ((index===5)?(margins[index]+marginTypeA + 'px'):((index===7)?(margins[index]+marginTypeB + 'px'):(margins[index] + 'px'))):0 }" @click.stop="handleBack(index)">
+      <p class="name" :style="{color:hoverItem===index?'#fff':item.color, marginLeft:item.status===2? ((index===5)?(margins[index]+marginTypeA + 'px'):((index===7)?(margins[index]+marginTypeB + 'px'):(margins[index] + 'px'))):0,cursor: item.status===2?'pointer':'auto' }" @click.stop="handleBack(index)">
         {{ item.name }}
       </p>
       <div class="desc" :style="{color:hoverItem===index?'#fff': ''}">
@@ -34,7 +34,7 @@
         :src="item.icon"
         alt="logo"
         class="logo"
-        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===7?(marginTypeB+'px'):0)):0}"
+        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===7?(marginTypeB+'px'):0)):0,cursor: item.status===2?'pointer':'auto'}"
         @click.stop="handleBack(index)"
       >
     </div>

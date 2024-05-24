@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import postCssPxToRem from "postcss-pxtorem";
+import autoprefixer from 'autoprefixer';
 // https://vitejs.dev/config/
 export default defineConfig({
   base:'./',
@@ -22,6 +23,7 @@ export default defineConfig({
                     rootValue: 16, // 1rem的大小（控制1rem的大小  点位：px）
                     propList: ["*"], // 需要转换的属性，这里选择全部都进行转换
                 }),
+                autoprefixer()
             ],
         },
     }

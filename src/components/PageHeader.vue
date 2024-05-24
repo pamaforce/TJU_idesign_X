@@ -118,12 +118,14 @@ const updateActiveTabFromRoute = () => {
         }
     }
 };
-
+function handleResize() {
+    setTimeout(() => {
+        updateLine(tabRefs.value[activeTab.value],false);
+    },500)
+}
 onMounted(() => {
     updateActiveTabFromRoute();
-    window.addEventListener('resize', () => {
-        updateLine(tabRefs.value[activeTab.value]);
-    });
+    window.addEventListener('resize', handleResize);
 });
 
 watch(() => route.path, () => {
@@ -131,9 +133,7 @@ watch(() => route.path, () => {
 });
 
 onUnmounted(() => {
-    window.removeEventListener('resize', () => {
-        updateLine(tabRefs.value[activeTab.value]);
-    });
+    window.removeEventListener('resize', handleResize);
 });
 </script>
 <style scoped>
