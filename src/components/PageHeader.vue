@@ -108,7 +108,7 @@ const updateActiveTabFromRoute = () => {
       nextTick(() => {
         const initialTabElement = tabRefs.value[activeTab.value];
         if (initialTabElement) {
-          updateLine(initialTabElement, false);
+          updateLine(initialTabElement);
         }
       });
     }
