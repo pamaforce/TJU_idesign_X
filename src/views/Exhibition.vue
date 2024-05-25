@@ -37,7 +37,14 @@
         :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===7?(marginTypeB+'px'):0)):0,cursor: item.status===2?'pointer':'auto'}"
         @click.stop="handleBack(index)"
       >
-      <div v-if="item.status === 2" class="content" @wheel="handleWheel">
+      <div
+        v-if="item.status === 2"
+        class="content"
+        @wheel="handleWheel"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+      >
         <template v-if="true">
           <div class="bar"></div>
           <transition name="fadeInDown" mode="out-in">
@@ -290,18 +297,15 @@ function handleBack(index: number) {
 function toDetail(index: number) {
     router.push( `/exhibition/${designData.value[index].category_id}/${designData.value[index].id}?list=${itemList}&current=${index}`);
 }
-function handleWheel(event: WheelEvent) {
-    event.preventDefault();
+function scrollContent(direction: 'down'|'up') {
     let itemHeight = 26.8125 * getRootFontSize();
     const SCROLL_STEP = itemHeight;
-    let newMarginTop = 0;
-    if (!scrollContainer.value[0]) return;
-    newMarginTop = parseInt(getComputedStyle(scrollContainer.value[0]).marginTop) || 0;
+    let newMarginTop = parseInt(getComputedStyle(scrollContainer.value[0]).marginTop) || 0;
 
-    newMarginTop += (event.deltaY > 0 ? -SCROLL_STEP : SCROLL_STEP);
+    newMarginTop += (direction === 'down' ? -SCROLL_STEP : SCROLL_STEP);
 
-    newMarginTop = Math.min(newMarginTop, 0);
-    newMarginTop = Math.max(newMarginTop, -scrollContainer.value[0].scrollHeight + itemHeight);
+    // 确保滚动不会超出容器边界
+    newMarginTop = Math.max(Math.min(newMarginTop, 0), -scrollContainer.value[0].scrollHeight + itemHeight);
     scrollContainer.value[0].style.marginTop = `${newMarginTop}px`;
 
     // 吸附逻辑
@@ -309,21 +313,57 @@ function handleWheel(event: WheelEvent) {
         clearTimeout(snapTimer);
     }
 
-    snapTimer = window.setTimeout(() => {
-        const currentMarginTop = parseInt(getComputedStyle(scrollContainer.value[0]).marginTop);
-        const remainder = currentMarginTop % itemHeight;
-
-        if (Math.abs(remainder) > itemHeight / 2) {
-            newMarginTop = currentMarginTop - remainder - itemHeight;
-        }
-        else {
-            newMarginTop = currentMarginTop - remainder;
-        }
-        newMarginTop = Math.min(newMarginTop, 0);
-        newMarginTop = Math.max(newMarginTop, -scrollContainer.value[0].scrollHeight + itemHeight);
-        scrollIndex.value = parseInt(Math.abs((newMarginTop-itemHeight/2) / itemHeight)+'');
-        scrollContainer.value[0].style.marginTop = `${newMarginTop}px`;
+    snapTimer = setTimeout(() => {
+        snapToClosestItem(newMarginTop, itemHeight);
     }, 300);
+}
+
+function snapToClosestItem(currentMarginTop:number, itemHeight:number) {
+    let newMarginTop = currentMarginTop;
+    const remainder = currentMarginTop % itemHeight;
+
+    if (Math.abs(remainder) > itemHeight / 2) {
+        newMarginTop -= remainder + itemHeight;
+    }
+    else {
+        newMarginTop -= remainder;
+    }
+
+    newMarginTop = Math.max(Math.min(newMarginTop, 0), -scrollContainer.value[0].scrollHeight + itemHeight);
+    scrollIndex.value = Math.abs(Math.round((newMarginTop - itemHeight / 2) / itemHeight));
+    scrollContainer.value[0].style.marginTop = `${newMarginTop}px`;
+}
+function handleWheel(event: WheelEvent) {
+    event.preventDefault();
+    scrollContent(event.deltaY > 0 ? 'down' : 'up');
+}
+let touchStartY = 0;
+let touchEndY = 0;
+
+function handleTouchStart(event: TouchEvent) {
+    touchStartY = event.touches[0].clientY;
+}
+
+function handleTouchMove(event: TouchEvent) {
+    touchEndY = event.touches[0].clientY;
+    event.preventDefault(); // 可以选择阻止默认滚动行为
+}
+
+function handleTouchEnd() {
+    if (touchEndY < touchStartY) {
+        scrollContent('down');
+    }
+    else if (touchEndY > touchStartY) {
+        scrollContent('up');
+    }
+}
+function handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
+        scrollContent('down');
+    }
+    else if (event.key === 'ArrowUp') {
+        scrollContent('up');
+    }
 }
 function scrollToIndex(index: number) {
     if (!scrollContainer.value[0]) return;
@@ -339,10 +379,12 @@ function handleResize() {
 }
 onMounted(() => {
     window.addEventListener('resize', handleResize);
+    window.addEventListener('keydown', handleKeyDown);
     exhibitionList.value = resetExhibitionList();
 });
 onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
+    window.removeEventListener('keydown', handleKeyDown);
 });
 router.beforeEach((to, from, next) => {
     fromDetail.value = (from.name === 'Detail' && to.name === 'Exhibition');

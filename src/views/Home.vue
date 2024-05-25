@@ -1,5 +1,11 @@
 <template>
-  <div class="home" @wheel="handleWheel">
+  <div
+    class="home"
+    @wheel="handleWheel"
+    @touchstart="handleTouchStart"
+    @touchmove="handleTouchMove"
+    @touchend="handleTouchEnd"
+  >
     <img src="@/assets/image/banner_3.svg" class="banner-3" alt="banner_3" />
     <img src="@/assets/image/banner_5.svg" class="banner-5" alt="banner_5" />
     <img src="@/assets/image/banner_4.svg" class="banner-4" alt="banner_4" />
@@ -95,12 +101,42 @@ function handleWheel(event: WheelEvent) {
 function toExhibition() {
     router.push('/exhibition');
 }
+let touchStartY = 0;
+let touchEndY = 0;
+function handleTouchStart(event: TouchEvent) {
+    touchStartY = event.touches[0].clientY;
+}
+
+function handleTouchMove(event: TouchEvent) {
+    touchEndY = event.touches[0].clientY;
+}
+
+function handleTouchEnd() {
+    if (touchEndY < touchStartY) {
+        state.value = 2;
+    }
+    else if (touchEndY > touchStartY) {
+        state.value = 1;
+    }
+}
+
+function handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'ArrowDown') {
+        state.value = 2;
+    }
+    else if (event.key === 'ArrowUp') {
+        state.value = 1;
+    }
+}
+
 onMounted(() => {
     window.addEventListener('mousemove', updateCursorPosition);
+    window.addEventListener('keydown', handleKeyDown);
 });
 
 onUnmounted(() => {
     window.removeEventListener('mousemove', updateCursorPosition);
+    window.removeEventListener('keydown', handleKeyDown);
 });
 const needInit = ref(false)
 router.beforeEach((to, from, next) => {

@@ -12,7 +12,7 @@ function setRem(): void {
     const htmlDom: HTMLElement = document.getElementsByTagName('html')[0];
 
     // 计算并设置根元素的字体大小
-    const scale: number = htmlWidth >= DIVIDER_WIDTH ? SCALE_LARGE : SCALE_SMALL;
+    const scale: number = htmlWidth+DIVIDER_WIDTH >= DIVIDER_WIDTH ? SCALE_LARGE : SCALE_SMALL;
     htmlDom.style.fontSize = `${htmlWidth / scale}px`;
 }
 
