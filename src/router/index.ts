@@ -44,7 +44,7 @@ const router = createRouter({
     ]
 })
 router.beforeEach((to, from, next) => {
-    if (to.name === 'Exhibition') {
+    if (to.name === 'Exhibition'|| to.name === 'Home') {
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
     }

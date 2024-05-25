@@ -67,6 +67,7 @@ const updateLine = (element: HTMLElement | null, animate = true) => {
             return;
         }
         let lastEl = lastElement.value as HTMLElement;
+        if (!lastEl) return;
         lineStyle.value = {
             width: '0px',
             left: `${lastEl.offsetLeft + lastEl.offsetWidth/2 }px`
@@ -153,6 +154,7 @@ onUnmounted(() => {
     top: 0;
     left: 0;
     z-index: 1000;
+    animation: fadeInDown 0.5s ease-out;
 
     & .icon {
         height: 56px;
@@ -193,4 +195,15 @@ onUnmounted(() => {
         }
     }
 }
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 </style>
