@@ -1,38 +1,42 @@
 {
-  "name": "tju-annual-design-exhibition-2024",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build --force"
-  },
-  "dependencies": {
-    "pinia": "^2.1.7",
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
-  },
-  "devDependencies": {
-    "@tsconfig/node20": "^20.1.4",
-    "@types/node": "^20.12.5",
-    "@types/postcss-pxtorem": "^6.0.3",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "@vitejs/plugin-vue": "^5.0.4",
-    "@vue/tsconfig": "^0.5.1",
-    "autoprefixer": "^10.4.19",
-    "eslint": "^8.49.0",
-    "eslint-plugin-vue": "^9.17.0",
-    "npm-run-all2": "^6.1.2",
-    "postcss-pxtorem": "^6.1.0",
-    "stylelint": "^15.11.0",
-    "stylelint-config-html": "^1.1.0",
-    "typescript": "~5.4.0",
-    "vite": "^5.2.8",
-    "vue-eslint-parser": "^9.3.2",
-    "vue-tsc": "^2.0.11"
-  }
+    "name": "tju-annual-design-exhibition-2024",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "run-p type-check \"build-only {@}\" --",
+        "preview": "vite preview",
+        "build-only": "vite build",
+        "type-check": "vue-tsc --build --force"
+    },
+    "dependencies": {
+        "@videojs-player/vue": "^1.0.0",
+        "axios": "^1.7.2",
+        "pinia": "^2.1.7",
+        "video.js": "^7.21.0",
+        "vue": "^3.4.21",
+        "vue-router": "^4.3.0",
+        "vue3-image-preview": "^0.2.7"
+    },
+    "devDependencies": {
+        "@tsconfig/node20": "^20.1.4",
+        "@types/node": "^20.12.5",
+        "@types/postcss-pxtorem": "^6.0.3",
+        "@typescript-eslint/eslint-plugin": "^6.21.0",
+        "@typescript-eslint/parser": "^6.21.0",
+        "@vitejs/plugin-vue": "^5.0.4",
+        "@vue/tsconfig": "^0.5.1",
+        "autoprefixer": "^10.4.19",
+        "eslint": "^8.49.0",
+        "eslint-plugin-vue": "^9.17.0",
+        "npm-run-all2": "^6.1.2",
+        "postcss-pxtorem": "^6.1.0",
+        "stylelint": "^15.11.0",
+        "stylelint-config-html": "^1.1.0",
+        "typescript": "~5.4.0",
+        "vite": "^5.2.8",
+        "vue-eslint-parser": "^9.3.2",
+        "vue-tsc": "^2.0.11"
+    }
 }

@@ -14,10 +14,6 @@
 *::after {
     box-sizing: border-box;
     margin: 0;
-    font-weight: normal;
-    font-family: 'PingFang SC';
-    font-feature-settings: "kern" on;
-    font-variation-settings: "opsz" auto;
 }
 
 body {
@@ -27,4 +23,8 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-weight: normal;
+    font-family: 'PingFang SC';
+    font-feature-settings: "kern" on;
+    font-variation-settings: "opsz" auto;
 }

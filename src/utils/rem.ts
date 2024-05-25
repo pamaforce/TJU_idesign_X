@@ -1,9 +1,10 @@
+import {DIVIDER_WIDTH} from './constant';
+
 function setRem(): void {
     const PC_WIDTH: number = 1920;
     const PE_WIDTH: number = 414;
     const SCALE_LARGE: number = PC_WIDTH / 16;
     const SCALE_SMALL: number = PE_WIDTH / 16;
-    const DIVIDER_WIDTH: number = 620;
 
     // 获取 HTML 文档宽度
     const htmlWidth: number = document.documentElement.clientWidth || document.body.clientWidth;

@@ -2,6 +2,9 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 
 const router = createRouter({
     history: createWebHashHistory(),
+    scrollBehavior() {
+        return {top: 0};
+    },
     routes: [
         {
             path: '/',
@@ -27,8 +30,28 @@ const router = createRouter({
             path: '/search',
             name: 'Search',
             component: () => import('../views/Search.vue')
+        },
+        {
+            path: '/exhibition/:category_id/:id',
+            name: 'Detail',
+            component: () => import ('../views/Detail.vue'),
+            props: (route) => ({
+                list: route.query.list,
+                current: route.query.current,
+                from: route.query.from
+            })
         }
     ]
 })
-
+router.beforeEach((to, from, next) => {
+    if (to.name === 'Exhibition') {
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+    }
+    else if (to.name === 'Detail') {
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+    }
+    next();
+});
 export default router
