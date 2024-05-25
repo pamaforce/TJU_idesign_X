@@ -53,7 +53,7 @@
                 class="author-class"
               >
                 <img
-                  v-preview:name="i * 10"
+                  v-preview:name="1"
                   :src="portalUrl + item.url"
                 />
                 <p>{{ item.zh_names }}</p>
@@ -86,7 +86,7 @@
     <div class="width-flex">
       <div class="width-class">
         <img
-          v-preview:name="2"
+          v-preview:name="1"
           :src="data.thumbnail"
           style="width: 100%"
         />
@@ -109,31 +109,31 @@
             <img class="useVideo-class" src="@/assets/image/play.svg" />
           </div>
           <img
-            v-preview:name="3"
+            v-preview:name="1"
             :src="portalUrl + data.photos[0].url"
             style="width: 100%"
           />
         </div>
         <img
-          v-preview:name="4"
+          v-preview:name="1"
           :src="portalUrl + data.photos[1].url"
           style="width: 100%"
         />
       </div>
       <div class="great-class">
         <img
-          v-preview:name="5"
+          v-preview:name="1"
           :src="portalUrl + data.photos[2].url"
           style="width: 100%; height: 100%"
         />
       </div>
       <div class="flex-class">
         <img
-          v-preview:name="6"
+          v-preview:name="1"
           :src="portalUrl + data.photos[3].url"
           style="width: 100%"
         /><img
-          v-preview:name="7"
+          v-preview:name="1"
           :src="portalUrl + data.photos[4].url"
           style="width: 100%"
         />
@@ -237,8 +237,8 @@ async function findDetail() {
             post_title_en: newData.post_title_en,
             course_zh: newData.course_zh,
             course_en: newData.course_en,
-            keywords_zh: newData.keywords_zh.split('|'),
-            keywords_en: newData.keywords_en.split('|'),
+            keywords_zh: newData.keywords_zh?.split('|'),
+            keywords_en: newData.keywords_en?.split('|'),
             intro_zh: newData.intro_zh,
             intro_en: newData.intro_en,
             tutors_zh: newData.tutors_zh,
@@ -462,7 +462,6 @@ p {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 1200px;
-  height: 680px;
 }
 .back-class {
   display: flex;

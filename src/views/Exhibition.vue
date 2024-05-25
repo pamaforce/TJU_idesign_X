@@ -37,7 +37,7 @@
         :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===7?(marginTypeB+'px'):0)):0,cursor: item.status===2?'pointer':'auto'}"
         @click.stop="handleBack(index)"
       >
-      <div v-if="item.status === 2" class="content">
+      <div v-if="item.status === 2" class="content" @wheel="handleWheel">
         <template v-if="true">
           <div class="bar"></div>
           <transition name="fadeInDown" mode="out-in">
@@ -90,7 +90,7 @@
             </template>
           </transition>
           <transition name="fadeInDown" mode="out-in">
-            <div v-if="scrollIndex >= 0" ref="scrollContainer" class="scroll" @wheel="handleWheel">
+            <div v-if="scrollIndex >= 0" ref="scrollContainer" class="scroll">
               <div class="scroll-item" @click="scrollToIndex(0)">
                 <img :src="item.formula" class="first">
               </div>
