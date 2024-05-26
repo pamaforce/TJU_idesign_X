@@ -162,7 +162,7 @@ onUnmounted(() => {
     left: 0;
     z-index: 1000;
     animation: fadeInDown 0.5s ease-out;
-
+    user-select: none;
     & .icon {
         height: 56px;
         cursor: pointer;

@@ -1,5 +1,5 @@
 import {DIVIDER_WIDTH} from './constant';
-
+import {debounce} from './debounce';
 function setRem(): void {
     const PC_WIDTH: number = 1920;
     const PE_WIDTH: number = 414;
@@ -16,21 +16,6 @@ function setRem(): void {
     htmlDom.style.fontSize = `${htmlWidth / scale}px`;
 }
 
-// 防抖函数，使用具体的函数类型
-function debounce(func: () => void, wait: number): () => void {
-    let timeout: number | undefined = undefined;
-    return function(): void {
-        const later = () => {
-            timeout = undefined;
-            func();
-        };
-
-        if (timeout !== undefined) {
-            clearTimeout(timeout);
-        }
-        timeout = window.setTimeout(later, wait);
-    };
-}
 
 export function getRootFontSize(): number {
     // 获取HTML的DOM元素
