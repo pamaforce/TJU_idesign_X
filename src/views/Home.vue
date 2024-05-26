@@ -177,7 +177,7 @@ onActivated(() => {
         left: 7px;
         top: 52.5px;
         width: 1599px;
-        height: 943.38px;
+        height: 917.5px;
         animation: banner_3 1.1s forwards;
         pointer-events: none;
     }
@@ -185,8 +185,8 @@ onActivated(() => {
         position: absolute;
         left: -294px;
         top: 2.5px;
-        width: 1578px;
-        height: 965.89px;
+        width: 1520px;
+        height: 930px;
         animation: banner_4 1s forwards;
         pointer-events: none;
     }
@@ -194,8 +194,8 @@ onActivated(() => {
         position: absolute;
         left: 388px;
         top: -35px;
-        width: 1707.82px;
-        height: 1029px;
+        width: 1708px;
+        height: 1030px;
         animation: banner_5 0.9s forwards;
         pointer-events: none;
     }
@@ -301,10 +301,10 @@ onActivated(() => {
         pointer-events: none;
     }
     & .rotate-together-1 {
-        animation: fade 1.2s linear 0.5s forwards, text_7 8s linear infinite;
+        animation: fade 1.2s linear 0.5s forwards, text_8 1s linear forwards;
     }
     & .rotate-together-2 {
-        animation: text_7 8s linear infinite;
+        animation: text_8 1s linear forwards;
     }
 }
 @keyframes banner_1 {
@@ -520,7 +520,15 @@ onActivated(() => {
         transform: rotate(0);
     }
     100% {
-        transform: rotate(360deg);
+        transform: rotate(-360deg);
+    }
+}
+@keyframes text_8 {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(-45deg);
     }
 }
 @keyframes fadeInDown {

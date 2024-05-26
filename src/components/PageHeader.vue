@@ -24,7 +24,7 @@
 <script setup lang='ts'>
 import {nextTick, onMounted, onUnmounted, ref, watch} from 'vue';
 import {useRouter, useRoute} from 'vue-router';
-
+import {useTriggerStore} from '@/stores/triggerStore';
 interface Tab {
   name: string;
   route: string;
@@ -49,6 +49,7 @@ const tabRefs = ref<HTMLElement[]>([]);
 
 const changeTab = (index: number) => {
     activeTab.value = index;
+    if (index === 0) triggerEvent();
     router.push(tabs.value[index].route);
     updateLine(tabRefs.value[index]);
 };
@@ -60,6 +61,12 @@ const goToHome = () => {
 const goToSearch = () => {
     router.push('/search');
 };
+
+function triggerEvent() {
+    const triggerStore = useTriggerStore();
+    triggerStore.triggerFunction();
+}
+
 const updateLine = (element: HTMLElement | null, animate = true) => {
     if (!element) {
         if (activeTab.value !== -1) {

@@ -112,12 +112,14 @@
   </div>
 </template>
 <script setup lang='ts'>
-import {onMounted, onUnmounted, ref, nextTick, type ComponentOptionsBase, type ComponentPublicInstance,onActivated} from 'vue';
+import {onMounted, onUnmounted, ref, nextTick, type ComponentOptionsBase, type ComponentPublicInstance,onActivated, watch} from 'vue';
 import {exhibitionList as rawExhibitionList, type Exhibition, portalUrl} from '@/utils/constant';
 import {getRootFontSize} from '@/utils/rem';
 import require from '@/utils/require';
 import {useRouter} from 'vue-router';
 import service from '@/utils/request';
+import {useTriggerStore} from '@/stores/triggerStore';
+const triggerStore = useTriggerStore();
 const router = useRouter();
 const fromDetail = ref(false);
 const exhibitionList = ref<Exhibition[]>(resetExhibitionList());
@@ -135,6 +137,12 @@ let snapTimer: number | undefined = undefined;
 function getClass(statue: number) {
     return `status-${statue}`;
 }
+watch(() => triggerStore.triggered, (newValue: boolean) => {
+    if (newValue) {
+        handleInit();
+        triggerStore.resetTrigger(); // 执行后重置触发状态
+    }
+});
 function handleMouseOver(index: number) {
     if(exhibitionList.value[index].status !== 1 && exhibitionList.value[index].status !== 3) return;
     hoverItem.value = index;
@@ -287,8 +295,7 @@ function stopAnimation(index: number) {
 
 function handleBack(index: number) {
     if (exhibitionList.value[index].status === 2) {
-        exhibitionList.value = resetExhibitionList();
-        scrollIndex.value = -1;
+        handleInit();
     }
     else {
         handleClick(index);
@@ -377,10 +384,14 @@ function handleResize() {
         updateMargins();
     },500)
 }
+function handleInit() {
+    exhibitionList.value = resetExhibitionList();
+    scrollIndex.value = -1;
+}
 onMounted(() => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('keydown', handleKeyDown);
-    exhibitionList.value = resetExhibitionList();
+    handleInit();
 });
 onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
@@ -392,7 +403,7 @@ router.beforeEach((to, from, next) => {
 });
 onActivated(() => {
     if (!fromDetail.value) {
-        exhibitionList.value = resetExhibitionList();
+        handleInit();
     }
 })
 
