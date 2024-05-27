@@ -1,57 +1,71 @@
 <template>
-  <div
-    class="home"
-    @wheel="handleWheel"
-    @touchstart="handleTouchStart"
-    @touchmove="handleTouchMove"
-    @touchend="handleTouchEnd"
-  >
-    <img src="@/assets/image/banner_3.svg" class="banner-3" alt="banner_3" />
-    <img src="@/assets/image/banner_5.svg" class="banner-5" alt="banner_5" />
-    <img src="@/assets/image/banner_4.svg" class="banner-4" alt="banner_4" />
-    <img src="@/assets/image/banner_2.svg" class="banner-2" alt="banner_2" />
-    <img src="@/assets/image/banner_6.svg" class="banner-6" alt="banner_6" />
-    <img src="@/assets/image/banner_1.svg" class="banner-1" alt="banner_1" />
+  <div v-if="imagesLoaded" class="home">
+    <div
+      class="home"
+      @wheel="handleWheel"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+    >
+      <img src="@/assets/image/banner_3.svg" class="banner-3" alt="banner_3" />
+      <img src="@/assets/image/banner_5.svg" class="banner-5" alt="banner_5" />
+      <img src="@/assets/image/banner_4.svg" class="banner-4" alt="banner_4" />
+      <img src="@/assets/image/banner_2.svg" class="banner-2" alt="banner_2" />
+      <img src="@/assets/image/banner_6.svg" class="banner-6" alt="banner_6" />
+      <img src="@/assets/image/banner_1.svg" class="banner-1" alt="banner_1" />
 
-    <transition name="fadeInDown" mode="out-in">
-      <template v-if="state===1">
-        <div key="1">
-          <img src="@/assets/image/text_1.svg" class="text-1" alt="text-1" />
-          <img src="@/assets/image/text_2.svg" class="text-2" alt="text-2" />
-          <img src="@/assets/image/text_3.svg" class="text-3" alt="text-3" />
-          <img src="@/assets/image/text_4.svg" class="text-4" alt="text-4" />
-        </div>
-      </template>
-      <template v-else>
-        <div key="2">
-          <div class="blur-background"></div>
-          <img src="@/assets/image/text_5.svg" class="text-5" alt="text-5" />
-          <img src="@/assets/image/text_6.svg" class="text-6" alt="text-6" />
-          <img
-            ref="text7El"
-            src="@/assets/image/text_7.svg"
-            class="text-7"
-            alt="text-7"
-            @click="toExhibition"
-          />
-          <img src="@/assets/image/text_8.svg" class="text-8" :class="{'rotate-together-1':isSnapped}" alt="text-8" />
-          <img
-            ref="cursorEl"
-            src="@/assets/image/cursor.svg"
-            class="cursor"
-            :class="{'rotate-together-2':isSnapped}"
-            alt="cursor"
-            :style="cursorStyle"
-          />
-        </div>
-      </template>
-    </transition>
+      <transition name="fadeInDown" mode="out-in">
+        <template v-if="state===1">
+          <div key="1">
+            <img src="@/assets/image/text_1.svg" class="text-1" alt="text-1" />
+            <img src="@/assets/image/text_2.svg" class="text-2" alt="text-2" />
+            <img src="@/assets/image/text_3.svg" class="text-3" alt="text-3" />
+            <img src="@/assets/image/text_4.svg" class="text-4" alt="text-4" @click="changeState(2)" />
+            <img src="@/assets/image/down.svg" class="down" alt="down" @click="changeState(2)" />
+          </div>
+        </template>
+        <template v-else>
+          <div key="2">
+            <div class="blur-background"></div>
+            <img src="@/assets/image/text_5.svg" class="text-5" alt="text-5" />
+            <img src="@/assets/image/text_6.svg" class="text-6" alt="text-6" />
+            <img
+              ref="text7El"
+              src="@/assets/image/text_7.svg"
+              class="text-7"
+              alt="text-7"
+              @click="toExhibition"
+            />
+            <img src="@/assets/image/text_8.svg" class="text-8" :class="{'rotate-together-1':isSnapped}" alt="text-8" />
+            <img
+              ref="cursorEl"
+              src="@/assets/image/cursor.svg"
+              class="cursor"
+              :class="{'rotate-together-2':isSnapped}"
+              alt="cursor"
+              :style="cursorStyle"
+            />
+          </div>
+        </template>
+      </transition>
+    </div>
   </div>
 </template>
 <script setup lang='ts'>
 import {computed, onActivated, onMounted, onUnmounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
+import require from '@/utils/require'
 
+const props = defineProps({
+    startLoading: {
+        type: Function,
+        default: () => {}
+    },
+    stopLoading: {
+        type: Function,
+        default: () => {}
+    }
+})
 const router = useRouter();
 const cursorPosition = ref({x: 0, y: 0});
 const cursorEl = ref<HTMLElement|null>(null);
@@ -92,11 +106,14 @@ function checkSnapToText7() {
 }
 function handleWheel(event: WheelEvent) {
     if (event.deltaY > 0) {
-        state.value = 2;
+        changeState(2);
     }
     else if (event.deltaY < 0) {
-        state.value = 1;
+        changeState(1);
     }
+}
+function changeState(val:number) {
+    state.value = val;
 }
 function toExhibition() {
     router.push('/exhibition');
@@ -132,11 +149,13 @@ function handleKeyDown(event: KeyboardEvent) {
 onMounted(() => {
     window.addEventListener('mousemove', updateCursorPosition);
     window.addEventListener('keydown', handleKeyDown);
+    loadImages();
 });
 
 onUnmounted(() => {
     window.removeEventListener('mousemove', updateCursorPosition);
     window.removeEventListener('keydown', handleKeyDown);
+    props.stopLoading();
 });
 const needInit = ref(false)
 router.beforeEach((to, from, next) => {
@@ -148,6 +167,52 @@ onActivated(() => {
         state.value = 1;
     }
 })
+const imagesLoaded = ref(false);
+const maxLoadTime = 10000;
+const imagesToLoad = [
+    require('image/banner_1.svg'),
+    require('image/banner_2.svg'),
+    require('image/banner_3.svg'),
+    require('image/banner_4.svg'),
+    require('image/banner_5.svg'),
+    require('image/banner_6.svg'),
+    require('image/text_1.svg'),
+    require('image/text_2.svg'),
+    require('image/text_3.svg'),
+    require('image/text_4.svg'),
+    require('image/text_5.svg'),
+    require('image/text_6.svg'),
+    require('image/text_7.svg'),
+    require('image/text_8.svg'),
+    require('image/cursor.svg')
+];
+const loadImages = () => {
+    let loadedCount = 0;
+    props.startLoading();
+    const totalImages = imagesToLoad.length;
+
+    const timer = setTimeout(() => {
+        if (!imagesLoaded.value) {
+            imagesLoaded.value = true;
+            props.stopLoading();
+        }
+    }, maxLoadTime);
+
+    imagesToLoad.forEach((src) => {
+        const img = new Image();
+        img.onload = () => {
+            loadedCount++;
+            if (loadedCount === totalImages) {
+                clearTimeout(timer);
+                setTimeout(() => {
+                    imagesLoaded.value = true;
+                    props.stopLoading();
+                },1000)
+            }
+        };
+        img.src = src;
+    });
+};
 </script>
 <style scoped>
 .home {
@@ -211,7 +276,7 @@ onActivated(() => {
     & .text-1{
         position: absolute;
         right: 125px;
-        top: 155px;
+        top: 145px;
         width: 552px;
         height: 78px;
         animation: text_1 1.4s forwards;
@@ -220,7 +285,7 @@ onActivated(() => {
     & .text-2{
         position: absolute;
         right: 125px;
-        top: 233px;
+        top: 223px;
         width: 519px;
         height: 78px;
         animation: text_2 1.5s forwards;
@@ -229,7 +294,7 @@ onActivated(() => {
     & .text-3{
         position: absolute;
         right: 125px;
-        top: 330px;
+        top: 320px;
         width: 698px;
         height: 130px;
         animation: text_3 1.7s forwards;
@@ -238,11 +303,20 @@ onActivated(() => {
     & .text-4{
         position: absolute;
         right: 125px;
-        top: 647px;
+        top: 580px;
         width: 267px;
         height: 223px;
         animation: text_4 1.8s forwards;
-        pointer-events: none;
+        cursor: pointer;
+    }
+    .down {
+        position: absolute;
+        right: 228px;
+        top: 820px;
+        width: 50px;
+        height: 50px;
+        animation: text_4 1.8s forwards,upAndDown 2s linear 1.8s infinite;
+        cursor: pointer;
     }
     & .blur-background {
         position: absolute;
@@ -253,6 +327,7 @@ onActivated(() => {
         opacity: 0;
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 100%);
         backdrop-filter: blur(10px);
+        border-radius: 0.1px;
         animation: fade_blur 1s forwards;
     }
     & .text-5{
@@ -464,14 +539,29 @@ onActivated(() => {
         opacity: 1;
     }
 }
+@keyframes upAndDown {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(20px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
 @keyframes fade_blur {
     0% {
         opacity: 0;
-        backdrop-filter: blur(0px);
     }
     100% {
         opacity: 1;
-        backdrop-filter: blur(10px);
     }
 }
 @keyframes fade {
