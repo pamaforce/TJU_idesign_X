@@ -45,7 +45,7 @@
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
       >
-        <template v-if="true">
+        <template v-if="index===1">
           <div class="bar"></div>
           <transition name="fadeInDown" mode="out-in">
             <template v-if="scrollIndex === 0">
@@ -63,7 +63,7 @@
                   {{ designData[scrollIndex-1].post_title_en }}
                 </p>
                 <div class="design-keywords">
-                  <div v-for="key in designData[scrollIndex-1].keywords_zh.split('|')" :key="key" class="design-keyword">
+                  <div v-for="key in getKeywordsList(designData[scrollIndex-1])" :key="key" class="design-keyword">
                     {{ key }}
                   </div>
                 </div>
@@ -107,12 +107,60 @@
             </div>
           </transition>
         </template>
+        <template v-else-if="index===2">
+          <div class="bar-2"></div>
+          <transition name="fadeInDown" mode="out-in">
+            <div v-if="scrollIndex >= 0" ref="scrollContainer" class="scroll-2">
+              <transition name="fadeInDown" mode="out-in">
+                <div
+                  v-if="scrollIndex===0"
+                  class="scroll-item"
+                  style="opacity: 1"
+                >
+                  <img
+                    :src="
+                      item.formula"
+                    class="first"
+                    @click="scrollToIndex(0)"
+                  >
+                </div>
+                <div v-else class="blank"></div>
+              </transition>
+              <div v-for="(design,i) in designData" :key="design.id">
+                <div 
+                  class="scroll-item"
+                  :class="{ 'design-active': i === scrollIndex - 1,'design-deactive':i<=scrollIndex+2&&i>=scrollIndex-1,}"
+                  @click="scrollToIndex(i+1)"
+                >
+                  <transition name="fade" mode="in-out" appear>
+                    <div v-if="i==scrollIndex-1||i==scrollIndex+1||i===scrollIndex" :key="i" class="actual-content">
+                      <p class="design-title-cn" :title="design.post_title">
+                        {{ design.post_title }}
+                      </p>
+                      <p class="design-title-en" :title="design.post_title">
+                        {{ design.post_title_en }}
+                      </p>
+                      <div class="design-keywords">
+                        <div v-for="key in getKeywordsList(design)" :key="key" class="design-keyword">
+                          {{ key }}
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
+                </div>
+              </div>
+            </div>
+          </transition>
+          <transition name="fadeInDown" mode="out-in">
+            <img v-if="scrollIndex===0" key="intro-2" class="intro-2" src="@/assets/image/intro_2.svg">
+          </transition>
+        </template>
       </div>
     </div>
   </div>
 </template>
 <script setup lang='ts'>
-import {onMounted, onUnmounted, ref, nextTick, type ComponentOptionsBase, type ComponentPublicInstance,onActivated, watch} from 'vue';
+import {onMounted, onUnmounted, ref, nextTick, type ComponentOptionsBase, type ComponentPublicInstance,onActivated, watch, computed} from 'vue';
 import {exhibitionList as rawExhibitionList, type Exhibition, portalUrl} from '@/utils/constant';
 import {getRootFontSize} from '@/utils/rem';
 import require from '@/utils/require';
@@ -132,6 +180,8 @@ const marginTypeA = ref<number>(0);
 const marginTypeB = ref<number>(0);
 const scrollIndex = ref<number>(-1);
 const hoverItem = ref(-1);
+const currentExhibition = ref(0);
+const itemHeightsRem = [26.8125,26.8125,11.375,11.375,11.375,11.375,11.375,11.375,11.375,11.375];
 let itemList = '';
 let snapTimer: number | undefined = undefined;
 function getClass(statue: number) {
@@ -143,6 +193,11 @@ watch(() => triggerStore.triggered, (newValue: boolean) => {
         triggerStore.resetTrigger(); // 执行后重置触发状态
     }
 });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function getKeywordsList(item:any) {
+    const keywords = item.keywords_zh || '';
+    return keywords.split(/[|｜]/).filter((k: string) => k.trim() !== '');
+}
 function handleMouseOver(index: number) {
     if(exhibitionList.value[index].status !== 1 && exhibitionList.value[index].status !== 3) return;
     hoverItem.value = index;
@@ -164,6 +219,7 @@ function handleClick(index: number) {
     scrollIndex.value = -1;
     for(let i = 0; i < exhibitionList.value.length; i++) {
         if(i === index) {
+            currentExhibition.value = i;
             exhibitionList.value[i].status = 2;
             fetchList(i);
         }
@@ -305,7 +361,7 @@ function toDetail(index: number) {
     router.push( `/exhibition/${designData.value[index].category_id}/${designData.value[index].id}?list=${itemList}&current=${index}`);
 }
 function scrollContent(direction: 'down'|'up') {
-    let itemHeight = 26.8125 * getRootFontSize();
+    let itemHeight = itemHeightsRem[currentExhibition.value] * getRootFontSize();
     const SCROLL_STEP = itemHeight;
     let newMarginTop = parseInt(getComputedStyle(scrollContainer.value[0]).marginTop) || 0;
 
@@ -337,7 +393,7 @@ function snapToClosestItem(currentMarginTop:number, itemHeight:number) {
     }
 
     newMarginTop = Math.max(Math.min(newMarginTop, 0), -scrollContainer.value[0].scrollHeight + itemHeight);
-    scrollIndex.value = Math.abs(Math.round((newMarginTop - itemHeight / 2) / itemHeight));
+    scrollIndex.value = Math.abs(Math.ceil((newMarginTop - itemHeight / 2) / itemHeight));
     scrollContainer.value[0].style.marginTop = `${newMarginTop}px`;
 }
 function handleWheel(event: WheelEvent) {
@@ -374,7 +430,11 @@ function handleKeyDown(event: KeyboardEvent) {
 }
 function scrollToIndex(index: number) {
     if (!scrollContainer.value[0]) return;
-    let itemHeight = 26.8125 * getRootFontSize();
+    if (index !== 0 && scrollIndex.value === index) {
+        toDetail(index - 1);
+        return;
+    }
+    let itemHeight = itemHeightsRem[currentExhibition.value] * getRootFontSize();
     let newMarginTop = -index * itemHeight;
     scrollIndex.value = index;
     scrollContainer.value[0].style.marginTop = `${newMarginTop}px`;
@@ -406,7 +466,16 @@ onActivated(() => {
         handleInit();
     }
 })
+const lastScrollIndex = ref(0);
 
+watch(scrollIndex, (newVal, oldVal) => {
+    lastScrollIndex.value = oldVal;
+});
+
+const transitionName = computed(() => {
+    return 'fade';
+    //return scrollIndex.value > lastScrollIndex.value ? 'fadeInDownHalf' : 'fadeInUpHalf';
+});
 </script>
 <style scoped>
 .exhibition{
@@ -498,7 +567,14 @@ onActivated(() => {
           width: 100%;
           height: 466px;
           background: linear-gradient(270deg, rgba(143, 87, 160, 0) 0%, rgba(143, 87, 160, 0.1) 100%);
-
+        }
+        & .bar-2 {
+          position: absolute;
+          top: 210px;
+          left: 0;
+          width: 896px;
+          height: 182px;
+          background: linear-gradient(270deg, rgba(147, 201, 132, 0) 0%, rgba(147, 201, 132, 0.1) 100%);          
         }
 
         & .design-info {
@@ -632,7 +708,9 @@ onActivated(() => {
           right: 44px;
           top: 230px;
           width: 721px;
-          transition: margin-top 0.3s ease-out;
+          transition: all 0.3s ease-out;
+          display: flex;
+          flex-direction: column;
 
           & .scroll-item{
             width: 721px;
@@ -653,6 +731,103 @@ onActivated(() => {
               width: 721px;
               cursor: pointer;
             }
+          }
+        }
+
+        & .intro-2 {
+          position: absolute;
+          right: 116px;
+          width: 845px;
+          top: 270px;
+          pointer-events: none;
+        }
+        & .scroll-2 {
+          position: absolute;
+          left: 82px;
+          top: 210px;
+          width: 697px;
+          transition: all 0.3s ease-out;
+          display: flex;
+          flex-direction: column;
+
+          & .blank{
+            width: 697px;
+            height: 112px;
+            margin: 35px 0;
+          }
+          & .scroll-item{
+            cursor: pointer;
+            width: 697px;
+            height: 112px;
+            margin: 35px 0;
+
+            & .first {
+              width: 112px;
+              height: 421px;
+              margin-top: 112px;
+              transform: rotate(-90deg);
+              transform-origin: top left;
+            }
+            & .design-title-cn{
+              font-size: 20px;
+              letter-spacing: 0.05em;
+              font-weight: 700;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin-bottom: 1px;
+            }
+
+            & .design-title-en{
+              font-size: 16px;
+              letter-spacing: 0.05em;
+              font-weight: 700;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin-top: 8px;
+            }
+
+            & .design-keywords {
+              display: flex;
+              gap: 12px;
+              margin-top: 22px;
+              width: 660px;
+              flex-wrap: wrap;
+
+              & .design-keyword {
+                border: 1px solid rgba(0, 0, 0, 0.85);
+                font-size: 14px;
+                padding: 3px 12px;
+                border-radius: 4px;
+                flex-shrink: 0;
+              }
+            }
+          }
+          & .design-deactive {
+          }
+          & .design-active {
+
+            .design-title-cn{
+              font-size: 26px;
+            }
+            .design-title-en{
+              font-size: 20px;
+              margin-top: 2px;
+            }
+
+            & .design-keywords {
+              margin-top: 12px;
+
+              & .design-keyword {
+                font-size: 16px;
+                padding: 3px 11px;
+              }
+            }
+          }
+          & .actual-content {
+            border-left: 6px solid rgba(0, 0, 0, 0.85);
+            padding-left: 48px;
           }
         }
       }
@@ -785,7 +960,7 @@ onActivated(() => {
     }
 }
 
-@keyframes fadeInUp {
+@keyframes fadeOutUp {
     0% {
         opacity: 1;
         transform: translateY(0);
@@ -796,25 +971,142 @@ onActivated(() => {
     }
 }
 
-/* 进入动画 */
-.fadeInDown-enter-from, .fadeInDown-enter-active {
-    opacity: 0;
-    transform: translateY(-30px);
-}
-.fadeInDown-enter-to, .fadeInDown-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    animation: fadeInDown 0.3s ease-in-out forwards;
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* 离开动画 */
-.fadeInDown-leave-from, .fadeInDown-leave-active {
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+}
+@keyframes fadeInDownHalf {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutUpHalf {
+    from {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes fadeInUpHalf {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutDownHalf {
+    from {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+}
+
+/* fadeInDown */
+.fadeInDown-enter-active, .fadeInDown-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+.fadeInDown-enter-from, .fadeInDown-leave-to {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+.fadeInDown-enter-to, .fadeInDown-leave-from {
     opacity: 1;
     transform: translateY(0);
 }
-.fadeInDown-leave-to, .fadeInDown-leave-active {
+
+/* fadeInUp */
+.fadeInUp-enter-active, .fadeInUp-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+.fadeInUp-enter-from, .fadeInUp-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+}
+.fadeInUp-enter-to, .fadeInUp-leave-from {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* fadeInDownHalf */
+.fadeInDownHalf-enter-active, .fadeInDownHalf-leave-active {
+    transition: all 1s ease-in-out;
+}
+.fadeInDownHalf-enter-from{
+    opacity: 0;
+    transform: translateY(30px);
+}
+.fadeInDownHalf-leave-to {
     opacity: 0;
     transform: translateY(-30px);
-    animation: fadeInUp 0.3s ease-in-out forwards;
+}
+.fadeInDownHalf-enter-to, .fadeInDownHalf-leave-from {
+    opacity: 0.5;
+    transform: translateY(0);
+}
+
+/* fadeInUpHalf */
+.fadeInUpHalf-enter-active, .fadeInUpHalf-leave-active {
+    transition: all 1s ease-in-out;
+}
+.fadeInUpHalf-enter-from {
+    opacity: 0;
+    transform: translateY(-30px);
+} 
+.fadeInUpHalf-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
+}
+.fadeInUpHalf-enter-to, .fadeInUpHalf-leave-from {
+    opacity: 0.5;
+    transform: translateY(0);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 40s ease;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
