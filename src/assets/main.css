@@ -1,1 +1,11 @@
 @import './base.css';
+.swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 0 8px !important;
+    background: rgba(250, 81, 81, 0.4) !important;
+}
+
+.swiper-pagination-bullet-active {
+    background: #FA5151 !important;
+}

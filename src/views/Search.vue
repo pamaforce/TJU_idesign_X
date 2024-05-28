@@ -75,7 +75,7 @@
                 {{ key }}
               </div>
             </div>
-            <img :src="portalUrl+item.more.thumbnail" class="design-cover" alt="cover" />
+            <img v-lazy="portalUrl+item.more.thumbnail" class="design-cover" alt="cover" />
             <div class="line-1"></div>
             <div class="line-2"></div>
             <div class="line-3"></div>
