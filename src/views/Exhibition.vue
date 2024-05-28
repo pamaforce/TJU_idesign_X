@@ -47,7 +47,7 @@
       >
         <template v-if="index===1">
           <div class="bar"></div>
-          <transition name="fadeInDown" mode="out-in">
+          <transition :name="transitionName" mode="out-in">
             <template v-if="scrollIndex === 0">
               <img key="intro" class="intro" src="@/assets/image/intro_1.svg">
             </template>
@@ -74,8 +74,8 @@
                   </span>
                 </div>
                 <div class="design-authors">
-                  <span class="design-label">Designer：</span>
-                  <span v-for="author in designData[scrollIndex-1].more.authors" :key="author.xuehao" class="design-author">
+                  <span class="design-label-en">Designer：</span>
+                  <span v-for="author in designData[scrollIndex-1].more.authors" :key="author.xuehao" class="design-author-en">
                     {{ author.en_names }}
                   </span>
                 </div>
@@ -127,13 +127,13 @@
                 <div v-else class="blank"></div>
               </transition>
               <div v-for="(design,i) in designData" :key="design.id">
-                <div 
+                <div
                   class="scroll-item"
-                  :class="{ 'design-active': i === scrollIndex - 1,'design-deactive':i<=scrollIndex+2&&i>=scrollIndex-1,}"
+                  :class="{ 'design-active': i === scrollIndex - 1,'design-inactive':i<=scrollIndex+2&&i>=scrollIndex-1,}"
                   @click="scrollToIndex(i+1)"
                 >
-                  <transition name="fade" mode="in-out" appear>
-                    <div v-if="i==scrollIndex-1||i==scrollIndex+1||i===scrollIndex" :key="i" class="actual-content">
+                  <transition :name="transitionName">
+                    <div v-show="i==scrollIndex-1||i==scrollIndex+1||i===scrollIndex" :key="i" class="actual-content">
                       <p class="design-title-cn" :title="design.post_title">
                         {{ design.post_title }}
                       </p>
@@ -141,7 +141,7 @@
                         {{ design.post_title_en }}
                       </p>
                       <div class="design-keywords">
-                        <div v-for="key in getKeywordsList(design)" :key="key" class="design-keyword">
+                        <div v-for="key in getKeywordsList(design)" :key="key" :title="key" class="design-keyword">
                           {{ key }}
                         </div>
                       </div>
@@ -151,8 +151,125 @@
               </div>
             </div>
           </transition>
-          <transition name="fadeInDown" mode="out-in">
+          <transition :name="transitionName" mode="out-in">
             <img v-if="scrollIndex===0" key="intro-2" class="intro-2" src="@/assets/image/intro_2.svg">
+            <div v-else-if="scrollIndex > 0" :key="designData[scrollIndex-1].id" class="design-info-2">
+              <p class="design-no">
+                {{ scrollIndex.toString().padStart(2, '0') }}
+              </p>
+
+              <img :src="portalUrl+designData[scrollIndex-1].more.thumbnail" class="design-cover" @click="toDetail(scrollIndex-1)">
+              <div class="design-authors">
+                <span class="design-label">作者：</span>
+                <span v-for="author in designData[scrollIndex-1].more.authors" :key="author.xuehao" class="design-author">
+                  {{ author.zh_names }}
+                </span>
+              </div>
+              <div class="design-authors">
+                <span class="design-label-en">Designer：</span>
+                <span v-for="author in designData[scrollIndex-1].more.authors" :key="author.xuehao" class="design-author-en">
+                  {{ author.en_names }}
+                </span>
+              </div>
+              <div class="design-desc">
+                <span class="design-label">简介：</span>
+                <div class="design-desc-text">
+                  <p class="design-desc-cn" :title="designData[scrollIndex-1].intro_zh">
+                    {{ designData[scrollIndex-1].intro_zh }}
+                  </p>
+                  <p class="design-desc-en" :title="designData[scrollIndex-1].intro_en">
+                    {{ designData[scrollIndex-1].intro_en }}
+                  </p>
+                </div>
+              </div>
+              <div class="design-btn" @click="toDetail(scrollIndex-1)">
+                作品详情
+              </div>
+            </div>
+          </transition>
+        </template>
+
+        <template v-if="index===3">
+          <div class="bar-3"></div>
+          <transition name="fadeInDown" mode="out-in">
+            <template v-if="scrollIndex === 0">
+              <img key="intro-3" class="intro-3" src="@/assets/image/intro_3.svg">
+            </template>
+            <template v-else-if="scrollIndex > 1">
+              <div :key="designData[scrollIndex-2].id" class="design-info-3">
+                <p class="design-title-cn" :title="designData[scrollIndex-2].post_title">
+                  {{ designData[scrollIndex-2].post_title }}
+                </p>
+                <p class="design-title-en" :title="designData[scrollIndex-2].post_title">
+                  {{ designData[scrollIndex-2].post_title_en }}
+                </p>
+                <div class="design-keywords">
+                  <div v-for="key in getKeywordsList(designData[scrollIndex-2])" :key="key" class="design-keyword">
+                    {{ key }}
+                  </div>
+                </div>
+                <div class="design-authors">
+                  <span class="design-label">作者：</span>
+                  <span v-for="author in designData[scrollIndex-2].more.authors" :key="author.xuehao" class="design-author">
+                    {{ author.zh_names }}
+                  </span>
+                </div>
+                <div class="design-authors">
+                  <span class="design-label-en">Designer：</span>
+                  <span v-for="author in designData[scrollIndex-2].more.authors" :key="author.xuehao" class="design-author-en">
+                    {{ author.en_names }}
+                  </span>
+                </div>
+                <div class="design-desc">
+                  <span class="design-label">简介：</span>
+                  <div class="design-desc-text">
+                    <p class="design-desc-cn" :title="designData[scrollIndex-2].intro_zh">
+                      {{ designData[scrollIndex-2].intro_zh }}
+                    </p>
+                    <p class="design-desc-en" :title="designData[scrollIndex-2].intro_en">
+                      {{ designData[scrollIndex-2].intro_en }}
+                    </p>
+                  </div>
+                </div>
+                <div class="design-btn" @click="toDetail(scrollIndex-2)">
+                  作品详情
+                </div>
+              </div>
+            </template>
+          </transition>
+          <transition name="fadeInDown" mode="out-in">
+            <div v-if="scrollIndex >= 0" ref="scrollContainer" class="scroll-3">
+              <div class="scroll-item scroll-formula" @click="scrollToIndex(0)">
+                <img :src="item.formula" class="first">
+              </div>
+              <div v-for="(design,i) in designData" :key="design.id" class="scroll-item" :class="{ 'scroll-left': i % 2 == 1}">
+                <div class="scroll-content">
+                  <div class="scroll-title">
+                    <p class="scroll-no">
+                      {{ (i+1).toString().padStart(2, '0') }}
+                    </p>
+                    <p class="scroll-title-cn" :title="design.post_title">
+                      {{ design.post_title }}
+                    </p>
+                    <p class="scroll-title-en" :title="design.post_title">
+                      {{ design.post_title_en }}
+                    </p>
+                  </div>
+                  <div>
+                    <img v-if="i>0" :src="portalUrl+designData[i-1].more.thumbnail" class="scroll-cover" @click="scrollToIndex(i+1)">
+                  </div>
+                </div>
+              </div>
+              <div key="extra" class="scroll-item" :class="{ 'scroll-left': designData.length % 2 == 1}">
+                <div class="scroll-content">
+                  <div class="scroll-title">
+                  </div>
+                  <div>
+                    <img :src="portalUrl+designData[designData.length-1].more.thumbnail" class="scroll-cover" @click="scrollToIndex(designData.length+1)">
+                  </div>
+                </div>
+              </div>
+            </div>
           </transition>
         </template>
       </div>
@@ -181,7 +298,7 @@ const marginTypeB = ref<number>(0);
 const scrollIndex = ref<number>(-1);
 const hoverItem = ref(-1);
 const currentExhibition = ref(0);
-const itemHeightsRem = [26.8125,26.8125,11.375,11.375,11.375,11.375,11.375,11.375,11.375,11.375];
+const itemHeightsRem = [26.8125,26.8125,11.375,16,11.375,11.375,11.375,11.375,11.375,11.375];
 let itemList = '';
 let snapTimer: number | undefined = undefined;
 function getClass(statue: number) {
@@ -360,11 +477,12 @@ function handleBack(index: number) {
 function toDetail(index: number) {
     router.push( `/exhibition/${designData.value[index].category_id}/${designData.value[index].id}?list=${itemList}&current=${index}`);
 }
+const lastDirection = ref('down');
 function scrollContent(direction: 'down'|'up') {
     let itemHeight = itemHeightsRem[currentExhibition.value] * getRootFontSize();
     const SCROLL_STEP = itemHeight;
     let newMarginTop = parseInt(getComputedStyle(scrollContainer.value[0]).marginTop) || 0;
-
+    lastDirection.value = direction;
     newMarginTop += (direction === 'down' ? -SCROLL_STEP : SCROLL_STEP);
 
     // 确保滚动不会超出容器边界
@@ -393,7 +511,21 @@ function snapToClosestItem(currentMarginTop:number, itemHeight:number) {
     }
 
     newMarginTop = Math.max(Math.min(newMarginTop, 0), -scrollContainer.value[0].scrollHeight + itemHeight);
-    scrollIndex.value = Math.abs(Math.ceil((newMarginTop - itemHeight / 2) / itemHeight));
+    if (currentExhibition.value === 3 && Math.abs(Math.ceil((newMarginTop - itemHeight / 2) / itemHeight)) === 1) {
+        if (lastDirection.value === 'down') {
+            scrollIndex.value= Math.abs(Math.ceil((newMarginTop - itemHeight / 2) / itemHeight))+1;
+            newMarginTop -= itemHeight;
+        }
+        else {
+            scrollIndex.value= Math.abs(Math.ceil((newMarginTop - itemHeight / 2) / itemHeight))-1;
+            newMarginTop += itemHeight;
+        }
+    }
+    else {
+        console.log(newMarginTop,itemHeight,(newMarginTop - itemHeight / 2) / itemHeight);
+
+        scrollIndex.value = Math.abs(Math.ceil((newMarginTop - itemHeight / 2) / itemHeight));
+    }
     scrollContainer.value[0].style.marginTop = `${newMarginTop}px`;
 }
 function handleWheel(event: WheelEvent) {
@@ -431,7 +563,12 @@ function handleKeyDown(event: KeyboardEvent) {
 function scrollToIndex(index: number) {
     if (!scrollContainer.value[0]) return;
     if (index !== 0 && scrollIndex.value === index) {
-        toDetail(index - 1);
+        if (currentExhibition.value === 3) {
+            toDetail(index - 2);
+        }
+        else {
+            toDetail(index - 1);
+        }
         return;
     }
     let itemHeight = itemHeightsRem[currentExhibition.value] * getRootFontSize();
@@ -442,6 +579,10 @@ function scrollToIndex(index: number) {
 function handleResize() {
     setTimeout(() => {
         updateMargins();
+        if (scrollIndex.value > 0) {
+            scrollContent('down');
+            scrollContent('up');
+        }
     },500)
 }
 function handleInit() {
@@ -473,8 +614,7 @@ watch(scrollIndex, (newVal, oldVal) => {
 });
 
 const transitionName = computed(() => {
-    return 'fade';
-    //return scrollIndex.value > lastScrollIndex.value ? 'fadeInDownHalf' : 'fadeInUpHalf';
+    return scrollIndex.value > lastScrollIndex.value ? 'fadeInDownHalf' : 'fadeInUpHalf';
 });
 </script>
 <style scoped>
@@ -560,6 +700,7 @@ const transitionName = computed(() => {
         left: 0;
         top: 0;
 
+        /* 展区1 */
         & .bar {
           position: absolute;
           top: 200px;
@@ -568,15 +709,43 @@ const transitionName = computed(() => {
           height: 466px;
           background: linear-gradient(270deg, rgba(143, 87, 160, 0) 0%, rgba(143, 87, 160, 0.1) 100%);
         }
-        & .bar-2 {
+        & .intro {
           position: absolute;
-          top: 210px;
-          left: 0;
-          width: 896px;
-          height: 182px;
-          background: linear-gradient(270deg, rgba(147, 201, 132, 0) 0%, rgba(147, 201, 132, 0.1) 100%);          
+          left: 87px;
+          top: 257px;
+          width: 920px;
+          pointer-events: none;
         }
+        & .scroll {
+          position: absolute;
+          right: 44px;
+          top: 230px;
+          width: 721px;
+          transition: all 0.3s ease-out;
+          display: flex;
+          flex-direction: column;
 
+          & .scroll-item{
+            width: 721px;
+            height: 405px;
+            margin-bottom: 24px;
+
+            & .first {
+              height: 540px;
+              width: 155px;
+              margin-top: 280px;
+              margin-left: 90px;
+              transform: rotate(-90deg);
+              transform-origin: top left;
+            }
+
+            & .scroll-cover {
+              height: 405px;
+              width: 721px;
+              cursor: pointer;
+            }
+          }
+        }
         & .design-info {
           position: absolute;
           left: 87px;
@@ -632,6 +801,12 @@ const transitionName = computed(() => {
             letter-spacing: 0.05em;
             flex-shrink: 0;
           }
+          & .design-label-en {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+          }
 
           & .design-authors {
             width: 860px;
@@ -643,8 +818,14 @@ const transitionName = computed(() => {
             margin-bottom: 2px;
 
             & .design-author {
-              margin-right: 12px;
+              margin-right: 24px;
               font-size: 18px;
+              letter-spacing: 0.05em;
+            }
+
+            & .design-author-en {
+              margin-right: 12px;
+              font-size: 14px;
               letter-spacing: 0.05em;
             }
           }
@@ -675,63 +856,34 @@ const transitionName = computed(() => {
               }
             }
           }
-        }
 
-        & .design-btn {
-          font-size: 18px;
-          letter-spacing: 0.05em;
-          font-weight: 700;
-          color: #fff;
-          padding: 13px 40px;
-          border-radius: 50px;
-          background-color: #AF98B4;
-          cursor: pointer;
-          width: max-content;
-          margin-top: 30px;
-
-
-          &:hover {
-            opacity: 0.7;
-          }
-        }
-
-        & .intro {
-          position: absolute;
-          left: 87px;
-          top: 257px;
-          width: 920px;
-          pointer-events: none;
-        }
-
-        & .scroll {
-          position: absolute;
-          right: 44px;
-          top: 230px;
-          width: 721px;
-          transition: all 0.3s ease-out;
-          display: flex;
-          flex-direction: column;
-
-          & .scroll-item{
-            width: 721px;
-            height: 405px;
-            margin-bottom: 24px;
-
-            & .first {
-              height: 540px;
-              width: 155px;
-              margin-top: 280px;
-              margin-left: 90px;
-              transform: rotate(-90deg);
-              transform-origin: top left;
-            }
-
-            & .scroll-cover {
-              height: 405px;
-              width: 721px;
+          & .design-btn {
+              font-size: 18px;
+              letter-spacing: 0.05em;
+              font-weight: 700;
+              color: #fff;
+              padding: 13px 40px;
+              border-radius: 50px;
+              background-color: #AF98B4;
               cursor: pointer;
-            }
+              width: max-content;
+              margin-top: 30px;
+
+
+              &:hover {
+                opacity: 0.7;
+              }
           }
+        }
+
+        /* 展区2 */
+        & .bar-2 {
+          position: absolute;
+          top: 210px;
+          left: 0;
+          width: 896px;
+          height: 182px;
+          background: linear-gradient(270deg, rgba(147, 201, 132, 0) 0%, rgba(147, 201, 132, 0.1) 100%);
         }
 
         & .intro-2 {
@@ -793,21 +945,24 @@ const transitionName = computed(() => {
               gap: 12px;
               margin-top: 22px;
               width: 660px;
-              flex-wrap: wrap;
+              flex-wrap: nowrap;
 
               & .design-keyword {
                 border: 1px solid rgba(0, 0, 0, 0.85);
                 font-size: 14px;
                 padding: 3px 12px;
                 border-radius: 4px;
-                flex-shrink: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
             }
           }
-          & .design-deactive {
+          & .design-inactive {
+            opacity: 0.5;
           }
           & .design-active {
-
+            opacity: 1;
             .design-title-cn{
               font-size: 26px;
             }
@@ -828,6 +983,338 @@ const transitionName = computed(() => {
           & .actual-content {
             border-left: 6px solid rgba(0, 0, 0, 0.85);
             padding-left: 48px;
+          }
+        }
+        & .design-info-2 {
+          position: relative;
+          width: 866px;
+          left: 896px;
+          margin-top: 56px;
+          display: flex;
+          flex-direction: column;
+
+          & .design-no {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 11px;
+            width: 866px;
+            text-align: right;
+          }
+
+          & .design-cover {
+            width: 100%;
+            height: 486px;
+            margin-bottom: 36px;
+            cursor: pointer;
+          }
+
+          & .design-authors {
+            width: 795px;
+            display: flex;
+            align-items: flex-end;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 1px;
+
+            & .design-author {
+              margin-right: 24px;
+              font-size: 18px;
+              letter-spacing: 0.05em;
+            }
+
+            & .design-author-en {
+              margin-right: 14px;
+              font-size: 14px;
+              letter-spacing: 0.05em;
+            }
+          }
+          & .design-label {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+          }
+          & .design-label-en {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+          }
+          & .design-desc {
+            width: 860px;
+            display: flex;
+            margin-top: 20px;
+
+            & .design-desc-text {
+
+              & .design-desc-cn {
+                width: 795px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 16px;
+                letter-spacing: 0.05em;
+              }
+
+              & .design-desc-en {
+                width: 800px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 14px;
+                letter-spacing: 0.05em;
+              }
+            }
+          }
+            & .design-btn {
+              align-self:flex-end;
+              font-size: 18px;
+              letter-spacing: 0.05em;
+              font-weight: 700;
+              color: #fff;
+              padding: 13px 40px;
+              border-radius: 50px;
+              background-color: #93C984;
+              cursor: pointer;
+              width: max-content;
+              margin-top: 30px;
+
+              &:hover {
+                opacity: 0.7;
+              }
+            }
+        }
+
+        /* 展区3 */
+        & .bar-3 {
+          position: absolute;
+          top: 200px;
+          left: 0;
+          width: 100%;
+          height: 453px;
+          background: linear-gradient(270deg, rgba(247, 135, 74, 0) 0%, rgba(247, 135, 74, 0.1) 86%, rgba(247, 135, 74, 0) 100%);
+        }
+        & .intro-3 {
+          position: absolute;
+          left: 56px;
+          top: 175px;
+          width: 682px;
+          pointer-events: none;
+        }
+        & .scroll-3 {
+          position: absolute;
+          right: 136px;
+          top: 230px;
+          width: 912px;
+          transition: all 0.3s ease-out;
+          display: flex;
+          flex-direction: column;
+
+          & .scroll-item{
+            width: 912px;
+            height: 256px;
+            position: relative;
+
+            & .first {
+              height: 502px;
+              width: 155px;
+              margin-top: 280px;
+              margin-left: 420px;
+              transform: rotate(-90deg);
+              transform-origin: top left;
+            }
+            & .scroll-content {
+                display: flex;
+
+                & .scroll-title {
+                    width: 456px;
+                    height: 256px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    align-items: flex-start;
+                    position: relative;
+                    padding: 10px;
+
+                    & .scroll-no{
+                        font-size: 92px;
+                        letter-spacing: 0.05em;
+                    }
+                    & .scroll-title-cn{
+                      font-size: 20px;
+                      letter-spacing: 0.05em;
+                      font-weight: 700;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      margin-bottom: 1px;
+                      width: 100%;
+                    }
+                    & .scroll-title-en{
+                      font-size: 16px;
+                      letter-spacing: 0.05em;
+                      font-weight: 700;
+                      display: -webkit-box;
+                      -webkit-box-orient: vertical;
+                      -webkit-line-clamp: 2;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      width: 100%;
+                    }
+                }
+                & .scroll-cover {
+                  height: 256px;
+                  width: 456px;
+                  cursor: pointer;
+                }
+            }
+          }
+          & .scroll-formula{
+            margin-bottom: 100px;
+          }
+          & .scroll-left{
+            & .scroll-content {
+                flex-direction: row-reverse;
+
+                & .scroll-title {
+                    align-items: flex-end;
+                }
+                & .scroll-title-cn{
+                    text-align: right;
+                }
+                & .scroll-title-en{
+                    text-align: right;
+                }
+            }
+          }
+        }
+        & .design-info-3 {
+          position: absolute;
+          left: 87px;
+          top: 245px;
+          width: 590px;
+          font-size: 50px;
+
+          & .design-title-cn{
+            font-size: 30px;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 1px;
+          }
+
+          & .design-title-en{
+            font-size: 18px;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          & .design-keywords {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+            margin-bottom: 24px;
+            width: 590px;
+            flex-wrap: wrap;
+
+            & .design-keyword {
+              border: 1px solid rgba(0, 0, 0, 0.85);
+              font-size: 16px;
+              padding: 3px 11px;
+              border-radius: 4px;
+              flex-shrink: 0;
+            }
+          }
+
+          & .design-label {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+          }
+          & .design-label-en {
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+          }
+
+          & .design-authors {
+            width: 590px;
+            display: flex;
+            align-items: flex-end;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 1px;
+
+            & .design-author {
+              margin-right: 24px;
+              font-size: 18px;
+              letter-spacing: 0.05em;
+            }
+
+            & .design-author-en {
+              margin-right: 14px;
+              font-size: 16px;
+              letter-spacing: 0.05em;
+            }
+          }
+
+          & .design-desc {
+            width: 860px;
+            display: flex;
+            margin-top: 20px;
+
+            & .design-desc-text {
+
+              & .design-desc-cn {
+                width: 524px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 16px;
+                letter-spacing: 0.05em;
+              }
+
+              & .design-desc-en {
+                width: 524px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 14px;
+                letter-spacing: 0.05em;
+              }
+            }
+          }
+
+          & .design-btn {
+              font-size: 18px;
+              letter-spacing: 0.05em;
+              font-weight: 700;
+              color: #fff;
+              padding: 13px 40px;
+              border-radius: 50px;
+              background-color: #F7874A;
+              cursor: pointer;
+              width: max-content;
+              margin-top: 30px;
+
+
+              &:hover {
+                opacity: 0.7;
+              }
           }
         }
       }
@@ -949,92 +1436,6 @@ const transitionName = computed(() => {
     }
 }
 
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeOutUp {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeOutDown {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-}
-@keyframes fadeInDownHalf {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    100% {
-        opacity: 0.5;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeOutUpHalf {
-    from {
-        opacity: 0.5;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-}
-
-@keyframes fadeInUpHalf {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 0.5;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeOutDownHalf {
-    from {
-        opacity: 0.5;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-}
 
 /* fadeInDown */
 .fadeInDown-enter-active, .fadeInDown-leave-active {
@@ -1064,7 +1465,7 @@ const transitionName = computed(() => {
 
 /* fadeInDownHalf */
 .fadeInDownHalf-enter-active, .fadeInDownHalf-leave-active {
-    transition: all 1s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .fadeInDownHalf-enter-from{
     opacity: 0;
@@ -1081,12 +1482,12 @@ const transitionName = computed(() => {
 
 /* fadeInUpHalf */
 .fadeInUpHalf-enter-active, .fadeInUpHalf-leave-active {
-    transition: all 1s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .fadeInUpHalf-enter-from {
     opacity: 0;
     transform: translateY(-30px);
-} 
+}
 .fadeInUpHalf-leave-to {
     opacity: 0;
     transform: translateY(30px);
@@ -1094,19 +1495,5 @@ const transitionName = computed(() => {
 .fadeInUpHalf-enter-to, .fadeInUpHalf-leave-from {
     opacity: 0.5;
     transform: translateY(0);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 40s ease;
-}
-.fade-enter-to,
-.fade-leave-from {
-  opacity: 1;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
