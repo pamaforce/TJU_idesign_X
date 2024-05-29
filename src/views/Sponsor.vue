@@ -40,20 +40,23 @@ function adjustViewBox() {
     })
 }
 onMounted(() => {
-    const path = document.getElementById('path');
-    const pathLength = path.getTotalLength();
-    path.style.strokeDasharray = pathLength;
-    const initialOffset = pathLength * 0.99;
-    path.style.strokeDashoffset = initialOffset;
-    adjustViewBox();
-    window.addEventListener('resize', adjustViewBox);
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const totalHeight = document.body.scrollHeight - window.innerHeight;
-        scrollPercentage.value = scrollPosition / totalHeight;
-        const newOffset = initialOffset * (1 - 1.1*scrollPercentage.value);
-        path.style.strokeDashoffset = Math.max(0, newOffset);
-    });
+    nextTick(() => {
+        const path = document.getElementById('path');
+        if (!path) return;
+        const pathLength = path.getTotalLength();
+        path.style.strokeDasharray = pathLength;
+        const initialOffset = pathLength * 0.99;
+        path.style.strokeDashoffset = initialOffset;
+        adjustViewBox();
+        window.addEventListener('resize', adjustViewBox);
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            scrollPercentage.value = scrollPosition / totalHeight;
+            const newOffset = initialOffset * (1 - 1.1*scrollPercentage.value);
+            path.style.strokeDashoffset = Math.max(0, newOffset);
+        });
+    })
 });
 onUnmounted(() => {
     window.removeEventListener('resize', adjustViewBox);
