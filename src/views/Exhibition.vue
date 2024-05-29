@@ -704,7 +704,7 @@ function resetExhibitionList() {
     return rawExhibitionList.map(item => ({...item}));
 }
 function getIconSource(item: Exhibition) {
-    return require(`${item.iconAnimationPath}/frame_${item.currentFrame}.png`);
+    return require(`${item.iconAnimationPath}/frame_${item.currentFrame}-min.png`);
 }
 function startAnimation(index: number) {
     const item = exhibitionList.value[index];

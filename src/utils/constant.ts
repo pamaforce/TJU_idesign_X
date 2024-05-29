@@ -292,3 +292,222 @@ export const coverList = [
     require('image/cover/2.png'),
     require('image/cover/1.png')
 ]
+
+export const sponsorList = [
+    {
+        group: '指导教师',
+        member: [
+            {
+                name: '边放',
+                role: '展览理论知识讲授、设计指导',
+                avatar: require('image/sponsor/1.jpeg')
+            },
+            {
+                name: '杨君宇',
+                role: '年展视觉设计指导',
+                avatar: require('image/sponsor/2.jpeg')
+            },
+            {
+                name: '张赫晨',
+                role: '年展策划协调、设计指导',
+                avatar: require('image/sponsor/3.jpeg')
+            },
+            {
+                name: '李擎炜',
+                role: '年展实验指导、文宣指导',
+                avatar: require('image/sponsor/4.jpeg')
+            }
+        ]
+    },
+    {
+        group: '总负责',
+        member: [
+            {
+                name: '江长林',
+                role: '上传下达，协调工作，参与进度',
+                avatar: require('image/sponsor/5.jpeg')
+            }
+        ]
+    },{
+        group: '策展A',
+        member: [
+            {
+                name: '贺杨晨（组长）',
+                role: '展览设计，统筹，展场规划,展场建模',
+                avatar: require('image/sponsor/6.jpeg')
+            },
+            {
+                name: '焦慧婷',
+                role: '展览设计，财务负责',
+                avatar: require('image/sponsor/7.jpeg')
+            },
+            {
+                name: '王佳一',
+                role: '展览设计，总外联，物料清点，主视觉设计',
+                avatar: require('image/sponsor/8.jpeg')
+            },
+            {
+                name: '曾楚懿',
+                role: '展览设计，环境艺术外联，设计组对接',
+                avatar: require('image/sponsor/9.jpeg')
+            },
+            {
+                name: '张宇星',
+                role: '展览设计，物料调研，沙盘负责，展品排布',
+                avatar: require('image/sponsor/10.jpeg')
+            }
+        ]
+    },{
+        group: '策展B',
+        member: [
+            {
+                name: '余春阳（组长）',
+                role: '框架搭建，PC端UI，协调工作',
+                avatar: require('image/sponsor/11.jpeg')
+            },
+            {
+                name: '刘子炜',
+                role: '框架搭建，移动端UI',
+                avatar: require('image/sponsor/12.jpeg')
+            },
+            {
+                name: '蒋婵娟',
+                role: '框架搭建，动效设计',
+                avatar: require('image/sponsor/13.jpeg')
+            },
+            {
+                name: '刘宏伟',
+                role: 'PC端、移动端网站前端开发',
+                avatar: require('image/sponsor/14.jpeg')
+            },
+            {
+                name: '李杰',
+                role: '特邀教师，网站后端开发及部署',
+                avatar: require('image/sponsor/15.jpeg')
+            }
+        ]
+    },{
+        group: '策展C',
+        member: [
+            {
+                name: '陈雪懿（组长）',
+                role: '收集展品资料',
+                avatar: require('image/sponsor/16.jpeg')
+            },
+            {
+                name: '曲自涵',
+                role: '收集展品资料',
+                avatar: require('image/sponsor/17.jpeg')
+            }
+        ]
+    },{
+        group: '设计组',
+        member: [
+            {
+                name: '张仁洁（组长）',
+                role: '主视觉细化、展品手册、线上设计、协调统筹',
+                avatar: require('image/sponsor/18.jpeg')
+            },
+            {
+                name: '尹祎晗（副组长）',
+                role: '辅助图形、周边、线上设计、协调统筹',
+                avatar: require('image/sponsor/19.jpeg')
+            },
+            {
+                name: '唐安尼达',
+                role: '周边初设计、年展手册',
+                avatar: require('image/sponsor/20.jpeg')
+            },
+            {
+                name: '黄诗淇',
+                role: '主视觉初方案、背板设计、实验报告',
+                avatar: require('image/sponsor/21.jpeg')
+            },
+            {
+                name: '洛扎',
+                role: '辅助工作',
+                avatar: require('image/sponsor/22.jpeg')
+            },
+            {
+                name: '易晓萌',
+                role: '展板细化、导览册',
+                avatar: require('image/sponsor/23.jpeg')
+            },
+            {
+                name: '仁增旺姆',
+                role: '辅助工作',
+                avatar: require('image/sponsor/24.jpeg')
+            },
+            {
+                name: '王依燃',
+                role: '展览周边、导览册',
+                avatar: require('image/sponsor/25.jpeg')
+            }
+        ]
+    },
+    {
+        group: '文宣',
+        member: [
+            {
+                name: '白昊（组长）',
+                role: '主题阐释、分区阐释、H5、推送、外联、协调工作',
+                avatar: require('image/sponsor/26.jpeg')
+            },
+            {
+                name: '吴语晴（副组长）',
+                role: '主题阐释、素材整理、宣传片制作、协调工作',
+                avatar: require('image/sponsor/27.jpeg')
+            },
+            {
+                name: '段海涛',
+                role: '主题阐释、分区阐释、宣传片制作',
+                avatar: require('image/sponsor/28.jpeg')
+            },
+            {
+                name: '刘皓月',
+                role: '主题阐释、素材收集、宣传片制作',
+                avatar: require('image/sponsor/29.jpeg')
+            },
+            {
+                name: '赵钰可',
+                role: '主题阐释、素材收集、宣传片制作',
+                avatar: require('image/sponsor/30.jpeg')
+            },
+            {
+                name: '陈诗语',
+                role: '主题阐释、分区阐释、宣传片制作、文案撰写',
+                avatar: require('image/sponsor/31.jpeg')
+            }
+        ]
+    },
+    {
+        group: '交接组',
+        member: [
+            {
+                name: '吴鑫',
+                role: '收集研究生展品',
+                avatar: require('image/sponsor/32.jpeg')
+            },
+            {
+                name: '方正',
+                role: '收集22级展品',
+                avatar: require('image/sponsor/33.jpeg')
+            },
+            {
+                name: '王博约',
+                role: '收集20级展品',
+                avatar: require('image/sponsor/34.jpeg')
+            }
+        ]
+    },
+    {
+        group: '翻译',
+        member: [
+            {
+                name: '赵玉奇',
+                role: '中译英工作',
+                avatar: require('image/sponsor/35.jpeg')
+            }
+        ]
+    }
+]
