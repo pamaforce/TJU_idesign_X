@@ -23,7 +23,7 @@
 </template>
 <script setup lang='ts'>
 import PageFooter from '@/components/PageFooter.vue';
-import {onMounted, ref,onUnmounted,nextTick} from 'vue';
+import {onMounted, ref, onUnmounted, nextTick} from 'vue';
 
 const scrollPercentage = ref(0);
 const svgElement = ref<SVGSVGElement | null>(null);
@@ -31,33 +31,37 @@ const originalViewBoxWidth = 1684;
 const originalViewBoxHeight = 4806;
 
 function adjustViewBox() {
-    if (!svgElement.value) return;
     nextTick(() => {
+        if (!svgElement.value) return;
         const width = svgElement.value.clientWidth;
         const height = (width * originalViewBoxHeight) / originalViewBoxWidth;
         svgElement.value.setAttribute('viewBox', `0 0 ${originalViewBoxWidth} ${originalViewBoxHeight}`);
         svgElement.value.style.height = `${height}px`;
-    })
+    });
 }
+
 onMounted(() => {
     nextTick(() => {
-        const path = document.getElementById('path');
+        const path = document.getElementById('path') as SVGPathElement | null;
         if (!path) return;
+
         const pathLength = path.getTotalLength();
-        path.style.strokeDasharray = pathLength;
+        path.style.strokeDasharray = pathLength.toString();
         const initialOffset = pathLength * 0.99;
-        path.style.strokeDashoffset = initialOffset;
+        path.style.strokeDashoffset = initialOffset.toString();
+
         adjustViewBox();
         window.addEventListener('resize', adjustViewBox);
         window.addEventListener('scroll', () => {
             const scrollPosition = window.scrollY;
             const totalHeight = document.body.scrollHeight - window.innerHeight;
             scrollPercentage.value = scrollPosition / totalHeight;
-            const newOffset = initialOffset * (1 - 1.1*scrollPercentage.value);
-            path.style.strokeDashoffset = Math.max(0, newOffset);
+            const newOffset = initialOffset * (1 - 1.1 * scrollPercentage.value);
+            path.style.strokeDashoffset = Math.max(0, newOffset).toString();
         });
-    })
+    });
 });
+
 onUnmounted(() => {
     window.removeEventListener('resize', adjustViewBox);
 });
