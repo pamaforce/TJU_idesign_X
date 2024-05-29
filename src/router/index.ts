@@ -48,7 +48,7 @@ router.beforeEach((to, from, next) => {
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
     }
-    else if (to.name === 'Detail') {
+    else {
         document.body.style.overflow = 'auto';
         document.documentElement.style.overflow = 'auto';
     }
