@@ -13,12 +13,12 @@
       <img
         :ref="(el) => setFormulaRef(el, index)"
         :src="hoverItem===index?item.formula_active:(item.status===3?item.formula_default:item.formula)"
-        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===6?(marginTypeB+'px'):(index===7?(marginTypeC+'px'):0))):0,cursor: item.status===2?'pointer':'auto',marginTop:index===7?-scrollTop+'px':''}"
+        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===6?(marginTypeB+'px'):(index===7?(marginTypeC+'px'):0))):0,cursor: item.status===2?'pointer':'auto',...(item.status===2&&index===7?{marginTop:-scrollTop+'px'}:{})}"
         alt="formula"
         class="formula"
         @click.stop="handleBack(index)"
       >
-      <p class="name" :style="{color:hoverItem===index?'#fff':item.color, marginLeft:item.status===2? ((index===5)?(margins[index]+marginTypeA + 'px'):(index===6?(margins[index]+marginTypeB+'px'):((index===7)?(margins[index]+marginTypeC + 'px'):(margins[index] + 'px')))):0,cursor: item.status===2?'pointer':'auto',top: item.status===3?margins[index]+'px':'',marginTop:index===7?-scrollTop+'px':'' }" @click.stop="handleBack(index)">
+      <p class="name" :style="{color:hoverItem===index?'#fff':item.color, marginLeft:item.status===2? ((index===5)?(margins[index]+marginTypeA + 'px'):(index===6?(margins[index]+marginTypeB+'px'):((index===7)?(margins[index]+marginTypeC + 'px'):(margins[index] + 'px')))):0,cursor: item.status===2?'pointer':'auto',top: item.status===3?margins[index]+'px':'',...(item.status===2&&index===7?{marginTop:-scrollTop+'px'}:{})}" @click.stop="handleBack(index)">
         {{ item.name }}
       </p>
       <div class="desc" :style="{color:hoverItem===index?'#fff': ''}">
@@ -34,7 +34,7 @@
         :src="item.icon"
         alt="logo"
         class="logo"
-        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===6?(marginTypeB+'px'):(index===7?(marginTypeC+'px'):0))):0,cursor: item.status===2?'pointer':'auto',marginTop:index===7?-scrollTop+'px':''}"
+        :style="{marginLeft:item.status===2?(index===5?(marginTypeA+'px'): (index===6?(marginTypeB+'px'):(index===7?(marginTypeC+'px'):0))):0,cursor: item.status===2?'pointer':'auto',...(item.status===2&&index===7?{marginTop:-scrollTop+'px'}:{})}"
         @click.stop="handleBack(index)"
       >
       <div
