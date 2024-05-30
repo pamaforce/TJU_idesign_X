@@ -32,6 +32,11 @@ const router = createRouter({
             component: () => import('../views/Search.vue')
         },
         {
+            path: '/menu',
+            name: 'Menu',
+            component: () => import('../views/Menu.vue')
+        },
+        {
             path: '/exhibition/:category_id/:id',
             name: 'Detail',
             component: () => import ('../views/Detail.vue'),

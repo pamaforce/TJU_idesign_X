@@ -3,6 +3,7 @@
   <div class="header">
     <img src="@/assets/image/logo.svg" class="icon" @click="goToHome">
     <div
+      v-if="props.notMobile"
       class="tabs"
       @mouseleave="() => updateLine(null)"
     >
@@ -19,6 +20,10 @@
       <div class="line" :style="lineStyle"></div>
       <img src="@/assets/image/search.svg" class="icon" @click="goToSearch">
     </div>
+    <div v-else class="mobile-icons">
+      <img src="@/assets/image/mobile/search.svg" class="search" @click="goToSearch" />
+      <img src="@/assets/image/mobile/menu.svg" class="menu" @click="goToMenu" />
+    </div>
   </div>
 </template>
 <script setup lang='ts'>
@@ -34,6 +39,9 @@ interface LineStyle {
   left: string;
   transition?: string;
 }
+const props = defineProps({
+    notMobile: Boolean
+});
 const router = useRouter();
 const route = useRoute();
 const activeTab = ref(-1);
@@ -60,6 +68,10 @@ const goToHome = () => {
 
 const goToSearch = () => {
     router.push('/search');
+};
+
+const goToMenu = () => {
+    router.push('/menu');
 };
 
 function triggerEvent() {
@@ -201,6 +213,23 @@ onUnmounted(() => {
             margin-left: 100px;
         }
     }
+
+    & .mobile-icons{
+        display: flex;
+
+        & .search {
+            width: 24px;
+            height: 24px;
+            margin-right: 11px;
+            cursor: pointer;
+        }
+
+        & .menu {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+    }
 }
 @keyframes fadeInDown {
   from {
@@ -212,5 +241,19 @@ onUnmounted(() => {
     transform: translate3d(0, 0, 0);
   }
 }
+@media screen and (max-width: 620px) {
+    .blank {
+        height: 44px;
+    }
 
+    .header{
+        height: 44px;
+        padding: 0 16px;
+        border-bottom: 0;
+
+        & .icon{
+            height: 32px;
+        }
+    }
+}
 </style>

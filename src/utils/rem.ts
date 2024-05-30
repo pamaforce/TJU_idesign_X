@@ -2,7 +2,7 @@ import {DIVIDER_WIDTH} from './constant';
 import {debounce} from './debounce';
 function setRem(): void {
     const PC_WIDTH: number = 1920;
-    const PE_WIDTH: number = 414;
+    const PE_WIDTH: number = 375;
     const SCALE_LARGE: number = PC_WIDTH / 16;
     const SCALE_SMALL: number = PE_WIDTH / 16;
 
@@ -12,7 +12,7 @@ function setRem(): void {
     const htmlDom: HTMLElement = document.getElementsByTagName('html')[0];
 
     // 计算并设置根元素的字体大小
-    const scale: number = htmlWidth+DIVIDER_WIDTH >= DIVIDER_WIDTH ? SCALE_LARGE : SCALE_SMALL;
+    const scale: number = htmlWidth >= DIVIDER_WIDTH ? SCALE_LARGE : SCALE_SMALL;
     htmlDom.style.fontSize = `${htmlWidth / scale}px`;
 }
 

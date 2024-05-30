@@ -136,7 +136,6 @@ function smoothScroll() {
 function handleWheel(event: WheelEvent) {
     if (!members.value) return;
 
-    event.preventDefault();
     targetScroll += event.deltaY;
     targetScroll = Math.max(0, Math.min(targetScroll, members.value.scrollWidth - members.value.clientWidth));
     requestAnimationFrame(smoothScroll);

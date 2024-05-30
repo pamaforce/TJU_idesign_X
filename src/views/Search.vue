@@ -6,7 +6,7 @@
         v-model="inputValue"
         type="text"
         class="custom-input"
-        placeholder="请输入关键词"
+        placeholder="请输入搜索关键词"
         @input="updateInputWidth"
         @keydown.enter="search"
       >
@@ -35,9 +35,9 @@
     </div>
 
     <transition name="fadeInDown" mode="out-in">
-      <div v-if="hasResult">
+      <div v-if="hasResult" class="results-content">
         <p class="result-count">
-          共<span class="num">{{ resultCount }}</span>个结果
+          共<span class="num">{{ resultCount }}</span>个搜索结果
         </p>
         <div class="results">
           <div v-for="item in resultList" :key="item.id" class="design" @click="toDetail(item)">
@@ -47,19 +47,19 @@
             <p class="design-title-en" :title="item.post_title">
               {{ item.post_title_en }}
             </p>
-            <div class="design-authors">
+            <div v-if="props.notMobile" class="design-authors">
               <span class="design-label">作者：</span>
               <span v-for="author in item.more.authors" :key="author.xuehao" class="design-author">
                 {{ author.zh_names }}
               </span>
             </div>
-            <div class="design-authors">
+            <div v-if="props.notMobile" class="design-authors">
               <span class="design-label-en">Designer：</span>
               <span v-for="author in item.more.authors" :key="author.xuehao" class="design-author-en">
                 {{ author.en_names }}
               </span>
             </div>
-            <div class="design-desc">
+            <div v-if="props.notMobile" class="design-desc">
               <span class="design-label">简介：</span>
               <div class="design-desc-text">
                 <p class="design-desc-cn" :title="item.intro_zh">
@@ -70,7 +70,7 @@
                 </p>
               </div>
             </div>
-            <div class="design-keywords">
+            <div v-if="props.notMobile" class="design-keywords">
               <div v-for="key in item.keywords_zh.split('|')" :key="key" class="design-keyword">
                 {{ key }}
               </div>
@@ -134,6 +134,9 @@ const randomRecommendList = computed(() => {
     return shuffled.slice(0, 10);
 });
 
+const props = defineProps({
+    notMobile: Boolean
+});
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function toDetail(item:any) {
     router.push( `/exhibition/${item.category_id}/${item.id}?from=/search`);
@@ -188,8 +191,11 @@ function updateInputWidth() {
     nextTick(() => {
         if (!inputContent.value) return;
         const contentWidth = inputContent.value.offsetWidth;
-        iconStartLeft.value = -0.5*getRootFontSize();
-        iconEndLeft.value = contentWidth + 0.7* getRootFontSize();
+        if(props.notMobile) iconStartLeft.value = -0.5 * getRootFontSize();
+        else iconStartLeft.value = 0;
+        if(props.notMobile) iconEndLeft.value = contentWidth + 0.7* getRootFontSize();
+        else iconEndLeft.value = contentWidth + 0.9* getRootFontSize();
+
     });
 }
 function updateRecentSearches(searchTerm: string) {
@@ -523,5 +529,182 @@ onUnmounted(() => {
     opacity: 0;
     transform: translateY(-30px);
     animation: fadeInUp 0.3s ease-in-out forwards;
+}
+
+@media screen and (max-width: 620px) {
+    .back{
+        width: 24px;
+        height: 24px;
+        left: 16px;
+        top: 10px;
+    }
+    .input-wrapper {
+        position: relative;
+        margin-top: 44px;
+        width: 343px;
+    }
+    .custom-input {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 12px;
+        border-bottom: 1.5px solid rgba(0,0,0,0.85);
+    }
+    .input-content {
+        font-size: 12px;
+        letter-spacing: 0.05em;
+    }
+    .icon {
+        height: 25px;
+        width: 7px;
+    }
+    .clear-icon {
+        width: 16px;
+        height: 16px;
+    }
+    .results-content {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .result-count {
+        width: 327px;
+        text-align: start;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        margin-top: 26px;
+    }
+    .num {
+        font-size: 18px;
+        letter-spacing: 0.05em;
+        margin: 0 2px;
+    }
+    .results {
+        width: 338px;
+        height: calc(100vh - 155px);
+        margin-top: 26px;
+    }
+    .design {
+        width: 100%;
+        height: 69px;
+        padding-left: 19px;
+        padding-top: 20px;
+        position: relative;
+        cursor: pointer;
+        margin-bottom: 12px;
+    }
+    .design-title-cn{
+        width: 202px;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+    .design-title-en{
+        width: 202px;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+        font-weight: 700;
+        margin-bottom: 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: unset;
+    }
+    .design-cover {
+        width: 91px;
+        height: 51px;
+        position: absolute;
+        right: 0;
+        bottom: 3px;
+    }
+    .line-1 {
+        left: 12px;
+        top: 12px;
+        border-radius: 0;
+        width: 32px;
+        height: 2px;
+    }
+    .line-2 {
+        left: 12px;
+        top: 12px;
+        border-radius: 0;
+        width: 2px;
+        height: 23px;
+    }
+    .line-3 {
+        left: 12px;
+        top: 12px;
+        width: 2px;
+        height: 0;
+        border-radius: 0 ;
+    }
+    .line-4 {
+        left: 12px;
+        top: 12px;
+        width: 0;
+        height: 2px;
+        border-radius: 0;
+    }
+    .design:hover .line-1 {
+        left: 17px;
+        width: 23px;
+        border-radius: 0;
+    }
+    .design:hover .line-2 {
+        top: 17px;
+        height: 14px;
+        border-radius: 0;
+    }
+    .design:hover .line-3 {
+        top: 0px;
+        height: 9px;
+        border-radius: 0;
+    }
+    .design:hover .line-4 {
+        left: 0px;
+        width: 9px;
+        border-radius: 0;
+    }
+    .hint {
+        width: 327px;
+        margin-top: 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0;
+        position: relative;
+    }
+    .recent,.recommend {
+        width: 100%;
+    }
+
+    .recent .label,.recommend .label{
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .recent .content,.recommend .content{
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 14px;
+        gap: 10px 16px;
+        padding: 16px 0px;
+        margin-bottom: 16px;
+    }
+    .recent .content p,.recommend .content p{
+        cursor: pointer;
+    }
+    .clear {
+        font-size: 11px;
+        opacity: 0.8;
+        cursor: pointer;
+        display: inline;
+        font-weight: 400;
+        margin-left: 8px;
+    }
 }
 </style>

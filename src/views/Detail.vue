@@ -1,6 +1,6 @@
 <template>
   <div class="detail-class">
-    <div v-if="props.notMobile" class="back-class noSelect" @click="toBack">
+    <div class="back-class noSelect" @click="toBack">
       <div></div>
       <span>返回</span>
     </div>
@@ -521,7 +521,7 @@ p {
     padding: 20px;
     overflow-y: visible;
     background-color: #f8f8f8;
-    padding-top: 60px;
+    padding-top: 20px;
   }
   .title-class {
     font-size: 22px;
@@ -588,6 +588,25 @@ p {
   }
   .fork-text-class {
     font-size: 15px;
+  }
+  .back-class {
+    margin-bottom: 10px;
+    width: 125px;
+  }
+  .back-class div {
+    width: 20px;
+    height: 20px;
+    border-radius: 50% 50%;
+    background-image: url("@/assets/image/back.png");
+    background-size: 10px 10px;
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    background-color: #4e4e4e;
+    margin-right: 5px;
+  }
+  .back-class span {
+    font-size: 16px;
+    line-height: 20px;
   }
 }
 </style>

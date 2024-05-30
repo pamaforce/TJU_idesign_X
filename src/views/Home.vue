@@ -17,9 +17,9 @@
       <transition name="fadeInDown" mode="out-in">
         <template v-if="state===1">
           <div key="1">
-            <img src="@/assets/image/text_1.svg" class="text-1" alt="text-1" />
-            <img src="@/assets/image/text_2.svg" class="text-2" alt="text-2" />
-            <img src="@/assets/image/text_3.svg" class="text-3" alt="text-3" />
+            <img :src="props.notMobile?require('image/text_1.svg'):require('image/mobile/title_cn.svg')" class="text-1" alt="text-1" />
+            <img v-if="props.notMobile" src="@/assets/image/text_2.svg" class="text-2" alt="text-2" />
+            <img :src="props.notMobile?require('image/text_3.svg'):require('image/mobile/title_en.svg')" class="text-3" alt="text-3" />
             <img src="@/assets/image/text_4.svg" class="text-4" alt="text-4" @click="changeState(2)" />
             <img src="@/assets/image/down.svg" class="down" alt="down" @click="changeState(2)" />
           </div>
@@ -27,8 +27,8 @@
         <template v-else>
           <div key="2">
             <div class="blur-background"></div>
-            <img src="@/assets/image/text_5.svg" class="text-5" alt="text-5" />
-            <img src="@/assets/image/text_6.svg" class="text-6" alt="text-6" />
+            <img :src="props.notMobile?require('image/text_5.svg'):require('image/mobile/desc_cn.svg')" class="text-5" alt="text-5" />
+            <img :src="props.notMobile?require('image/text_6.svg'):require('image/mobile/desc_en.svg')" class="text-6" alt="text-6" />
             <img
               ref="text7El"
               src="@/assets/image/text_7.svg"
@@ -38,6 +38,7 @@
             />
             <img src="@/assets/image/text_8.svg" class="text-8" :class="{'rotate-together-1':isSnapped}" alt="text-8" />
             <img
+              v-if="props.notMobile"
               ref="cursorEl"
               src="@/assets/image/cursor.svg"
               class="cursor"
@@ -64,7 +65,8 @@ const props = defineProps({
     stopLoading: {
         type: Function,
         default: () => {}
-    }
+    },
+    notMobile: Boolean
 })
 const router = useRouter();
 const cursorPosition = ref({x: 0, y: 0});
@@ -184,6 +186,10 @@ const imagesToLoad = [
     require('image/text_6.svg'),
     require('image/text_7.svg'),
     require('image/text_8.svg'),
+    require('image/mobile/title_cn.svg'),
+    require('image/mobile/title_en.svg'),
+    require('image/mobile/desc_cn.svg'),
+    require('image/mobile/desc_en.svg'),
     require('image/cursor.svg')
 ];
 const loadImages = () => {
@@ -481,6 +487,105 @@ const loadImages = () => {
         transform: translateX(0) translateY(0);
     }
 }
+@keyframes banner_1_mobile {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    46% {
+        transform: translateX(317px) translateY(204px);
+        opacity: 0;
+    }
+    47% {
+        opacity: 0;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes banner_2_mobile {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    42% {
+        transform: translateX(-692px) translateY(474.5px);
+        opacity: 0;
+    }
+    83% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes banner_3_mobile {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    36% {
+        transform: translateX(393.5px) translateY(295.81px);
+        opacity: 0;
+    }
+    63% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes banner_4_mobile {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    30% {
+        transform: translateX(-495px) translateY(434.55px);
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes banner_5_mobile {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    22% {
+        transform: translateX(-458.09px) translateY(240.5px);
+        opacity: 0;
+    }
+    55% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+@keyframes banner_6_mobile {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+    }
+    12.5% {
+        transform: translateX(-535.43px) translateY(176px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
 @keyframes text_1 {
     0% {
         transform: translateY(0);
@@ -551,6 +656,23 @@ const loadImages = () => {
     }
     75% {
         transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes upAndDownMobile {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(5px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-5px);
     }
     100% {
         transform: translateY(0);
@@ -663,5 +785,124 @@ const loadImages = () => {
     opacity: 0;
     transform: translateY(-30px);
     animation: fadeInUp 0.3s ease-in-out forwards;
+}
+
+
+@media screen and (max-width: 620px) {
+.home {
+    height: calc(100vh - 44px);
+    & .text-1{
+        right: unset;
+        left: 32px;
+        top: 30px;
+        width: 202px;
+        height: 68px;
+        animation: text_1 1.4s forwards;
+    }
+    & .text-3{
+        right: unset;
+        left: 32px;
+        top: 98px;
+        width: 228px;
+        height: 42px;
+        animation: text_3 1.7s forwards;
+    }
+    & .text-4{
+        right: unset;
+        left: 32px;
+        top: 140px;
+        width: 55px;
+        height: 56px;
+        animation: text_4 1.8s forwards;
+    }
+    & .down {
+        right: unset;
+        left: 47px;
+        top: 190px;
+        width: 24px;
+        height: 24px;
+        animation: text_4 1.8s forwards,upAndDownMobile 2s linear 1.8s infinite;
+    }
+    & .blur-background {
+        position: absolute;
+        right: unset;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    & .text-5{
+        right: unset;
+        left: 32px;
+        top: 16px;
+        width: 305px;
+        height: 184px;
+    }
+    & .text-6{
+        right: unset;
+        left: 32px;
+        top: 208px;
+        width: 305px;
+        height: 290px;
+    }
+    & .text-7{
+        right: unset;
+        left: calc(50% - 70px);
+        top: unset;
+        bottom: 55px;
+        width: 140px;
+        height: 140px;
+    }
+    & .text-8{
+        right: unset;
+        left: calc(50% - 25px);
+        top: unset;
+        bottom: 100px;
+        width: 50px;
+        height: 50px;
+    }
+    & .banner-1{
+        left: -267px;
+        top: 364px;
+        width: 760px;
+        height: 466px;
+        animation: banner_1_mobile 1.3s forwards;
+    }
+    & .banner-2{
+        left: -42px;
+        top: 290px;
+        width: 700px;
+        height: 430px;
+        animation: banner_2_mobile 1.2s forwards;
+    }
+    & .banner-3{
+        left: -189px;
+        top: 247px;
+        width: 800px;
+        height: 460px;
+        animation: banner_3_mobile 1.1s forwards;
+    }
+    & .banner-4{
+        left: -252px;
+        top: 202px;
+        width: 712px;
+        height: 422px;
+        animation: banner_4_mobile 1s forwards;
+    }
+    & .banner-5{
+        left: -291px;
+        top: 27px;
+        width: 1110px;
+        height: 668px;
+        animation: banner_5_mobile 0.9s forwards;
+    }
+    & .banner-6{
+        left: -370px;
+        top: -63px;
+        width: 965px;
+        height: 583px;
+        animation: banner_6_mobile 0.8s forwards;
+    }
+}
 }
 </style>
