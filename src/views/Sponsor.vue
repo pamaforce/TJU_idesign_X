@@ -1,6 +1,7 @@
 <template>
   <div class="sponsor">
     <svg
+      v-if="showSvg"
       ref="svgElement"
       class="path"
       width="1684"
@@ -18,52 +19,97 @@
       />
     </svg>
     <img src="@/assets/image/text_9.svg" class="text">
+    <div v-for="(group,i) in sponsorList" :key="i" class="group" :style="{ top: group.top +'rem',left:group.left+'rem'}">
+      <transition name="scale" appear>
+        <div v-if="scrollPercentage>=group.percent" class="group-name">
+          {{ group.group }}
+        </div>
+      </transition>
+      <template v-for="(person,j) in group.member" :key="i +' '+ j">
+        <transition name="scale-top" appear>
+          <div v-if="scrollPercentage>=person.percent" class="person" :style="{ top: person.top +'rem',left:person.left+'rem'}">
+            <div class="person-bar"></div>
+            <img v-preview:name="2" v-lazy="person.avatar" :alt="person.name" class="person-avatar" />
+            <div class="person-name">
+              {{ person.name }}
+            </div>
+            <div class="person-role">
+              {{ person.role }}
+            </div>
+          </div>
+        </transition>
+      </template>
+    </div>
+    <transition name="scale" appear>
+      <div v-if="scrollPercentage>=0.9061" class="thanks">
+        感谢观看
+      </div>
+    </transition>
+    <PageFooter />
   </div>
-  <PageFooter />
 </template>
 <script setup lang='ts'>
 import PageFooter from '@/components/PageFooter.vue';
 import {onMounted, ref, onUnmounted, nextTick} from 'vue';
+import {sponsorList} from '@/utils/constant';
+import {vPreview} from 'vue3-image-preview';
 
 const scrollPercentage = ref(0);
+const showSvg = ref(true);
 const svgElement = ref<SVGSVGElement | null>(null);
 const originalViewBoxWidth = 1684;
 const originalViewBoxHeight = 4806;
+let pathLength = 0;
 
 function adjustViewBox() {
     nextTick(() => {
         if (!svgElement.value) return;
+        const path = document.getElementById('path') as SVGPathElement | null;
+        if (!path) return;
+        pathLength = path.getTotalLength();
+        path.style.strokeDasharray = pathLength.toString();
+        let initialOffset = pathLength * 0.99;
+        path.style.strokeDashoffset = initialOffset.toString();
         const width = svgElement.value.clientWidth;
         const height = (width * originalViewBoxHeight) / originalViewBoxWidth;
         svgElement.value.setAttribute('viewBox', `0 0 ${originalViewBoxWidth} ${originalViewBoxHeight}`);
         svgElement.value.style.height = `${height}px`;
+        handleScroll();
     });
 }
-
+function handleResize() {
+    setTimeout(() => {
+        showSvg.value = false;
+        nextTick(() => {
+            showSvg.value = true;
+            adjustViewBox();
+        })
+    },500)
+}
+function handleScroll() {
+    const path = document.getElementById('path') as SVGPathElement | null;
+    if (!path) return;
+    const scrollPosition = window.scrollY;
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    scrollPercentage.value = scrollPosition / totalHeight;
+    console.log(scrollPercentage.value);
+    
+    let initialOffset = pathLength * 0.99;
+    const newOffset = initialOffset * (1 - 1.1 * scrollPercentage.value);
+    path.style.strokeDashoffset = Math.max(0, newOffset).toString();
+        
+}
 onMounted(() => {
     nextTick(() => {
-        const path = document.getElementById('path') as SVGPathElement | null;
-        if (!path) return;
-
-        const pathLength = path.getTotalLength();
-        path.style.strokeDasharray = pathLength.toString();
-        const initialOffset = pathLength * 0.99;
-        path.style.strokeDashoffset = initialOffset.toString();
-
         adjustViewBox();
-        window.addEventListener('resize', adjustViewBox);
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
-            scrollPercentage.value = scrollPosition / totalHeight;
-            const newOffset = initialOffset * (1 - 1.1 * scrollPercentage.value);
-            path.style.strokeDashoffset = Math.max(0, newOffset).toString();
-        });
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleScroll);
     });
 });
 
 onUnmounted(() => {
     window.removeEventListener('resize', adjustViewBox);
+    window.removeEventListener('scroll', handleScroll);
 });
 </script>
 <style scoped>
@@ -73,6 +119,7 @@ onUnmounted(() => {
   align-items: center;
   width: 100%;
   position: relative;
+  min-height: 2000px;
 }
 .path {
   width: 1684px;
@@ -85,5 +132,96 @@ onUnmounted(() => {
     top: 36px;
     user-select: none;
     pointer-events: none;
+}
+.group {
+  position: absolute;
+  margin-top: -27px;
+
+  & .group-name {
+    width: 203px;
+    height: 54px;
+    background: #626262;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+  }
+
+  & .person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 22px;
+    position: absolute;
+
+    & .person-bar {
+      width: 52px;
+      height: 10px;
+      background: #626262;
+      margin-bottom: 24px;
+    }
+
+    & img {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 16px;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    & .person-name {
+      font-size: 20px;
+      margin-bottom: 6px;
+      width: 180px;
+      text-align: center;
+    }
+    
+    & .person-role {
+      font-size: 16px;
+      text-align: center;
+      width: 180px;
+    }
+  }
+}
+& .thanks {
+  position: absolute;
+  left: 1418px;
+  top: 4777px;
+  width: 208px;
+  height: 60px;
+  border-radius: 30px;
+  background: #626262;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+}
+/* scale */
+.scale-enter-active, .scale-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+.scale-enter-from, .scale-leave-to {
+    opacity: 0;
+    transform: scale(0);
+}
+.scale-enter-to, .scale-leave-from {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* scale-top */
+.scale-top-enter-active, .scale-top-leave-active {
+    transition: all 0.3s ease-in-out;
+    transform-origin: top center;
+}
+.scale-top-enter-from, .scale-top-leave-to {
+    opacity: 0;
+    transform: scale(0);
+}
+.scale-top-enter-to, .scale-top-leave-from {
+    opacity: 1;
+    transform: scale(1);
 }
 </style>

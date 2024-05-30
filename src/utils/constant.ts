@@ -296,217 +296,349 @@ export const coverList = [
 export const sponsorList = [
     {
         group: '指导教师',
+        percent: 0.008,
+        left: 10.875,
+        top: 23.25,
         member: [
             {
                 name: '边放',
                 role: '展览理论知识讲授、设计指导',
-                avatar: require('image/sponsor/1.jpeg')
+                avatar: require('image/sponsor/1.jpeg'),
+                percent: 0.023,
+                left: 19.0625,
+                top: 0
             },
             {
                 name: '杨君宇',
                 role: '年展视觉设计指导',
-                avatar: require('image/sponsor/2.jpeg')
+                avatar: require('image/sponsor/2.jpeg'),
+                percent: 0.035,
+                left: 37.8125,
+                top: 0
             },
             {
                 name: '张赫晨',
                 role: '年展策划协调、设计指导',
-                avatar: require('image/sponsor/3.jpeg')
+                avatar: require('image/sponsor/3.jpeg'),
+                percent: 0.048,
+                left: 56.5625,
+                top: 0
             },
             {
                 name: '李擎炜',
                 role: '年展实验指导、文宣指导',
-                avatar: require('image/sponsor/4.jpeg')
+                avatar: require('image/sponsor/4.jpeg'),
+                percent: 0.060,
+                left: 75.3125,
+                top: 0
             }
         ]
     },
     {
         group: '总负责',
+        percent: 0.094,
+        left: 91.375,
+        top: 45.125,
         member: [
             {
                 name: '江长林',
                 role: '上传下达，协调工作，参与进度',
-                avatar: require('image/sponsor/5.jpeg')
+                avatar: require('image/sponsor/5.jpeg'),
+                percent: 0.121,
+                left: -36.9375,
+                top: 0
             }
         ]
     },{
         group: '策展A',
+        percent: 0.154,
+        left: 41.6875,
+        top: 67,
         member: [
             {
                 name: '贺杨晨（组长）',
                 role: '展览设计，统筹，展场规划,展场建模',
-                avatar: require('image/sponsor/6.jpeg')
+                avatar: require('image/sponsor/6.jpeg'),
+                percent: 0.1712,
+                left: 22,
+                top: 0
             },
             {
                 name: '焦慧婷',
                 role: '展览设计，财务负责',
-                avatar: require('image/sponsor/7.jpeg')
+                avatar: require('image/sponsor/7.jpeg'),
+                percent: 0.208,
+                left: 27.6875,
+                top: 21.1875
             },
             {
                 name: '王佳一',
                 role: '展览设计，总外联，物料清点，主视觉设计',
-                avatar: require('image/sponsor/8.jpeg')
+                avatar: require('image/sponsor/8.jpeg'),
+                percent: 0.2205,
+                left: 8.9375,
+                top: 21.1875
             },
             {
                 name: '曾楚懿',
                 role: '展览设计，环境艺术外联，设计组对接',
-                avatar: require('image/sponsor/9.jpeg')
+                avatar: require('image/sponsor/9.jpeg'),
+                percent: 0.2325,
+                left: -9.8125,
+                top: 21.1875
             },
             {
                 name: '张宇星',
                 role: '展览设计，物料调研，沙盘负责，展品排布',
-                avatar: require('image/sponsor/10.jpeg')
+                avatar: require('image/sponsor/10.jpeg'),
+                percent: 0.2444,
+                left: -28.5625,
+                top: 21.1875
             }
         ]
     },{
         group: '策展B',
+        percent: 0.2708,
+        left: 11.375,
+        top: 111.875,
         member: [
             {
                 name: '余春阳（组长）',
                 role: '框架搭建，PC端UI，协调工作',
-                avatar: require('image/sponsor/11.jpeg')
+                avatar: require('image/sponsor/11.jpeg'),
+                percent: 0.2921,
+                left: 28.375,
+                top: 0
             },
             {
                 name: '刘子炜',
                 role: '框架搭建，移动端UI',
-                avatar: require('image/sponsor/12.jpeg')
+                avatar: require('image/sponsor/12.jpeg'),
+                percent: 0.3043,
+                left: 47.125,
+                top: 0
             },
             {
                 name: '蒋婵娟',
                 role: '框架搭建，动效设计',
-                avatar: require('image/sponsor/13.jpeg')
+                avatar: require('image/sponsor/13.jpeg'),
+                percent: 0.3167,
+                left: 65.875,
+                top: 0
             },
             {
                 name: '刘宏伟',
                 role: 'PC端、移动端网站前端开发',
-                avatar: require('image/sponsor/14.jpeg')
+                avatar: require('image/sponsor/14.jpg'),
+                percent: 0.3719,
+                left: 61.25,
+                top: 22.5
             },
             {
                 name: '李杰',
                 role: '特邀教师，网站后端开发及部署',
-                avatar: require('image/sponsor/15.jpeg')
+                avatar: require('image/sponsor/15.jpeg'),
+                percent: 0.3841,
+                left: 42.5,
+                top: 22.5
             }
         ]
     },{
         group: '策展C',
+        percent: 0.4259,
+        left: 29.875,
+        top: 159.6875,
         member: [
             {
                 name: '陈雪懿（组长）',
                 role: '收集展品资料',
-                avatar: require('image/sponsor/16.jpeg')
+                avatar: require('image/sponsor/16.jpeg'),
+                percent: 0.4455,
+                left: 28.8125,
+                top: 0
             },
             {
                 name: '曲自涵',
                 role: '收集展品资料',
-                avatar: require('image/sponsor/17.jpeg')
+                avatar: require('image/sponsor/17.jpeg'),
+                percent: 0.4608,
+                left: 51.625,
+                top: 0
             }
         ]
     },{
         group: '设计组',
+        percent: 0.4922,
+        left: 82.375,
+        top: 183.75,
         member: [
             {
                 name: '张仁洁（组长）',
                 role: '主视觉细化、展品手册、线上设计、协调统筹',
-                avatar: require('image/sponsor/18.jpeg')
+                avatar: require('image/sponsor/18.jpeg'),
+                percent: 0.5112,
+                left: -26.125,
+                top: 0
             },
             {
                 name: '尹祎晗（副组长）',
                 role: '辅助图形、周边、线上设计、协调统筹',
-                avatar: require('image/sponsor/19.jpeg')
-            },
-            {
-                name: '唐安尼达',
-                role: '周边初设计、年展手册',
-                avatar: require('image/sponsor/20.jpeg')
+                avatar: require('image/sponsor/19.jpeg'),
+                percent: 0.5234,
+                left: -44.875,
+                top: 0
             },
             {
                 name: '黄诗淇',
                 role: '主视觉初方案、背板设计、实验报告',
-                avatar: require('image/sponsor/21.jpeg')
+                avatar: require('image/sponsor/21.jpeg'),
+                percent: 0.5316,
+                left: -63.625,
+                top: 0
             },
             {
-                name: '洛扎',
-                role: '辅助工作',
-                avatar: require('image/sponsor/22.jpeg')
+                name: '唐安尼达',
+                role: '周边初设计、年展手册',
+                avatar: require('image/sponsor/20.jpeg'),
+                percent: 0.5708,
+                left: -65.5,
+                top: 22.8125
             },
             {
                 name: '易晓萌',
                 role: '展板细化、导览册',
-                avatar: require('image/sponsor/23.jpeg')
-            },
-            {
-                name: '仁增旺姆',
-                role: '辅助工作',
-                avatar: require('image/sponsor/24.jpeg')
+                avatar: require('image/sponsor/23.jpeg'),
+                percent: 0.58252,
+                left: -46.75,
+                top: 22.8125
             },
             {
                 name: '王依燃',
                 role: '展览周边、导览册',
-                avatar: require('image/sponsor/25.jpeg')
+                avatar: require('image/sponsor/25.jpeg'),
+                percent: 0.595,
+                left: -28,
+                top: 22.8125
+            },
+            {
+                name: '洛扎',
+                role: '辅助工作',
+                avatar: require('image/sponsor/22.jpeg'),
+                percent: 0.60743,
+                left: -9.25,
+                top: 22.8125
+            },
+            {
+                name: '仁增旺姆',
+                role: '辅助工作',
+                avatar: require('image/sponsor/24.jpeg'),
+                percent: 0.61985,
+                left: 9.5,
+                top: 22.8125
             }
         ]
     },
     {
-        group: '文宣',
+        group: '文宣组',
+        percent: 0.65228,
+        left: 92.9375,
+        top: 231.6825,
         member: [
             {
                 name: '白昊（组长）',
                 role: '主题阐释、分区阐释、H5、推送、外联、协调工作',
-                avatar: require('image/sponsor/26.jpeg')
+                avatar: require('image/sponsor/26.jpeg'),
+                percent: 0.67036,
+                left: -25.9375,
+                top: 0
             },
             {
                 name: '吴语晴（副组长）',
                 role: '主题阐释、素材整理、宣传片制作、协调工作',
-                avatar: require('image/sponsor/27.jpeg')
+                avatar: require('image/sponsor/27.jpeg'),
+                percent: 0.68235,
+                left: -44.6875,
+                top: 0
             },
             {
                 name: '段海涛',
                 role: '主题阐释、分区阐释、宣传片制作',
-                avatar: require('image/sponsor/28.jpeg')
+                avatar: require('image/sponsor/28.jpeg'),
+                percent: 0.69453,
+                left: -63.4375,
+                top: 0
             },
             {
                 name: '刘皓月',
                 role: '主题阐释、素材收集、宣传片制作',
-                avatar: require('image/sponsor/29.jpeg')
+                avatar: require('image/sponsor/29.jpeg'),
+                percent: 0.7291,
+                left: -72.3125,
+                top: 22.9375
             },
             {
                 name: '赵钰可',
                 role: '主题阐释、素材收集、宣传片制作',
-                avatar: require('image/sponsor/30.jpeg')
+                avatar: require('image/sponsor/30.jpeg'),
+                percent: 0.7404,
+                left: -53.5625,
+                top: 22.9375
             },
             {
                 name: '陈诗语',
                 role: '主题阐释、分区阐释、宣传片制作、文案撰写',
-                avatar: require('image/sponsor/31.jpeg')
+                avatar: require('image/sponsor/31.jpeg'),
+                percent: 0.75282,
+                left: -34.8125,
+                top: 22.9375
             }
         ]
     },
     {
-        group: '交接组',
+        group: '对接人',
+        percent: 0.79282,
+        left: 82.0625,
+        top: 277.625,
         member: [
             {
                 name: '吴鑫',
                 role: '收集研究生展品',
-                avatar: require('image/sponsor/32.jpeg')
+                avatar: require('image/sponsor/32.jpeg'),
+                percent: 0.80479,
+                left: -14.9375,
+                top: 0
             },
             {
                 name: '方正',
                 role: '收集22级展品',
-                avatar: require('image/sponsor/33.jpeg')
+                avatar: require('image/sponsor/33.jpeg'),
+                percent: 0.81767,
+                left: -33.6875,
+                top: 0
             },
             {
                 name: '王博约',
                 role: '收集20级展品',
-                avatar: require('image/sponsor/34.jpeg')
+                avatar: require('image/sponsor/34.jpeg'),
+                percent: 0.8293,
+                left: -52.4375,
+                top: 0
             }
         ]
     },
     {
         group: '翻译',
+        percent: 0.86353,
+        left: 22.5625,
+        top: 300.3125,
         member: [
             {
                 name: '赵玉奇',
                 role: '中译英工作',
-                avatar: require('image/sponsor/35.jpeg')
+                avatar: require('image/sponsor/35.jpeg'),
+                percent: 0.87573,
+                left: 18.125,
+                top: 0
             }
         ]
     }
