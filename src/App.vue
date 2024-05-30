@@ -32,6 +32,12 @@ function stopLoading() {
 }
 onMounted(() => {
     window.addEventListener('resize', updateMobileStatus);
+    console.log(
+        '%cIf you find bugs in the website, you can email to %c3020205094@tju.edu.cn %cand let\'s make it better together! :)',
+        'color: #43bb88;font-size:19px;font-weight: bold;',
+        'color: #4267fc;font-size:19px;font-weight: bold;font-style: italic;',
+        'color: #43bb88;font-size:19px;font-weight: bold;'
+    );
 });
 
 onUnmounted(() => {

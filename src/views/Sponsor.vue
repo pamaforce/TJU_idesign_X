@@ -50,7 +50,7 @@
 </template>
 <script setup lang='ts'>
 import PageFooter from '@/components/PageFooter.vue';
-import {onMounted, ref, onUnmounted, nextTick} from 'vue';
+import {onMounted, ref, onUnmounted, nextTick,onActivated} from 'vue';
 import {sponsorList} from '@/utils/constant';
 import {vPreview} from 'vue3-image-preview';
 
@@ -92,12 +92,16 @@ function handleScroll() {
     const scrollPosition = window.scrollY;
     const totalHeight = document.body.scrollHeight - window.innerHeight;
     scrollPercentage.value = scrollPosition / totalHeight;
-    console.log(scrollPercentage.value);
-    
+
     let initialOffset = pathLength * 0.99;
     const newOffset = initialOffset * (1 - 1.1 * scrollPercentage.value);
     path.style.strokeDashoffset = Math.max(0, newOffset).toString();
-        
+
+}
+function handleInit() {
+    scrollPercentage.value = 0;
+    adjustViewBox();
+    handleScroll();
 }
 onMounted(() => {
     nextTick(() => {
@@ -108,9 +112,13 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-    window.removeEventListener('resize', adjustViewBox);
+    window.removeEventListener('resize', handleResize);
     window.removeEventListener('scroll', handleScroll);
 });
+
+onActivated(() => {
+    handleInit();
+})
 </script>
 <style scoped>
 .sponsor {
@@ -119,11 +127,11 @@ onUnmounted(() => {
   align-items: center;
   width: 100%;
   position: relative;
-  min-height: 2000px;
 }
 .path {
   width: 1684px;
   margin-bottom: 400px;
+  transition: all 0.2s;
 }
 .text {
     position: absolute;
@@ -146,6 +154,7 @@ onUnmounted(() => {
     justify-content: center;
     font-size: 24px;
     color: white;
+    font-weight: 700;
   }
 
   & .person {
@@ -175,8 +184,9 @@ onUnmounted(() => {
       margin-bottom: 6px;
       width: 180px;
       text-align: center;
+      font-weight: 700;
     }
-    
+
     & .person-role {
       font-size: 16px;
       text-align: center;

@@ -153,7 +153,7 @@ onUnmounted(() => {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 80px;
+    height: 80px;   /* 此值被依赖较多，谨慎改动 */
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     background: white;
     padding: 0 120px;

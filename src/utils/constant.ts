@@ -271,17 +271,22 @@ export const imgList = [
     require('image/x/2023/7.jpg')
 ]
 export const videoList = [
-    require('video/9.mp4'),
-    require('video/8.mp4'),
-    require('video/7.mp4'),
-    require('video/6.mp4'),
-    require('video/5.mp4'),
-    require('video/4.mp4'),
-    require('video/3.mp4'),
-    require('video/2.mp4'),
-    require('video/1.mp4')
+    'http://idesign.tju.edu.cn/videos/11.mp4',
+    'http://idesign.tju.edu.cn/videos/10.mp4',
+    'http://idesign.tju.edu.cn/videos/9.mp4',
+    'http://idesign.tju.edu.cn/videos/8.mp4',
+    'http://idesign.tju.edu.cn/videos/7.mp4',
+    'http://idesign.tju.edu.cn/videos/6.mp4',
+    'http://idesign.tju.edu.cn/videos/5.mp4',
+    'http://idesign.tju.edu.cn/videos/4.mp4',
+    'http://idesign.tju.edu.cn/videos/3.mp4',
+    'http://idesign.tju.edu.cn/videos/2.mp4',
+    'http://idesign.tju.edu.cn/videos/1.mp4',
+    'http://idesign.tju.edu.cn/videos/0.mp4'
 ]
 export const coverList = [
+    require('image/cover/11.jpg'),
+    require('image/cover/10.png'),
     require('image/cover/9.png'),
     require('image/cover/8.png'),
     require('image/cover/7.png'),
@@ -290,7 +295,8 @@ export const coverList = [
     require('image/cover/4.png'),
     require('image/cover/3.png'),
     require('image/cover/2.png'),
-    require('image/cover/1.png')
+    require('image/cover/1.png'),
+    require('image/cover/0.png')
 ]
 
 export const sponsorList = [
@@ -601,24 +607,24 @@ export const sponsorList = [
         top: 277.625,
         member: [
             {
-                name: '吴鑫',
-                role: '收集研究生展品',
+                name: '方正',
+                role: '工业设计22级对接人',
                 avatar: require('image/sponsor/32.jpeg'),
                 percent: 0.80479,
                 left: -14.9375,
                 top: 0
             },
             {
-                name: '方正',
-                role: '收集22级展品',
+                name: '王博约',
+                role: '工业设计20级对接人',
                 avatar: require('image/sponsor/33.jpeg'),
                 percent: 0.81767,
                 left: -33.6875,
                 top: 0
             },
             {
-                name: '王博约',
-                role: '收集20级展品',
+                name: '吴鑫',
+                role: '工业设计研究生对接人',
                 avatar: require('image/sponsor/34.jpeg'),
                 percent: 0.8293,
                 left: -52.4375,
@@ -642,4 +648,84 @@ export const sponsorList = [
             }
         ]
     }
+]
+export const teacherList = [
+    ['李巨韬', '你们即将结束大学本科的求学生涯，踏上新的人生征程，在这个特别的时刻，我要向你们表达最热烈的祝贺，祝贺你们顺利完成学业，开启新的人生篇章。',
+        '大学四年是你们人生中的一段重要旅程，是你们从青涩走向成熟、从迷茫走向坚定的关键时期。在这里，你们修养品格，学会了独立思考，培养了解决问题的能力，也结识了志同道合的朋友。我为你们取得的每一点进步感到由衷的骄傲，也为能参与其中而感到无比荣幸。毕业并不是终点，而是新生活的起点，请永远保持对知识的渴望和求索，知行合一，勇敢面对挑战，用智慧和勇气去创造自己的未来。祝愿你们前程似锦，一帆风顺！', '班导师'],
+    ['张赫晨', '亲爱的2020级同学们：大学，是人生中重要的转折点！这几年的校园学习生活，承载了你们从青涩懵懂到成熟稳重的转变，也使你们历经超越自我极限的特殊挑战，如今，大家都已收获满满，整装待发向自己人生的下一阶段。愿回首过往，你们都能道一声“不虚此行”，愿这四年的磨砺能让你们多一重思考与沉淀，同时也拥有更多自信面向未来的任何顺途与逆境，预祝大家一切顺利！','', '班导师']
+]
+export const graduateList = [
+    ['于米提江·托乎提', '短暂的四年以精彩多样的形式快速闪过。这四年里我学到了很多，感受了很多，有了一些成就，更是找到了自己的爱好和兴趣。非常感谢遇到的所有同学和老师，接下来我将在天津大学继续我的研学之旅。', '天津大学',require('image/graduate/0.jpeg')],
+    ['于业淼', 'Ok啊ok，最~喜欢的1895啊，最~喜欢的年展啊，最~~喜欢的毕业啊，天津大学，启动！', '西安交通大学',require('image/graduate/1.jpeg')],
+    ['王紫桐', '“人生是一场打不完的仗。”', '西安交通大学',require('image/graduate/2.jpeg')],
+    ['杜琬琪', '此去一展鸿鹄志，此生由己不由人', '伦敦大学学院',require('image/graduate/3.jpeg')],
+    ['王宁宁', '匆匆四年，观察落叶鲜花，在平凡的日子里播撒快乐的种子，一切尽意，此后种种，亦当用心去感受，用生命去热爱', '天津大学',require('image/graduate/4.jpeg')],
+    ['赵书苇', '感谢这一程的春光，所以把海棠别在襟上。', '',require('image/graduate/5.jpeg')],
+    ['赵芳悦', '时光匆匆', '天津大学',require('image/graduate/6.jpeg')],
+    ['赵彦硕', '再见', '',require('image/graduate/7.jpeg')],
+    ['陈书恒', '在此间的四年是短暂和充实的时光，在这里你可以遇到各不相同的事件，学习一切知识和技能。虽然不可避免地存在诸多遗憾，但总体来说是瑕不掩瑜的。我十分感激自己在这段时间中做出的各种决定和付出的一切努力。感谢所有同学、好友、老师以及我亲爱的伴侣的长久以来的关心和照顾。至于天津大学及工业设计，让我们祝她好运！', '约翰霍普金斯大学',require('image/graduate/8.jpeg')],
+    ['胡可昕', '在毕业倒计时的滴答声里，以前那评价为枯燥、单调的日子，也咂出那些难忘的记忆来，回顾了一遍又一遍。或许下次再见吧，但愿各位前程似锦。', '',require('image/graduate/9.jpeg')],
+    ['白悦', '感谢浮光跃金的理想，感谢一路上涌现的爱和迷雾，感谢所有的隐喻、遗憾与挫折。', '天津大学',require('image/graduate/10.jpeg')],
+    ['贾皓璇', '毕业啦，充实、跌宕起伏的四年，把能体验的走遍，生，万，人，未！', '',require('image/graduate/11.jpeg')],
+    ['邸杨', '大学四年充实且忙碌，有成长，有收获，也有遗憾，但一定是难忘的四年。追风赶月莫停留，平芜尽处是春山，希望我们前路光明灿烂。', '天津大学',require('image/graduate/12.jpeg')],
+    ['宋海雯', '是一起坐在教室里上课，是一起在实验室看螺杆，是在图书馆里熬夜办展，是在完成项目后深夜在校园游走欢笑，是这所学校，也是大家留下的身影；有在磨合中成长，有在困境中体悟，是我们共同经历的往事，造就如今我的内涵。陪伴如细雨，良言如和风，让我从弱小变强大。谨以此心，拙表感谢与祝福。', '北京理工大学',require('image/graduate/13.jpeg')],
+    ['张淋悦', '江湖再会', '于默奥',require('image/graduate/14.jpeg')],
+    ['许诺', '千千万万遍', '天津大学',require('image/graduate/15.jpeg')],
+    ['何子文', '敬友情，敬无常，敬谁都好，敬我们自己……好了，再见，我去2024下半年', '天津大学',require('image/graduate/16.jpeg')],
+    ['杨晰然', '四年时间无憾，感谢设计。', '',require('image/graduate/17.jpeg')],
+    ['王铸涛', '你想活出怎样的人生', '东南大学',require('image/graduate/18.jpeg')],
+    ['王浩', '所以词穷致谢，因为来日方长。', '天津大学',require('image/graduate/19.jpeg')],
+    ['方宇凌', '感谢天大，再见天大！', '佐治亚理工学院',require('image/graduate/20.jpeg')],
+    ['周双彦', '辛苦啦，毕业快乐！', '皇家艺术学院',require('image/graduate/21.jpeg')],
+    ['王博约', '真要是清水一潭也有点可怕。但世界拥挤不堪。', '',require('image/graduate/22.jpeg')],
+    ['周蒙', 'byebye~', '',require('image/graduate/23.jpeg')],
+    ['刘千千', '世上有多少个缤纷乐园 任你行', '佐治亚理工学院',require('image/graduate/24.jpeg')],
+    ['林浩宇', '祝天大工设蒸蒸日上，祝各位老师万事胜意，祝各位同学学业有成。', '',require('image/graduate/25.png')],
+    ['张广林', '好好生活好好努力，谢谢天大谢谢设计', '天津大学',require('image/graduate/26.jpeg')],
+    ['边巴次仁', '不想毕业', '',require('image/graduate/27.jpeg')],
+    ['乔博宇', '继续加油！', '佐治亚理工学院',require('image/graduate/28.png')],
+    ['耿旭冉', '感谢相遇，不说再见', '天津大学',require('image/graduate/29.jpeg')],
+    ['林思怡', '期待未来', '香港大学',require('image/graduate/30.jpeg')],
+    ['特列克', '感谢天大让我们相遇', '',require('image/graduate/31.jpeg')],
+    ['王欣然', '坚持就会听见奇迹的声响', '代尔夫特理工大学',require('image/graduate/32.jpeg')],
+    ['杨子杰', '感谢陪伴 ', '皇家艺术学院',require('image/graduate/33.jpeg')],
+    ['哈林', 'Alhamdulillah', '天津大学',require('image/graduate/34.jpeg')]
+]
+
+export const offsetList = [
+    [30.625, 9.0625],
+    [30.625, -12.5],
+    [41.3125, 22.1875],
+    [47.1875, 0.75],
+    [49.375, -18.75],
+    [58.4375, 14.625],
+    [64.4375, -3.75],
+    [65.5, -23.75],
+    [72.4375, 21.875],
+    [78.3125, 0.3125],
+    [80.5, -18.75],
+    [85.5, 15.625],
+    [95.5625, -1],
+    [100.75, 21.5625],
+    [104, -15.625],
+    [112.8125, 16.5625],
+    [114, 0.6875],
+    [121.375, -22.5625],
+    [127.25, 19.5625],
+    [131.9375, 4.625],
+    [134.9375, -11.4375],
+    [143.5, 22.375],
+    [146.25, -19.75],
+    [155.75, 11.5625],
+    [156.25, -6],
+    [163.875, -21.25],
+    [168.875, 20.625],
+    [173.875, -5.625],
+    [180.3125, 9.1625],
+    [187.25, -15.625],
+    [194.8125, 14.625],
+    [199.8125, -2.1875],
+    [201.4375, -22.5625],
+    [209.8125, 19.625],
+    [213.4357, -10.625]
 ]
