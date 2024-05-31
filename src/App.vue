@@ -1,5 +1,5 @@
 <template>
-  <PageHeader v-if="!isSearchRoute&&!isMenuRoute&&!isExhibitionDetailMobileRoute&&!isLoading" />
+  <PageHeader v-if="!isSearchRoute&&!isMenuRoute&&!isExhibitionDetailMobileRoute&&!isLoading" :not-mobile="notMobile" />
   <router-view v-slot="{ Component }" :not-mobile="notMobile">
     <keep-alive>
       <component :is="Component" :start-loading="startLoading" :stop-loading="stopLoading" />

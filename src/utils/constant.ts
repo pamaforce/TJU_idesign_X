@@ -364,7 +364,7 @@ export const sponsorList = [
         group: '指导教师',
         percent: 0.008,
         left: 10.875,
-        top: 23.25,
+        top: 23.1875,
         mobile: {
             percent: 0.0091,
             left: 2.5,
@@ -407,7 +407,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.0674,
                     left: 13.5,
-                    top: 11.1875
+                    top: 11.125
                 }
             },
             {
@@ -420,7 +420,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.08235,
                     left: 5.75,
-                    top: 11.1875
+                    top: 11.125
                 }
             }
         ]
@@ -433,7 +433,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.1170,
             left: 7.4375,
-            top: 30.4375
+            top: 30.3125
         },
         member: [
             {
@@ -458,7 +458,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.1655,
             left: 17.1875,
-            top: 41.4375
+            top: 41.375
         },
         member: [
             {
@@ -497,7 +497,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.22591,
                     left: -15.0625,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -508,9 +508,9 @@ export const sponsorList = [
                 left: -9.8125,
                 top: 21.1875,
                 mobile: {
-                    percent: 0.22847,
+                    percent: 0.2366,
                     left: -8.125,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -523,7 +523,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.24992,
                     left: -1.0625,
-                    top: 11.125
+                    top: 11.0625
                 }
             }
         ]
@@ -535,7 +535,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.27981,
             left: 17.1875,
-            top: 63.5625
+            top: 63.5
         },
         member: [
             {
@@ -574,7 +574,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.34626,
                     left: -11,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -587,7 +587,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.38791,
                     left: -5.4375,
-                    top: 22.1875
+                    top: 22.125
                 }
             },
             {
@@ -600,7 +600,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.40318,
                     left: -13.8125,
-                    top: 22.1875
+                    top: 22.125
                 }
             }
         ]
@@ -612,7 +612,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.4378,
             left: 2.25,
-            top: 96.75
+            top: 96.6875
         },
         member: [
             {
@@ -650,7 +650,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.49348,
             left: 17.75,
-            top: 107.8125
+            top: 107.75
         },
         member: [
             {
@@ -689,7 +689,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.55357,
                     left: -15.625,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -702,7 +702,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.56534,
                     left: -8.8125,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -715,7 +715,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.5768,
                     left: -1.625,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -728,7 +728,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.60795,
                     left: -1.625,
-                    top: 22.1875
+                    top: 22.125
                 }
             },
             {
@@ -741,7 +741,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.62035,
                     left: -8.8125,
-                    top: 22.1875
+                    top: 22.125
                 }
             },
             {
@@ -754,7 +754,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.6321,
                     left: -15.625,
-                    top: 22.1875
+                    top: 22.125
                 }
             }
         ]
@@ -767,7 +767,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.6633,
             left: 2.25,
-            top: 141
+            top: 140.9375
         },
         member: [
             {
@@ -806,7 +806,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.72496,
                     left: 11.1875,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -819,7 +819,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.74117,
                     left: 2.875,
-                    top: 11.125
+                    top: 11.0625
                 }
             },
             {
@@ -832,7 +832,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.7793,
                     left: 5.4375,
-                    top: 22.1875
+                    top: 22.125
                 }
             },
             {
@@ -845,7 +845,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.79364,
                     left: 13.5,
-                    top: 22.1875
+                    top: 22.125
                 }
             }
         ]
@@ -858,7 +858,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.8229,
             left: 17.1875,
-            top: 174.1875
+            top: 174.125
         },
         member: [
             {
@@ -897,7 +897,7 @@ export const sponsorList = [
                 mobile: {
                     percent: 0.8811,
                     left: -16.5,
-                    top: 11.125
+                    top: 11.065
                 }
             }
         ]
@@ -910,7 +910,7 @@ export const sponsorList = [
         mobile: {
             percent: 0.8897,
             left: 7.6875,
-            top: 185.25
+            top: 185.125
         },
         member: [
             {
