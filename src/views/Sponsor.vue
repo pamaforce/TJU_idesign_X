@@ -88,8 +88,6 @@ function adjustViewBox() {
         let originalViewBoxHeight = props.notMobile?4806:2976;
         if (!svgElement.value) return;
         const path = document.getElementById('path') as SVGPathElement | null;
-        console.log(path);
-
         if (!path) return;
         pathLength = path.getTotalLength();
         path.style.strokeDasharray = pathLength.toString();
@@ -117,8 +115,6 @@ function handleScroll() {
     const scrollPosition = window.scrollY;
     const totalHeight = document.body.scrollHeight - window.innerHeight;
     scrollPercentage.value = scrollPosition / totalHeight;
-    console.log(scrollPercentage.value);
-
     let initialOffset = pathLength * 0.99;
     const newOffset = initialOffset * (1 - 1.1 * scrollPercentage.value);
     path.style.strokeDashoffset = Math.max(0, newOffset).toString();

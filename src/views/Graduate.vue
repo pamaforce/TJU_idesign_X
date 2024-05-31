@@ -100,7 +100,7 @@
     <div v-if="show" class="dialog" @click="show=false">
       <div class="content" @click.stop>
         <div class="top">
-          <img :src="currentDesc[4]" class="avatar">
+          <img v-preview :src="currentDesc[4]" class="avatar">
           <div>
             <p class="name">
               {{ currentDesc[0] }}
@@ -154,8 +154,6 @@ function shuffleArray(array:any[]) {
     }
 }
 function showInfo() {
-    console.log(1);
-  
     show.value = true;
 }
 function setRem() {
@@ -560,7 +558,7 @@ onActivated(() => {
       height: 10px;
       position: fixed;
       left: 16px;
-      bottom: 100px;
+      bottom: 50px;
       background-color: white;
       border-radius: 13px;
       .grey {
