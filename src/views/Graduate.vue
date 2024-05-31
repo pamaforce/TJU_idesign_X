@@ -34,7 +34,7 @@
       </transition>
     </div>
     <div ref="members" class="members">
-      <img src="@/assets/image/mobile/graduate.svg" class="title" />
+      <img v-if="!props.notMobile" src="@/assets/image/mobile/graduate.svg" class="title" />
       <div class="member teacher-1" @mouseenter="showDesc(-1)" @mouseleave="showDesc(-3)">
         <transition name="scale">
           <template v-if="props.notMobile">
@@ -72,8 +72,8 @@
         :key="i"
         class="member"
         :style="{
-          left: props.notMobile ? offsetList[i][0] : offsetListMobile[i][0] + 'rem',
-          marginTop: props.notMobile ?offsetList[i][1]: offsetListMobile[i][1] + 'em'
+          left: (props.notMobile ? offsetList[i][0] : offsetListMobile[i][0]) + 'rem',
+          marginTop: (props.notMobile ?offsetList[i][1]: offsetListMobile[i][1]) + 'em'
         }"
         @mouseenter="showDesc(i)"
         @mouseleave="showDesc(-3)"
@@ -139,7 +139,6 @@ const scrollPercentage = ref(0);
 const show = ref(false);
 import {debounce} from '@/utils/debounce';
 import require from '@/utils/require';
-
 const props = defineProps({
     notMobile: Boolean
 });
