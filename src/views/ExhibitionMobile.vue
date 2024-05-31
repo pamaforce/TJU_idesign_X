@@ -4,7 +4,7 @@
       :direction="'vertical'"
       :centered-slides-bounds="true"
       :loop="true"
-      :slides-per-view="5"
+      :slides-per-view="'auto'"
       :auto-height="true"
       :grab-cursor="true"
       @slide-change="onSlideChange"

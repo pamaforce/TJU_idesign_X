@@ -14,6 +14,7 @@ export interface Exhibition {
     formula_mobile: string;
     formula_active_mobile: string;
     color: string;
+    color_mobile: string;
     background: string;
     background_active: string;
     background_default: string;
@@ -47,6 +48,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_7.svg'),
         intro_mobile: require('image/mobile/intro_7.svg'),
         color: '#EF5B5B',
+        color_mobile: '#EC9F8F',
         background: 'linear-gradient(180deg, #F3E7E7 0%, #FFFFFF 100%)',
         background_active: 'linear-gradient(0deg, #EC9F8F, #EC9F8F), linear-gradient(180deg, #F3E7E7 0%, #FFFFFF 100%)',
         background_default: '#F3E7E7',
@@ -72,6 +74,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_1.svg'),
         intro_mobile: require('image/mobile/intro_1.svg'),
         color: '#8F57A0',
+        color_mobile: '#AF98B4',
         background: 'linear-gradient(180deg, #E6E0E0 0%, #FFFFFF 100%)',
         background_active: '#AF98B4',
         background_default: '#E6E0E0',
@@ -97,6 +100,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_2.svg'),
         intro_mobile: require('image/mobile/intro_2.svg'),
         color: '#93C984',
+        color_mobile: '#99C39F',
         background: 'linear-gradient(180deg, #E3E6DF 0%, #FFFFFF 100%), #E3E6DF',
         background_active: 'linear-gradient(0deg, #99C39F, #99C39F), linear-gradient(180deg, #E3E6DF 0%, #FFFFFF 100%), #E3E6DF',
         background_default: '#E3E6DF',
@@ -122,6 +126,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_3.svg'),
         intro_mobile: require('image/mobile/intro_3.svg'),
         color: '#F7874A',
+        color_mobile: '#E09E68',
         background: 'linear-gradient(180deg, rgba(244, 233, 215, 0) 0%, #FFFFFF 100%), #F4E9D7',
         background_active: 'linear-gradient(0deg, #E09E68, #E09E68), linear-gradient(180deg, rgba(244, 233, 215, 0) 0%, #FFFFFF 100%), #F4E9D7',
         background_default: '#F4E9D7',
@@ -147,6 +152,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_4.svg'),
         intro_mobile: require('image/mobile/intro_4.svg'),
         color: '#F05883',
+        color_mobile: '#DE81AB',
         background: 'linear-gradient(180deg, #F5E7ED 0%, #FFFFFF 100%), #F5E7ED',
         background_active: 'linear-gradient(0deg, #DE81AB, #DE81AB), linear-gradient(180deg, #F5E7ED 0%, #FFFFFF 100%), #F5E7ED',
         background_default: '#F5E7ED',
@@ -172,6 +178,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_5.svg'),
         intro_mobile: require('image/mobile/intro_5.svg'),
         color: '#FCC143',
+        color_mobile: '#D8B994',
         background: 'linear-gradient(180deg, #F7F3E7 0%, #FFFFFF 100%)',
         background_active: 'linear-gradient(0deg, #D8B994, #D8B994), linear-gradient(180deg, #F7F3E7 0%, #FFFFFF 100%)',
         background_default: '#F7F3E7',
@@ -197,6 +204,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_6.svg'),
         intro_mobile: require('image/mobile/intro_6.svg'),
         color: '#4F90CA',
+        color_mobile: '#89B0C9',
         background: 'linear-gradient(180deg, #DFEDED 0%, #FFFFFF 100%)',
         background_active: 'linear-gradient(0deg, #89B0C9, #89B0C9), linear-gradient(180deg, #DFEDED 0%, #FFFFFF 100%)',
         background_default: '#DFEDED',
@@ -222,6 +230,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_7.svg'),
         intro_mobile: require('image/mobile/intro_7.svg'),
         color: '#EF5B5B',
+        color_mobile: '#EC9F8F',
         background: 'linear-gradient(180deg, #F3E7E7 0%, #FFFFFF 100%)',
         background_active: 'linear-gradient(0deg, #EC9F8F, #EC9F8F), linear-gradient(180deg, #F3E7E7 0%, #FFFFFF 100%)',
         background_default: '#F3E7E7',
@@ -247,6 +256,7 @@ export const exhibitionList: Exhibition[] = [
         brief_mobile: require('image/mobile/brief_1.svg'),
         intro_mobile: require('image/mobile/intro_1.svg'),
         color: '#8F57A0',
+        color_mobile: '#AF98B4',
         background: 'linear-gradient(180deg, #E6E0E0 0%, #FFFFFF 100%)',
         background_active: '#AF98B4',
         background_default: '#E6E0E0',

@@ -1,6 +1,12 @@
 <template>
   <div class="exhibition-detail">
-    <img alt="back" src="@/assets/image/back.svg" class="back" @click="router.go(-1)" />
+    <div
+      class="background-1"
+      :style="{backgroundColor: neighbors.current.background_default}"
+    ></div>
+    <img v-if="currentIndex>0&&designData[currentIndex-1]" :src="portalUrl+designData[currentIndex-1].more.thumbnail" class="background-img" />
+    <div class="background-2"></div>
+    <img alt="back" src="@/assets/image/back.svg" class="back" @click="goBack" />
     <swiper
       :effect="'coverflow'"
       :grab-cursor="true"
@@ -17,8 +23,9 @@
       }"
       :modules="[EffectCoverflow]"
       class="designs"
+      @slide-change="onSlideChange"
     >
-      <swiper-slide class="design" :style="{background:neighbors.current.color}">
+      <swiper-slide class="design" :style="{background:neighbors.current.color_mobile}">
         <p class="first-name">
           {{ neighbors.current.name }}
         </p>
@@ -63,8 +70,8 @@
       <div
         class="btn"
         :style="{
-          border: '2px solid ' + neighbors.previous.color,
-          color: neighbors.previous.color
+          border: '2px solid ' + neighbors.previous.color_mobile,
+          color: neighbors.previous.color_mobile
         }"
         @click="toExhibition(neighbors.previous.id)"
       >
@@ -73,8 +80,8 @@
       <div
         class="btn"
         :style="{
-          border: '2px solid ' + neighbors.next.color,
-          color: neighbors.next.color
+          border: '2px solid ' + neighbors.next.color_mobile,
+          color: neighbors.next.color_mobile
         }"
         @click="toExhibition(neighbors.next.id)"
       >
@@ -87,12 +94,13 @@
 import {portalUrl, type Exhibition} from '@/utils/constant';
 import service from '@/utils/request';
 import {onActivated, onMounted, ref, watch} from 'vue';
-import {useRouter, useRoute} from 'vue-router';
+import {useRouter, useRoute, onBeforeRouteLeave} from 'vue-router';
 import {exhibitionList} from '@/utils/constant';
 import {vPreview} from 'vue3-image-preview';
 const exhibitions = ref(exhibitionList.slice(1, -1));
 const router = useRouter();
 const route = useRoute();
+const currentIndex = ref(0);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const designData: any = ref([]);
 const neighbors = ref<{ current:Exhibition,next: Exhibition; previous: Exhibition }>({current:exhibitions.value[0],next:exhibitions.value[0],previous:exhibitions.value[0]})
@@ -100,6 +108,23 @@ import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import {EffectCoverflow} from 'swiper/modules';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const routeHistory = ref<any>([]);
+onBeforeRouteLeave((to, from) => {
+    routeHistory.value.push(from);
+});
+function goBack()  {
+    for (let i = routeHistory.value.length - 2; i >= 0; i--) {
+        if (routeHistory.value[i].name !== 'ExhibitionDetailXMobile'&&routeHistory.value[i].name !== 'ExhibitionDetailMobile') {
+            router.push(routeHistory.value[i].fullPath);
+            return;
+        }
+    }
+    router.push('/exhibition_mobile');
+}
+function onSlideChange(swiper: { realIndex: number; }) {
+    currentIndex.value = swiper.realIndex;
+}
 let itemList = '';
 function fetchList() {
     designData.value = [];
@@ -194,6 +219,28 @@ onMounted(() => {
     overflow: hidden;
     position: relative;
     background-color: #f4f1f1;
+    .background-1{
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
+    .background-img{
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+    .background-2{
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(25px);
+    }
     .back{
         position: absolute;
         cursor: pointer;

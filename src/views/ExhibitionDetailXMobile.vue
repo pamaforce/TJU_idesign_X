@@ -1,6 +1,11 @@
 <template>
   <div class="exhibition-detail">
-    <img alt="back" src="@/assets/image/back.svg" class="back" @click="router.go(-1)" />
+    <div
+      class="background-1"
+      :style="{backgroundColor: '#F3E7E7'}"
+    ></div>
+    <div class="background-2"></div>
+    <img alt="back" src="@/assets/image/back.svg" class="back" @click="goBack" />
     <div class="x-container">
       <swiper
         :effect="'coverflow'"
@@ -54,8 +59,8 @@
       <div
         class="btn"
         :style="{
-          border: '2px solid #4F90CA',
-          color: '#4F90CA'
+          background: '#89B0C9',
+          color: 'white'
         }"
         @click="toExhibition(71)"
       >
@@ -64,8 +69,8 @@
       <div
         class="btn"
         :style="{
-          border: '2px solid #8F57A0',
-          color: '#8F57A0'
+          background: '#AF98B4',
+          color: 'white'
         }"
         @click="toExhibition(66)"
       >
@@ -76,7 +81,7 @@
 </template>
 <script setup lang='ts'>
 import {ref} from 'vue';
-import {useRouter} from 'vue-router';
+import {useRouter,onBeforeRouteLeave} from 'vue-router';
 import {coverList,imgList,videoList} from '@/utils/constant';
 import {vPreview} from 'vue3-image-preview';
 const router = useRouter();
@@ -92,7 +97,20 @@ import {EffectCoverflow, Pagination} from 'swiper/modules';
 import {getRootFontSize} from '@/utils/rem';
 import {VideoPlayer} from '@videojs-player/vue'
 import 'video.js/dist/video-js.css'
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const routeHistory = ref<any>([]);
+onBeforeRouteLeave((to, from) => {
+    routeHistory.value.push(from);
+});
+function goBack()  {
+    for (let i = routeHistory.value.length - 2; i >= 0; i--) {
+        if (routeHistory.value[i].name !== 'ExhibitionDetailXMobile'&&routeHistory.value[i].name !== 'ExhibitionDetailMobile') {
+            router.push(routeHistory.value[i].fullPath);
+            return;
+        }
+    }
+    router.push('/exhibition_mobile');
+}
 function toExhibition(id: number) {
     router.push(`/exhibition/${id}`);
 }
@@ -113,6 +131,22 @@ function showVideo(index: number) {
     overflow-y: auto;
     position: relative;
     background-color: #f4f1f1;
+    .background-1{
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
+    .background-2{
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(25px);
+    }
     .back{
         position: absolute;
         cursor: pointer;
