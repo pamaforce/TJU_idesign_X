@@ -962,7 +962,7 @@ export const graduateList = [
     ['刘千千', '世上有多少个缤纷乐园 任你行', '佐治亚理工学院',require('image/graduate/24.jpeg')],
     ['林浩宇', '祝天大工设蒸蒸日上，祝各位老师万事胜意，祝各位同学学业有成。', '',require('image/graduate/25.png')],
     ['张广林', '好好生活好好努力，谢谢天大谢谢设计', '天津大学',require('image/graduate/26.jpeg')],
-    ['边巴次仁', '不想毕业', '',require('image/graduate/27.jpeg')],
+    ['边巴次仁', '不想毕业', '',require('image/graduate/27.png')],
     ['乔博宇', '继续加油！', '佐治亚理工学院',require('image/graduate/28.png')],
     ['耿旭冉', '感谢相遇，不说再见', '天津大学',require('image/graduate/29.jpeg')],
     ['林思怡', '期待未来', '香港大学',require('image/graduate/30.jpeg')],
