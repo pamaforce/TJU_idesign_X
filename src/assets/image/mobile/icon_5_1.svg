@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="56"
+    height="56" viewBox="0 0 56 56">
+    <defs>
+        <clipPath id="master_svg0_407_15857">
+            <rect x="0" y="0" width="56" height="56" rx="0" />
+        </clipPath>
+    </defs>
+    <g clip-path="url(#master_svg0_407_15857)">
+        <g>
+            <g>
+                <g>
+                    <rect x="22.999998092651367" y="13" width="3.9999992847442627" height="13.793102264404297" rx="0"
+                        fill="#fff" fill-opacity="1" />
+                </g>
+                <g transform="matrix(0,-1,1,0,-13.793102264404297,39.7931022644043)">
+                    <rect x="13" y="26.793102264404297" width="4.137923240661621" height="10.666665077209473" rx="0"
+                        fill="#fff" fill-opacity="1" />
+                </g>
+            </g>
+            <g transform="matrix(0,-1,1,0,-29.999998092651367,55.99999809265137)">
+                <g>
+                    <rect x="22.655171394348145" y="42.99999809265137" width="4.137930393218994"
+                        height="14.333333015441895" rx="0" fill="#fff" fill-opacity="1" />
+                </g>
+                <g transform="matrix(0,-1,1,0,-44.33333110809326,70.33333110809326)">
+                    <rect x="13" y="57.33333110809326" width="3.999999523162842" height="10.344825744628906" rx="0"
+                        fill="#fff" fill-opacity="1" />
+                </g>
+            </g>
+            <g transform="matrix(-1,0,0,-1,85.99999618530273,85.99999618530273)">
+                <g>
+                    <rect x="52.999996185302734" y="42.99999809265137" width="3.9999992847442627"
+                        height="13.448275566101074" rx="0" fill="#fff" fill-opacity="1" />
+                </g>
+                <g transform="matrix(0,-1,1,0,-13.448275566101074,99.44827175140381)">
+                    <rect x="42.99999809265137" y="56.44827365875244" width="4.137923240661621"
+                        height="10.666665077209473" rx="0" fill="#fff" fill-opacity="1" />
+                </g>
+            </g>
+            <g transform="matrix(0,1,-1,0,55.99999809265137,-29.999998092651367)">
+                <g>
+                    <rect x="52.99999713897705" y="13" width="4.137930393218994" height="14.333333015441895" rx="0"
+                        fill="#fff" fill-opacity="1" />
+                </g>
+                <g transform="matrix(0,-1,1,0,15.666665077209473,70.33333110809326)">
+                    <rect x="42.99999809265137" y="27.333333015441895" width="3.999999523162842"
+                        height="10.689654350280762" rx="0" fill="#fff" fill-opacity="1" />
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

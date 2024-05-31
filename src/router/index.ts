@@ -32,9 +32,24 @@ const router = createRouter({
             component: () => import('../views/Search.vue')
         },
         {
+            path: '/exhibition_mobile',
+            name: 'ExhibitionMobile',
+            component: () => import('../views/ExhibitionMobile.vue')
+        },
+        {
             path: '/menu',
             name: 'Menu',
             component: () => import('../views/Menu.vue')
+        },
+        {
+            path: '/exhibition/100',
+            name: 'ExhibitionDetailXMobile',
+            component: () => import('../views/ExhibitionDetailXMobile.vue')
+        },
+        {
+            path: '/exhibition/:category_id',
+            name: 'ExhibitionDetailMobile',
+            component: () => import('../views/ExhibitionDetailMobile.vue')
         },
         {
             path: '/exhibition/:category_id/:id',

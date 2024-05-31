@@ -559,16 +559,10 @@ import {useRouter} from 'vue-router';
 import service from '@/utils/request';
 import {useTriggerStore} from '@/stores/triggerStore';
 import {vPreview} from 'vue3-image-preview';
-
 import {Swiper, SwiperSlide} from 'swiper/vue';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-
-
-// import required modules
 import {EffectCoverflow, Pagination} from 'swiper/modules';
 import {VideoPlayer} from '@videojs-player/vue'
 import 'video.js/dist/video-js.css'
@@ -595,6 +589,9 @@ const currentExhibition = ref(0);
 const itemHeightsRem = [26.8125,26.8125,11.375,16,34.625,26.8125,11.375,11.375,11.375,11.375];
 let itemList = '';
 let snapTimer: number | undefined = undefined;
+const props = defineProps({
+    notMobile: Boolean
+})
 function getClass(statue: number) {
     return `status-${statue}`;
 }
@@ -602,6 +599,11 @@ watch(() => triggerStore.triggered, (newValue: boolean) => {
     if (newValue) {
         handleInit();
         triggerStore.resetTrigger(); // 执行后重置触发状态
+    }
+});
+watch(() => props.notMobile, (newValue: boolean) => {
+    if (!newValue) {
+        router.push('/exhibition_mobile')
     }
 });
 function updateSize() {
@@ -944,6 +946,9 @@ router.beforeEach((to, from, next) => {
 onActivated(() => {
     if (!fromDetail.value) {
         handleInit();
+    }
+    if (!props.notMobile) {
+        router.push('/exhibition_mobile')
     }
 })
 const lastScrollIndex = ref(0);

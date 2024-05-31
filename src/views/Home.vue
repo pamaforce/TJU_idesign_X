@@ -35,6 +35,7 @@
               class="text-7"
               alt="text-7"
               @click="toExhibition"
+              @mousemove.stop
             />
             <img src="@/assets/image/text_8.svg" class="text-8" :class="{'rotate-together-1':isSnapped}" alt="text-8" />
             <img
@@ -118,7 +119,8 @@ function changeState(val:number) {
     state.value = val;
 }
 function toExhibition() {
-    router.push('/exhibition');
+    if (props.notMobile) router.push('/exhibition');
+    else router.push('/exhibition_mobile');
 }
 let touchStartY = 0;
 let touchEndY = 0;

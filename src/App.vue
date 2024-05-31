@@ -1,5 +1,5 @@
 <template>
-  <PageHeader v-if="!isSearchRoute&&!isMenuRoute&&!isLoading" />
+  <PageHeader v-if="!isSearchRoute&&!isMenuRoute&&!isExhibitionDetailMobileRoute&&!isLoading" />
   <router-view v-slot="{ Component }" :not-mobile="notMobile">
     <keep-alive>
       <component :is="Component" :start-loading="startLoading" :stop-loading="stopLoading" />
@@ -19,6 +19,7 @@ const notMobile = ref(document.body.clientWidth > DIVIDER_WIDTH);
 const route = useRoute();
 const isSearchRoute = computed(() => route.name === 'Search');
 const isMenuRoute = computed(() => route.name === 'Menu');
+const isExhibitionDetailMobileRoute = computed(() => route.name === 'ExhibitionDetailMobile');
 const isLoading = ref(false);
 
 function updateMobileStatus() {

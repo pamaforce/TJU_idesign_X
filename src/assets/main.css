@@ -9,3 +9,15 @@
 .swiper-pagination-bullet-active {
     background: #FA5151 !important;
 }
+
+@media screen and (max-width:620px) {
+    .swiper-pagination-bullet {
+        width: 5px !important;
+        height: 5px !important;
+        margin: 0 4px !important;
+        background: rgba(250, 81, 81, 0.4) !important;
+    }
+    .swiper-pagination-bullet-active {
+        background: #FA5151 !important;
+    }
+}

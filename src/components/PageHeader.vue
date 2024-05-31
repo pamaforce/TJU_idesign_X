@@ -80,6 +80,7 @@ function triggerEvent() {
 }
 
 const updateLine = (element: HTMLElement | null, animate = true) => {
+    if (!props.notMobile) return;
     if (!element) {
         if (activeTab.value !== -1) {
             updateLine(tabRefs.value[activeTab.value]);

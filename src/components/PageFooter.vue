@@ -145,6 +145,8 @@
   color: #FFFFFF;
   font-size: 20px;
   font-weight: 600;
+  width: 100%;
+  text-align: center;
 }
 @media screen and (max-width: 620px) {
   .footer {
@@ -152,7 +154,6 @@
     width: 100%;
     padding: 0;
     padding-top: 25px;
-    background: transparent;
   }
   .links {
     display: grid;
@@ -160,7 +161,6 @@
     grid-template-rows: 20px 20px 20px 20px 20px 20px;
     font-size: 8px;
     align-items: start;
-    color: #51514f;
     overflow: visible;
   }
   .specialGird-1 {
@@ -175,14 +175,11 @@
   .specialGird-4 {
     justify-self: start;
     align-self: start;
+    margin-top: 18px;
   }
   .links a {
     font-size: 8px;
-    color: #51514f;
     margin-right: 14px;
-  }
-  .specialGird-4 {
-    margin-top: 18px;
   }
   .specialGird-6 {
     margin-top: 3px;
@@ -195,7 +192,6 @@
   }
   .copyright {
     font-size: 8px;
-    color: #51514f;
   }
   .specialGird-2 {
     flex-wrap: wrap;
