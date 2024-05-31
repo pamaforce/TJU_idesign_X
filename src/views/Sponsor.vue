@@ -1,7 +1,7 @@
 <template>
   <div class="sponsor">
     <svg
-      v-if="showSvg"
+      v-if="showSvg&&props.notMobile"
       ref="svgElement"
       class="path"
       width="1684"
@@ -18,8 +18,27 @@
         stroke-width="2"
       />
     </svg>
-    <img src="@/assets/image/text_9.svg" class="text">
-    <div v-for="(group,i) in sponsorList" :key="i" class="group" :style="{ top: group.top +'rem',left:group.left+'rem'}">
+    <svg
+      v-if="showSvg&&!props.notMobile"
+      ref="svgElement"
+      class="path"
+      width="345"
+      height="2976"
+      viewBox="0 0 345 2976"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        id="path"
+        d="M1.46494 0.200904L1.46276 142.5L343.999 142.499L344.495 320.499L68.4977 320.501L68.4968 497.5L344.494 497.5L344.494 674.5L1.49671 674.501L1.49574 851.5L344.49 851.499L344.488 1028.5L1.49538 1028.5L1.49462 1205.5L289.483 1205.5L289.482 1382.5L1.4941 1382.5L1.4937 1560L344.482 1559.5L344.484 1737L1.49305 1737L1.49225 1913.5L344.483 1913.5L344.485 2090.5L1.48946 2090.5L1.48893 2267.5L344.485 2267.5L344.487 2444.5L49.4936 2444.5L49.4931 2621.5L344.486 2621.5L344.486 2798.5L1.49935 2798.5L1.49936 2975.5L311 2975.5"
+        stroke="black"
+        stroke-width="1"
+      />
+    </svg>
+
+    <img v-if="props.notMobile" src="@/assets/image/text_9.svg" class="text">
+    <img v-else src="@/assets/image/mobile/sponsor.svg" class="text">
+    <div v-for="(group,i) in sponsorList" :key="i" class="group" :style="{ top: (props.notMobile?group.top:group.mobile.top) +'rem',left:(props.notMobile?group.left:group.mobile.left)+'rem'}">
       <transition name="scale" appear>
         <div v-if="scrollPercentage>=group.percent" class="group-name">
           {{ group.group }}
@@ -27,7 +46,7 @@
       </transition>
       <template v-for="(person,j) in group.member" :key="i +' '+ j">
         <transition name="scale-top" appear>
-          <div v-if="scrollPercentage>=person.percent" class="person" :style="{ top: person.top +'rem',left:person.left+'rem'}">
+          <div v-if="scrollPercentage>=person.percent" class="person" :style="{ top: (props.notMobile?person.top:person.mobile.top) +'rem',left:(props.notMobile?person.left:person.mobile.left)+'rem'}">
             <div class="person-bar"></div>
             <img v-preview:name="2" v-lazy="person.avatar" :alt="person.name" class="person-avatar" />
             <div class="person-name">
@@ -54,17 +73,23 @@ import {onMounted, ref, onUnmounted, nextTick,onActivated} from 'vue';
 import {sponsorList} from '@/utils/constant';
 import {vPreview} from 'vue3-image-preview';
 
+const props = defineProps({
+    notMobile: Boolean
+})
 const scrollPercentage = ref(0);
 const showSvg = ref(true);
 const svgElement = ref<SVGSVGElement | null>(null);
-const originalViewBoxWidth = 1684;
-const originalViewBoxHeight = 4806;
 let pathLength = 0;
 
 function adjustViewBox() {
     nextTick(() => {
+
+        let originalViewBoxWidth = props.notMobile? 1684:345;
+        let originalViewBoxHeight = props.notMobile?4806:2976;
         if (!svgElement.value) return;
         const path = document.getElementById('path') as SVGPathElement | null;
+        console.log(path);
+
         if (!path) return;
         pathLength = path.getTotalLength();
         path.style.strokeDasharray = pathLength.toString();
@@ -92,6 +117,7 @@ function handleScroll() {
     const scrollPosition = window.scrollY;
     const totalHeight = document.body.scrollHeight - window.innerHeight;
     scrollPercentage.value = scrollPosition / totalHeight;
+    console.log(scrollPercentage.value);
 
     let initialOffset = pathLength * 0.99;
     const newOffset = initialOffset * (1 - 1.1 * scrollPercentage.value);
@@ -233,5 +259,75 @@ onActivated(() => {
 .scale-top-enter-to, .scale-top-leave-from {
     opacity: 1;
     transform: scale(1);
+}
+
+@media screen and (max-width:620px) {
+    .text {
+        position: absolute;
+        width: 202px;
+        right: 16px;
+        top: 16px;
+        user-select: none;
+        pointer-events: none;
+    }
+    .path {
+      width: 345px;
+      margin-bottom: 400px;
+      transition: all 0.2s;
+    }
+
+.group {
+  position: absolute;
+  margin-top: 0;
+
+  & .group-name {
+    width: 64px;
+    height: 25px;
+    background: #626262;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    font-weight: 700;
+  }
+
+  & .person {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      position: absolute;
+
+      & .person-bar {
+        width: 27px;
+        height: 5px;
+        background: #626262;
+        margin-bottom: 8px;
+      }
+
+      & img {
+        width: 85px;
+        height: 85px;
+        margin-bottom: 5px;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      & .person-name {
+        font-size: 14px;
+        margin-bottom: 1px;
+        width: 85px;
+        text-align: center;
+        font-weight: 700;
+      }
+
+      & .person-role {
+        font-size: 10px;
+        text-align: center;
+        width: 85px;
+      }
+    }
+  }
 }
 </style>

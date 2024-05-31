@@ -365,6 +365,11 @@ export const sponsorList = [
         percent: 0.008,
         left: 10.875,
         top: 23.25,
+        mobile: {
+            percent: 0.091,
+            left: 2.5,
+            top: 8.1875
+        },
         member: [
             {
                 name: '边放',
@@ -372,7 +377,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/1.jpeg'),
                 percent: 0.023,
                 left: 19.0625,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.2338,
+                    left: 5.75,
+                    top: 0
+                }
             },
             {
                 name: '杨君宇',
@@ -380,7 +390,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/2.jpeg'),
                 percent: 0.035,
                 left: 37.8125,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.036,
+                    left: 13.625,
+                    top: 0
+                }
             },
             {
                 name: '张赫晨',
@@ -388,7 +403,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/3.jpeg'),
                 percent: 0.048,
                 left: 56.5625,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 13.5,
+                    top: 11.125
+                }
             },
             {
                 name: '李擎炜',
@@ -396,7 +416,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/4.jpeg'),
                 percent: 0.060,
                 left: 75.3125,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 5.75,
+                    top: 11.125
+                }
             }
         ]
     },
@@ -405,6 +430,11 @@ export const sponsorList = [
         percent: 0.094,
         left: 91.375,
         top: 45.125,
+        mobile: {
+            percent: 0.008,
+            left: 7.4375,
+            top: 30.375
+        },
         member: [
             {
                 name: '江长林',
@@ -412,7 +442,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/5.jpeg'),
                 percent: 0.121,
                 left: -36.9375,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 7.125,
+                    top: 0
+                }
             }
         ]
     },{
@@ -420,6 +455,11 @@ export const sponsorList = [
         percent: 0.154,
         left: 41.6875,
         top: 67,
+        mobile: {
+            percent: 0.008,
+            left: 17.1875,
+            top: 41.4375
+        },
         member: [
             {
                 name: '贺杨晨（组长）',
@@ -427,7 +467,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/6.jpeg'),
                 percent: 0.1712,
                 left: 22,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: -7.0625,
+                    top: 0
+                }
             },
             {
                 name: '焦慧婷',
@@ -435,7 +480,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/7.jpeg'),
                 percent: 0.208,
                 left: 27.6875,
-                top: 21.1875
+                top: 21.1875,
+                mobile: {
+                    percent: 0.008,
+                    left: -14.875,
+                    top: 0
+                }
             },
             {
                 name: '王佳一',
@@ -443,7 +493,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/8.jpeg'),
                 percent: 0.2205,
                 left: 8.9375,
-                top: 21.1875
+                top: 21.1875,
+                mobile: {
+                    percent: 0.008,
+                    left: -15.0625,
+                    top: 11.0625
+                }
             },
             {
                 name: '曾楚懿',
@@ -451,7 +506,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/9.jpeg'),
                 percent: 0.2325,
                 left: -9.8125,
-                top: 21.1875
+                top: 21.1875,
+                mobile: {
+                    percent: 0.008,
+                    left: -8.125,
+                    top: 11.0625
+                }
             },
             {
                 name: '张宇星',
@@ -459,14 +519,24 @@ export const sponsorList = [
                 avatar: require('image/sponsor/10.jpeg'),
                 percent: 0.2444,
                 left: -28.5625,
-                top: 21.1875
+                top: 21.1875,
+                mobile: {
+                    percent: 0.008,
+                    left: -1.0625,
+                    top: 11.0625
+                }
             }
         ]
     },{
         group: '策展B',
         percent: 0.2708,
         left: 11.375,
-        top: 111.875,
+        top: 63.5625,
+        mobile: {
+            percent: 0.008,
+            left: 17.1875,
+            top: 23.25
+        },
         member: [
             {
                 name: '余春阳（组长）',
@@ -474,15 +544,25 @@ export const sponsorList = [
                 avatar: require('image/sponsor/11.jpeg'),
                 percent: 0.2921,
                 left: 28.375,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: -6.75,
+                    top: 0
+                }
             },
             {
                 name: '刘子炜',
                 role: '框架搭建，移动端UI',
                 avatar: require('image/sponsor/12.jpeg'),
                 percent: 0.3043,
-                left: 47.125,
-                top: 0
+                left: -15,
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 0
+                }
             },
             {
                 name: '蒋婵娟',
@@ -490,7 +570,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/13.jpeg'),
                 percent: 0.3167,
                 left: 65.875,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 13.8125,
+                    top: 11.0625
+                }
             },
             {
                 name: '刘宏伟',
@@ -498,7 +583,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/14.jpg'),
                 percent: 0.3719,
                 left: 61.25,
-                top: 22.5
+                top: 22.5,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '李杰',
@@ -506,7 +596,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/15.jpeg'),
                 percent: 0.3841,
                 left: 42.5,
-                top: 22.5
+                top: 22.5,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             }
         ]
     },{
@@ -514,6 +609,11 @@ export const sponsorList = [
         percent: 0.4259,
         left: 29.875,
         top: 159.6875,
+        mobile: {
+            percent: 0.008,
+            left: 10.875,
+            top: 23.25
+        },
         member: [
             {
                 name: '陈雪懿（组长）',
@@ -521,7 +621,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/16.jpeg'),
                 percent: 0.4455,
                 left: 28.8125,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '曲自涵',
@@ -529,7 +634,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/17.jpeg'),
                 percent: 0.4608,
                 left: 51.625,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             }
         ]
     },{
@@ -537,6 +647,11 @@ export const sponsorList = [
         percent: 0.4922,
         left: 82.375,
         top: 183.75,
+        mobile: {
+            percent: 0.008,
+            left: 10.875,
+            top: 23.25
+        },
         member: [
             {
                 name: '张仁洁（组长）',
@@ -544,7 +659,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/18.jpeg'),
                 percent: 0.5112,
                 left: -26.125,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '尹祎晗（副组长）',
@@ -552,7 +672,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/19.jpeg'),
                 percent: 0.5234,
                 left: -44.875,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '黄诗淇',
@@ -560,7 +685,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/21.jpeg'),
                 percent: 0.5316,
                 left: -63.625,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '唐安尼达',
@@ -568,7 +698,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/20.jpeg'),
                 percent: 0.5708,
                 left: -65.5,
-                top: 22.8125
+                top: 22.8125,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '易晓萌',
@@ -576,7 +711,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/23.jpeg'),
                 percent: 0.58252,
                 left: -46.75,
-                top: 22.8125
+                top: 22.8125,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '王依燃',
@@ -584,7 +724,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/25.jpeg'),
                 percent: 0.595,
                 left: -28,
-                top: 22.8125
+                top: 22.8125,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '洛扎',
@@ -592,7 +737,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/22.jpeg'),
                 percent: 0.60743,
                 left: -9.25,
-                top: 22.8125
+                top: 22.8125,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '仁增旺姆',
@@ -600,7 +750,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/24.jpeg'),
                 percent: 0.61985,
                 left: 9.5,
-                top: 22.8125
+                top: 22.8125,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             }
         ]
     },
@@ -609,6 +764,11 @@ export const sponsorList = [
         percent: 0.65228,
         left: 92.9375,
         top: 231.6825,
+        mobile: {
+            percent: 0.008,
+            left: 10.875,
+            top: 23.25
+        },
         member: [
             {
                 name: '白昊（组长）',
@@ -616,7 +776,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/26.jpeg'),
                 percent: 0.67036,
                 left: -25.9375,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '吴语晴（副组长）',
@@ -624,7 +789,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/27.jpeg'),
                 percent: 0.68235,
                 left: -44.6875,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '段海涛',
@@ -632,7 +802,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/28.jpeg'),
                 percent: 0.69453,
                 left: -63.4375,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '刘皓月',
@@ -640,7 +815,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/29.jpeg'),
                 percent: 0.7291,
                 left: -72.3125,
-                top: 22.9375
+                top: 22.9375,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '赵钰可',
@@ -648,7 +828,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/30.jpeg'),
                 percent: 0.7404,
                 left: -53.5625,
-                top: 22.9375
+                top: 22.9375,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '陈诗语',
@@ -656,7 +841,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/31.jpeg'),
                 percent: 0.75282,
                 left: -34.8125,
-                top: 22.9375
+                top: 22.9375,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             }
         ]
     },
@@ -665,6 +855,11 @@ export const sponsorList = [
         percent: 0.79282,
         left: 82.0625,
         top: 277.625,
+        mobile: {
+            percent: 0.008,
+            left: 10.875,
+            top: 23.25
+        },
         member: [
             {
                 name: '方正',
@@ -672,7 +867,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/32.jpeg'),
                 percent: 0.80479,
                 left: -14.9375,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '王博约',
@@ -680,7 +880,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/33.jpeg'),
                 percent: 0.81767,
                 left: -33.6875,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             },
             {
                 name: '吴鑫',
@@ -688,7 +893,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/34.jpeg'),
                 percent: 0.8293,
                 left: -52.4375,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             }
         ]
     },
@@ -697,6 +907,11 @@ export const sponsorList = [
         percent: 0.86353,
         left: 22.5625,
         top: 300.3125,
+        mobile: {
+            percent: 0.008,
+            left: 10.875,
+            top: 23.25
+        },
         member: [
             {
                 name: '赵玉奇',
@@ -704,7 +919,12 @@ export const sponsorList = [
                 avatar: require('image/sponsor/35.jpeg'),
                 percent: 0.87573,
                 left: 18.125,
-                top: 0
+                top: 0,
+                mobile: {
+                    percent: 0.008,
+                    left: 10.875,
+                    top: 23.25
+                }
             }
         ]
     }
