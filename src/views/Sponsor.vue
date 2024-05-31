@@ -40,13 +40,13 @@
     <img v-else src="@/assets/image/mobile/sponsor.svg" class="text">
     <div v-for="(group,i) in sponsorList" :key="i" class="group" :style="{ top: (props.notMobile?group.top:group.mobile.top) +'rem',left:(props.notMobile?group.left:group.mobile.left)+'rem'}">
       <transition name="scale" appear>
-        <div v-if="scrollPercentage>=group.percent" class="group-name">
+        <div v-if="scrollPercentage>=(props.notMobile?group.percent:group.mobile.percent)" class="group-name">
           {{ group.group }}
         </div>
       </transition>
       <template v-for="(person,j) in group.member" :key="i +' '+ j">
         <transition name="scale-top" appear>
-          <div v-if="scrollPercentage>=person.percent" class="person" :style="{ top: (props.notMobile?person.top:person.mobile.top) +'rem',left:(props.notMobile?person.left:person.mobile.left)+'rem'}">
+          <div v-if="scrollPercentage>=(props.notMobile?person.percent:person.mobile.percent)" class="person" :style="{ top: (props.notMobile?person.top:person.mobile.top) +'rem',left:(props.notMobile?person.left:person.mobile.left)+'rem'}">
             <div class="person-bar"></div>
             <img v-preview:name="2" v-lazy="person.avatar" :alt="person.name" class="person-avatar" />
             <div class="person-name">
@@ -272,7 +272,7 @@ onActivated(() => {
     }
     .path {
       width: 345px;
-      margin-bottom: 400px;
+      margin-bottom: 200px;
       transition: all 0.2s;
     }
 
@@ -317,7 +317,7 @@ onActivated(() => {
       & .person-name {
         font-size: 14px;
         margin-bottom: 1px;
-        width: 85px;
+        width: 105px;
         text-align: center;
         font-weight: 700;
       }
@@ -325,9 +325,23 @@ onActivated(() => {
       & .person-role {
         font-size: 10px;
         text-align: center;
-        width: 85px;
+        width: 105px;
       }
     }
   }
+& .thanks {
+  position: absolute;
+  left: 279px;
+  top: 2964px;
+  width: 80px;
+  height: 25px;
+  border-radius: 30px;
+  background: #626262;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+}
 }
 </style>
