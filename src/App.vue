@@ -65,4 +65,13 @@ onUnmounted(() => {
     margin-top: -40px;
   }
 }
+@media screen and (max-width: 620px) {
+  .loading-overlay {
+    & img{
+      width: 210px;
+      height: 175px;
+      margin-top: -40px;
+    }
+  }
+}
 </style>

@@ -239,7 +239,7 @@ onMounted(() => {
       bottom: 0;
       right: 0;
       background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(25px);
+      backdrop-filter: blur(10px);
     }
     .back{
         position: absolute;
