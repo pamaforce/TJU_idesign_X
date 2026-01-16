@@ -27,6 +27,9 @@ export interface Exhibition {
     iconFrames: number;
     currentFrame: number;
     animationFrameId: number | null;
+    // 精灵图相关
+    spritePath: string;
+    frameWidth: number;
 }
 
 // 第一项和最后一项是重复的，用于循环滚动
@@ -55,7 +58,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_7',
         iconFrames: 11,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_7_sprite.webp',
+        frameWidth: 720
     },
     {
         id: 66,
@@ -81,7 +86,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_1',
         iconFrames: 16,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_1_sprite.webp',
+        frameWidth: 700
     },
     {
         id: 67,
@@ -107,7 +114,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_2',
         iconFrames: 15,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_2_sprite.webp',
+        frameWidth: 720
     },
     {
         id: 68,
@@ -133,7 +142,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_3',
         iconFrames: 9,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_3_sprite.webp',
+        frameWidth: 720
     },
     {
         id: 69,
@@ -159,7 +170,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_4',
         iconFrames: 9,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_4_sprite.webp',
+        frameWidth: 730
     },
     {
         id: 70,
@@ -185,7 +198,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_5',
         iconFrames: 10,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_5_sprite.webp',
+        frameWidth: 720
     },
     {
         id: 71,
@@ -211,7 +226,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_6',
         iconFrames: 10,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_6_sprite.webp',
+        frameWidth: 730
     },
     {
         id: 100,
@@ -237,7 +254,9 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_7',
         iconFrames: 11,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_7_sprite.webp',
+        frameWidth: 720
     },
     {
         id: 66,
@@ -263,110 +282,112 @@ export const exhibitionList: Exhibition[] = [
         iconAnimationPath: 'image/logo_1',
         iconFrames: 9,
         currentFrame: 0,
-        animationFrameId: null
+        animationFrameId: null,
+        spritePath: 'image/logo_1_sprite.webp',
+        frameWidth: 700
     }
 ];
 
-export const portalUrl = 'http://idesign.tju.edu.cn/upload/'
+export const portalUrl = 'https://idesign.tju.edu.cn/upload/'
 
 export const imgList = [
-    require('image/x/2015/1.jpg'),
-    require('image/x/2015/2.jpg'),
-    require('image/x/2015/3.jpg'),
-    require('image/x/2015/4.jpg'),
-    require('image/x/2016/1.jpg'),
-    require('image/x/2016/2.jpg'),
-    require('image/x/2016/3.jpg'),
-    require('image/x/2016/4.jpg'),
-    require('image/x/2016/5.jpg'),
-    require('image/x/2016/6.jpg'),
-    require('image/x/2017/1.jpg'),
-    require('image/x/2017/2.jpg'),
-    require('image/x/2017/3.jpg'),
-    require('image/x/2017/4.jpg'),
-    require('image/x/2017/5.jpg'),
-    require('image/x/2017/6.jpg'),
-    require('image/x/2017/7.jpg'),
-    require('image/x/2017/8.jpg'),
-    require('image/x/2018/1.jpg'),
-    require('image/x/2018/2.jpg'),
-    require('image/x/2018/3.jpg'),
-    require('image/x/2018/4.jpg'),
-    require('image/x/2018/5.jpg'),
-    require('image/x/2018/6.jpg'),
-    require('image/x/2018/7.jpg'),
-    require('image/x/2018/8.jpg'),
-    require('image/x/2019/1.jpg'),
-    require('image/x/2019/10.jpg'),
-    require('image/x/2019/11.jpg'),
-    require('image/x/2019/2.jpg'),
-    require('image/x/2019/3.jpg'),
-    require('image/x/2019/4.jpg'),
-    require('image/x/2019/5.jpg'),
-    require('image/x/2019/6.jpg'),
-    require('image/x/2019/7.jpg'),
-    require('image/x/2019/8.jpg'),
-    require('image/x/2019/9.jpg'),
-    require('image/x/2020/1.jpg'),
-    require('image/x/2020/10.jpg'),
-    require('image/x/2020/2.jpg'),
-    require('image/x/2020/3.jpg'),
-    require('image/x/2020/4.jpg'),
-    require('image/x/2020/5.jpg'),
-    require('image/x/2020/6.jpg'),
-    require('image/x/2020/7.jpg'),
-    require('image/x/2020/8.jpg'),
-    require('image/x/2020/9.jpg'),
-    require('image/x/2021/1.jpg'),
-    require('image/x/2021/2.jpg'),
-    require('image/x/2021/3.jpg'),
-    require('image/x/2021/4.jpg'),
-    require('image/x/2021/5.jpg'),
-    require('image/x/2021/6.jpg'),
-    require('image/x/2022/1.jpg'),
-    require('image/x/2022/2.jpg'),
-    require('image/x/2022/3.jpg'),
-    require('image/x/2022/4.jpg'),
-    require('image/x/2022/5.jpg'),
-    require('image/x/2022/6.jpg'),
-    require('image/x/2022/7.jpg'),
-    require('image/x/2022/8.jpg'),
-    require('image/x/2022/9.jpg'),
-    require('image/x/2023/1.jpg'),
-    require('image/x/2023/2.jpg'),
-    require('image/x/2023/3.jpg'),
-    require('image/x/2023/4.jpg'),
-    require('image/x/2023/5.jpg'),
-    require('image/x/2023/6.jpg'),
-    require('image/x/2023/7.jpg')
+    require('image/x/2015/1.webp'),
+    require('image/x/2015/2.webp'),
+    require('image/x/2015/3.webp'),
+    require('image/x/2015/4.webp'),
+    require('image/x/2016/1.webp'),
+    require('image/x/2016/2.webp'),
+    require('image/x/2016/3.webp'),
+    require('image/x/2016/4.webp'),
+    require('image/x/2016/5.webp'),
+    require('image/x/2016/6.webp'),
+    require('image/x/2017/1.webp'),
+    require('image/x/2017/2.webp'),
+    require('image/x/2017/3.webp'),
+    require('image/x/2017/4.webp'),
+    require('image/x/2017/5.webp'),
+    require('image/x/2017/6.webp'),
+    require('image/x/2017/7.webp'),
+    require('image/x/2017/8.webp'),
+    require('image/x/2018/1.webp'),
+    require('image/x/2018/2.webp'),
+    require('image/x/2018/3.webp'),
+    require('image/x/2018/4.webp'),
+    require('image/x/2018/5.webp'),
+    require('image/x/2018/6.webp'),
+    require('image/x/2018/7.webp'),
+    require('image/x/2018/8.webp'),
+    require('image/x/2019/1.webp'),
+    require('image/x/2019/10.webp'),
+    require('image/x/2019/11.webp'),
+    require('image/x/2019/2.webp'),
+    require('image/x/2019/3.webp'),
+    require('image/x/2019/4.webp'),
+    require('image/x/2019/5.webp'),
+    require('image/x/2019/6.webp'),
+    require('image/x/2019/7.webp'),
+    require('image/x/2019/8.webp'),
+    require('image/x/2019/9.webp'),
+    require('image/x/2020/1.webp'),
+    require('image/x/2020/10.webp'),
+    require('image/x/2020/2.webp'),
+    require('image/x/2020/3.webp'),
+    require('image/x/2020/4.webp'),
+    require('image/x/2020/5.webp'),
+    require('image/x/2020/6.webp'),
+    require('image/x/2020/7.webp'),
+    require('image/x/2020/8.webp'),
+    require('image/x/2020/9.webp'),
+    require('image/x/2021/1.webp'),
+    require('image/x/2021/2.webp'),
+    require('image/x/2021/3.webp'),
+    require('image/x/2021/4.webp'),
+    require('image/x/2021/5.webp'),
+    require('image/x/2021/6.webp'),
+    require('image/x/2022/1.webp'),
+    require('image/x/2022/2.webp'),
+    require('image/x/2022/3.webp'),
+    require('image/x/2022/4.webp'),
+    require('image/x/2022/5.webp'),
+    require('image/x/2022/6.webp'),
+    require('image/x/2022/7.webp'),
+    require('image/x/2022/8.webp'),
+    require('image/x/2022/9.webp'),
+    require('image/x/2023/1.webp'),
+    require('image/x/2023/2.webp'),
+    require('image/x/2023/3.webp'),
+    require('image/x/2023/4.webp'),
+    require('image/x/2023/5.webp'),
+    require('image/x/2023/6.webp'),
+    require('image/x/2023/7.webp')
 ]
 export const videoList = [
-    'http://idesign.tju.edu.cn/videos/11.mp4',
-    'http://idesign.tju.edu.cn/videos/10.mp4',
-    'http://idesign.tju.edu.cn/videos/9.mp4',
-    'http://idesign.tju.edu.cn/videos/8.mp4',
-    'http://idesign.tju.edu.cn/videos/7.mp4',
-    'http://idesign.tju.edu.cn/videos/6.mp4',
-    'http://idesign.tju.edu.cn/videos/5.mp4',
-    'http://idesign.tju.edu.cn/videos/4.mp4',
-    'http://idesign.tju.edu.cn/videos/3.mp4',
-    'http://idesign.tju.edu.cn/videos/2.mp4',
-    'http://idesign.tju.edu.cn/videos/1.mp4',
-    'http://idesign.tju.edu.cn/videos/0.mp4'
+    'https://idesign.tju.edu.cn/videos/11.mp4',
+    'https://idesign.tju.edu.cn/videos/10.mp4',
+    'https://idesign.tju.edu.cn/videos/9.mp4',
+    'https://idesign.tju.edu.cn/videos/8.mp4',
+    'https://idesign.tju.edu.cn/videos/7.mp4',
+    'https://idesign.tju.edu.cn/videos/6.mp4',
+    'https://idesign.tju.edu.cn/videos/5.mp4',
+    'https://idesign.tju.edu.cn/videos/4.mp4',
+    'https://idesign.tju.edu.cn/videos/3.mp4',
+    'https://idesign.tju.edu.cn/videos/2.mp4',
+    'https://idesign.tju.edu.cn/videos/1.mp4',
+    'https://idesign.tju.edu.cn/videos/0.mp4'
 ]
 export const coverList = [
-    require('image/cover/11.jpg'),
-    require('image/cover/10.png'),
-    require('image/cover/9.png'),
-    require('image/cover/8.png'),
-    require('image/cover/7.png'),
-    require('image/cover/6.png'),
-    require('image/cover/5.png'),
-    require('image/cover/4.png'),
-    require('image/cover/3.png'),
-    require('image/cover/2.png'),
-    require('image/cover/1.png'),
-    require('image/cover/0.png')
+    require('image/cover/11.webp'),
+    require('image/cover/10.webp'),
+    require('image/cover/9.webp'),
+    require('image/cover/8.webp'),
+    require('image/cover/7.webp'),
+    require('image/cover/6.webp'),
+    require('image/cover/5.webp'),
+    require('image/cover/4.webp'),
+    require('image/cover/3.webp'),
+    require('image/cover/2.webp'),
+    require('image/cover/1.webp'),
+    require('image/cover/0.webp')
 ]
 
 export const sponsorList = [
@@ -384,7 +405,7 @@ export const sponsorList = [
             {
                 name: '边放',
                 role: '展览理论知识讲授、设计指导',
-                avatar: require('image/sponsor/1.jpeg'),
+                avatar: require('image/sponsor/1.webp'),
                 percent: 0.023,
                 left: 19.0625,
                 top: 0,
@@ -397,7 +418,7 @@ export const sponsorList = [
             {
                 name: '杨君宇',
                 role: '年展视觉设计指导',
-                avatar: require('image/sponsor/2.jpeg'),
+                avatar: require('image/sponsor/2.webp'),
                 percent: 0.035,
                 left: 37.8125,
                 top: 0,
@@ -410,7 +431,7 @@ export const sponsorList = [
             {
                 name: '张赫晨',
                 role: '年展策划协调、设计指导',
-                avatar: require('image/sponsor/3.jpeg'),
+                avatar: require('image/sponsor/3.webp'),
                 percent: 0.048,
                 left: 56.5625,
                 top: 0,
@@ -423,7 +444,7 @@ export const sponsorList = [
             {
                 name: '李擎炜',
                 role: '年展实验指导、文宣指导',
-                avatar: require('image/sponsor/4.jpeg'),
+                avatar: require('image/sponsor/4.webp'),
                 percent: 0.060,
                 left: 75.3125,
                 top: 0,
@@ -449,7 +470,7 @@ export const sponsorList = [
             {
                 name: '江长林',
                 role: '上传下达，协调工作，参与进度',
-                avatar: require('image/sponsor/5.jpeg'),
+                avatar: require('image/sponsor/5.webp'),
                 percent: 0.121,
                 left: -36.9375,
                 top: 0,
@@ -474,7 +495,7 @@ export const sponsorList = [
             {
                 name: '贺杨晨（组长）',
                 role: '展览设计，统筹，展场规划,展场建模',
-                avatar: require('image/sponsor/6.jpeg'),
+                avatar: require('image/sponsor/6.webp'),
                 percent: 0.1712,
                 left: 22,
                 top: 0,
@@ -487,7 +508,7 @@ export const sponsorList = [
             {
                 name: '焦慧婷',
                 role: '展览设计，财务负责',
-                avatar: require('image/sponsor/7.jpeg'),
+                avatar: require('image/sponsor/7.webp'),
                 percent: 0.208,
                 left: 27.6875,
                 top: 21.1875,
@@ -500,7 +521,7 @@ export const sponsorList = [
             {
                 name: '王佳一',
                 role: '展览设计，总外联，物料清点，主视觉设计',
-                avatar: require('image/sponsor/8.jpeg'),
+                avatar: require('image/sponsor/8.webp'),
                 percent: 0.2205,
                 left: 8.9375,
                 top: 21.1875,
@@ -513,7 +534,7 @@ export const sponsorList = [
             {
                 name: '曾楚懿',
                 role: '展览设计，环境艺术外联，设计组对接',
-                avatar: require('image/sponsor/9.jpeg'),
+                avatar: require('image/sponsor/9.webp'),
                 percent: 0.2325,
                 left: -9.8125,
                 top: 21.1875,
@@ -526,7 +547,7 @@ export const sponsorList = [
             {
                 name: '张宇星',
                 role: '展览设计，物料调研，沙盘负责，展品排布',
-                avatar: require('image/sponsor/10.jpeg'),
+                avatar: require('image/sponsor/10.webp'),
                 percent: 0.2444,
                 left: -28.5625,
                 top: 21.1875,
@@ -551,7 +572,7 @@ export const sponsorList = [
             {
                 name: '余春阳（组长）',
                 role: '框架搭建，PC端UI，协调工作',
-                avatar: require('image/sponsor/11.jpeg'),
+                avatar: require('image/sponsor/11.webp'),
                 percent: 0.2921,
                 left: 28.375,
                 top: 0,
@@ -564,7 +585,7 @@ export const sponsorList = [
             {
                 name: '刘子炜',
                 role: '框架搭建，移动端UI',
-                avatar: require('image/sponsor/12.jpeg'),
+                avatar: require('image/sponsor/12.webp'),
                 percent: 0.3043,
                 left: 47.125,
                 top: 0,
@@ -577,7 +598,7 @@ export const sponsorList = [
             {
                 name: '蒋婵娟',
                 role: '框架搭建，动效设计',
-                avatar: require('image/sponsor/13.jpeg'),
+                avatar: require('image/sponsor/13.webp'),
                 percent: 0.3167,
                 left: 65.875,
                 top: 0,
@@ -590,7 +611,7 @@ export const sponsorList = [
             {
                 name: '刘宏伟',
                 role: 'PC端、移动端网站前端开发',
-                avatar: require('image/sponsor/14.jpg'),
+                avatar: require('image/sponsor/14.webp'),
                 percent: 0.3719,
                 left: 61.25,
                 top: 22.5,
@@ -603,7 +624,7 @@ export const sponsorList = [
             {
                 name: '李杰',
                 role: '特邀教师，网站后端开发及部署',
-                avatar: require('image/sponsor/15.jpeg'),
+                avatar: require('image/sponsor/15.webp'),
                 percent: 0.3841,
                 left: 42.5,
                 top: 22.5,
@@ -628,7 +649,7 @@ export const sponsorList = [
             {
                 name: '陈雪懿（组长）',
                 role: '收集展品资料',
-                avatar: require('image/sponsor/16.jpeg'),
+                avatar: require('image/sponsor/16.webp'),
                 percent: 0.4455,
                 left: 28.8125,
                 top: 0,
@@ -641,7 +662,7 @@ export const sponsorList = [
             {
                 name: '曲自涵',
                 role: '收集展品资料',
-                avatar: require('image/sponsor/17.jpeg'),
+                avatar: require('image/sponsor/17.webp'),
                 percent: 0.4608,
                 left: 51.625,
                 top: 0,
@@ -666,7 +687,7 @@ export const sponsorList = [
             {
                 name: '张仁洁（组长）',
                 role: '主视觉细化、展品手册、线上设计、协调统筹',
-                avatar: require('image/sponsor/18.jpeg'),
+                avatar: require('image/sponsor/18.webp'),
                 percent: 0.5112,
                 left: -26.125,
                 top: 0,
@@ -679,7 +700,7 @@ export const sponsorList = [
             {
                 name: '尹祎晗（副组长）',
                 role: '辅助图形、周边、线上设计、协调统筹',
-                avatar: require('image/sponsor/19.jpeg'),
+                avatar: require('image/sponsor/19.webp'),
                 percent: 0.5234,
                 left: -44.875,
                 top: 0,
@@ -692,7 +713,7 @@ export const sponsorList = [
             {
                 name: '黄诗淇',
                 role: '主视觉初方案、背板设计、实验报告',
-                avatar: require('image/sponsor/21.jpeg'),
+                avatar: require('image/sponsor/21.webp'),
                 percent: 0.5316,
                 left: -63.625,
                 top: 0,
@@ -705,7 +726,7 @@ export const sponsorList = [
             {
                 name: '唐安尼达',
                 role: '周边初设计、年展手册',
-                avatar: require('image/sponsor/20.jpeg'),
+                avatar: require('image/sponsor/20.webp'),
                 percent: 0.5708,
                 left: -65.5,
                 top: 22.8125,
@@ -718,7 +739,7 @@ export const sponsorList = [
             {
                 name: '易晓萌',
                 role: '展板细化、导览册',
-                avatar: require('image/sponsor/23.jpeg'),
+                avatar: require('image/sponsor/23.webp'),
                 percent: 0.58252,
                 left: -46.75,
                 top: 22.8125,
@@ -731,7 +752,7 @@ export const sponsorList = [
             {
                 name: '王依燃',
                 role: '展览周边、导览册',
-                avatar: require('image/sponsor/25.jpeg'),
+                avatar: require('image/sponsor/25.webp'),
                 percent: 0.595,
                 left: -28,
                 top: 22.8125,
@@ -744,7 +765,7 @@ export const sponsorList = [
             {
                 name: '洛扎',
                 role: '辅助工作',
-                avatar: require('image/sponsor/22.jpeg'),
+                avatar: require('image/sponsor/22.webp'),
                 percent: 0.60743,
                 left: -9.25,
                 top: 22.8125,
@@ -757,7 +778,7 @@ export const sponsorList = [
             {
                 name: '仁增旺姆',
                 role: '辅助工作',
-                avatar: require('image/sponsor/24.jpeg'),
+                avatar: require('image/sponsor/24.webp'),
                 percent: 0.61985,
                 left: 9.5,
                 top: 22.8125,
@@ -783,7 +804,7 @@ export const sponsorList = [
             {
                 name: '白昊（组长）',
                 role: '主题阐释、分区阐释、H5、推送、外联、协调工作',
-                avatar: require('image/sponsor/26.jpeg'),
+                avatar: require('image/sponsor/26.webp'),
                 percent: 0.67036,
                 left: -25.9375,
                 top: 0,
@@ -796,7 +817,7 @@ export const sponsorList = [
             {
                 name: '吴语晴（副组长）',
                 role: '主题阐释、素材整理、宣传片制作、协调工作',
-                avatar: require('image/sponsor/27.jpeg'),
+                avatar: require('image/sponsor/27.webp'),
                 percent: 0.68235,
                 left: -44.6875,
                 top: 0,
@@ -809,7 +830,7 @@ export const sponsorList = [
             {
                 name: '段海涛',
                 role: '主题阐释、分区阐释、宣传片制作',
-                avatar: require('image/sponsor/28.jpeg'),
+                avatar: require('image/sponsor/28.webp'),
                 percent: 0.69453,
                 left: -63.4375,
                 top: 0,
@@ -822,7 +843,7 @@ export const sponsorList = [
             {
                 name: '刘皓月',
                 role: '主题阐释、素材收集、宣传片制作',
-                avatar: require('image/sponsor/29.jpeg'),
+                avatar: require('image/sponsor/29.webp'),
                 percent: 0.7291,
                 left: -72.3125,
                 top: 22.9375,
@@ -835,7 +856,7 @@ export const sponsorList = [
             {
                 name: '赵钰可',
                 role: '主题阐释、素材收集、宣传片制作',
-                avatar: require('image/sponsor/30.jpeg'),
+                avatar: require('image/sponsor/30.webp'),
                 percent: 0.7404,
                 left: -53.5625,
                 top: 22.9375,
@@ -848,7 +869,7 @@ export const sponsorList = [
             {
                 name: '陈诗语',
                 role: '主题阐释、分区阐释、宣传片制作、文案撰写',
-                avatar: require('image/sponsor/31.jpeg'),
+                avatar: require('image/sponsor/31.webp'),
                 percent: 0.75282,
                 left: -34.8125,
                 top: 22.9375,
@@ -874,7 +895,7 @@ export const sponsorList = [
             {
                 name: '方正',
                 role: '工业设计22级对接人',
-                avatar: require('image/sponsor/32.jpeg'),
+                avatar: require('image/sponsor/32.webp'),
                 percent: 0.80479,
                 left: -14.9375,
                 top: 0,
@@ -887,7 +908,7 @@ export const sponsorList = [
             {
                 name: '王博约',
                 role: '工业设计20级对接人',
-                avatar: require('image/sponsor/33.jpeg'),
+                avatar: require('image/sponsor/33.webp'),
                 percent: 0.81767,
                 left: -33.6875,
                 top: 0,
@@ -900,7 +921,7 @@ export const sponsorList = [
             {
                 name: '吴鑫',
                 role: '工业设计研究生对接人',
-                avatar: require('image/sponsor/34.jpeg'),
+                avatar: require('image/sponsor/34.webp'),
                 percent: 0.8293,
                 left: -52.4375,
                 top: 0,
@@ -926,7 +947,7 @@ export const sponsorList = [
             {
                 name: '赵玉奇',
                 role: '中译英工作',
-                avatar: require('image/sponsor/35.jpeg'),
+                avatar: require('image/sponsor/35.webp'),
                 percent: 0.87573,
                 left: 18.125,
                 top: 0,
@@ -945,41 +966,41 @@ export const teacherList = [
     ['张赫晨', '亲爱的2020级同学们：大学，是人生中重要的转折点！这几年的校园学习生活，承载了你们从青涩懵懂到成熟稳重的转变，也使你们历经超越自我极限的特殊挑战，如今，大家都已收获满满，整装待发向自己人生的下一阶段。愿回首过往，你们都能道一声“不虚此行”，愿这四年的磨砺能让你们多一重思考与沉淀，同时也拥有更多自信面向未来的任何顺途与逆境，预祝大家一切顺利！','', '班导师']
 ]
 export const graduateList = [
-    ['于米提江·托乎提', '短暂的四年以精彩多样的形式快速闪过。这四年里我学到了很多，感受了很多，有了一些成就，更是找到了自己的爱好和兴趣。非常感谢遇到的所有同学和老师，接下来我将在天津大学继续我的研学之旅。', '天津大学',require('image/graduate/0.jpeg')],
-    ['于业淼', 'Ok啊ok，最~喜欢的1895啊，最~喜欢的年展啊，最~~喜欢的毕业啊，天津大学，启动！', '西安交通大学',require('image/graduate/1.jpeg')],
-    ['王紫桐', '“人生是一场打不完的仗。”', '西安交通大学',require('image/graduate/2.jpeg')],
-    ['杜琬琪', '此去一展鸿鹄志，此生由己不由人', '伦敦大学学院',require('image/graduate/3.jpeg')],
-    ['王宁宁', '匆匆四年，观察落叶鲜花，在平凡的日子里播撒快乐的种子，一切尽意，此后种种，亦当用心去感受，用生命去热爱', '天津大学',require('image/graduate/4.jpeg')],
-    ['赵书苇', '感谢这一程的春光，所以把海棠别在襟上。', '',require('image/graduate/5.jpeg')],
-    ['赵芳悦', '时光匆匆', '天津大学',require('image/graduate/6.jpeg')],
-    ['赵彦硕', '再见', '',require('image/graduate/7.jpeg')],
-    ['陈书恒', '在此间的四年是短暂和充实的时光，在这里你可以遇到各不相同的事件，学习一切知识和技能。虽然不可避免地存在诸多遗憾，但总体来说是瑕不掩瑜的。我十分感激自己在这段时间中做出的各种决定和付出的一切努力。感谢所有同学、好友、老师以及我亲爱的伴侣的长久以来的关心和照顾。至于天津大学及工业设计，让我们祝她好运！', '约翰霍普金斯大学',require('image/graduate/8.jpeg')],
-    ['胡可昕', '在毕业倒计时的滴答声里，以前那评价为枯燥、单调的日子，也咂出那些难忘的记忆来，回顾了一遍又一遍。或许下次再见吧，但愿各位前程似锦。', '',require('image/graduate/9.jpeg')],
-    ['白悦', '感谢浮光跃金的理想，感谢一路上涌现的爱和迷雾，感谢所有的隐喻、遗憾与挫折。', '天津大学',require('image/graduate/10.jpeg')],
-    ['贾皓璇', '毕业啦，充实、跌宕起伏的四年，把能体验的走遍，生，万，人，未！', '',require('image/graduate/11.jpeg')],
-    ['邸杨', '大学四年充实且忙碌，有成长，有收获，也有遗憾，但一定是难忘的四年。追风赶月莫停留，平芜尽处是春山，希望我们前路光明灿烂。', '天津大学',require('image/graduate/12.jpeg')],
-    ['宋海雯', '是一起坐在教室里上课，是一起在实验室看螺杆，是在图书馆里熬夜办展，是在完成项目后深夜在校园游走欢笑，是这所学校，也是大家留下的身影；有在磨合中成长，有在困境中体悟，是我们共同经历的往事，造就如今我的内涵。陪伴如细雨，良言如和风，让我从弱小变强大。谨以此心，拙表感谢与祝福。', '北京理工大学',require('image/graduate/13.jpeg')],
-    ['张淋悦', '江湖再会', '于默奥',require('image/graduate/14.jpeg')],
-    ['许诺', '千千万万遍', '天津大学',require('image/graduate/15.jpeg')],
-    ['何子文', '敬友情，敬无常，敬谁都好，敬我们自己……好了，再见，我去2024下半年', '天津大学',require('image/graduate/16.jpeg')],
-    ['杨晰然', '四年时间无憾，感谢设计。', '',require('image/graduate/17.jpeg')],
-    ['王铸涛', '你想活出怎样的人生', '东南大学',require('image/graduate/18.jpeg')],
-    ['王浩', '所以词穷致谢，因为来日方长。', '天津大学',require('image/graduate/19.jpeg')],
-    ['方宇凌', '感谢天大，再见天大！', '佐治亚理工学院',require('image/graduate/20.jpeg')],
-    ['周双彦', '辛苦啦，毕业快乐！', '皇家艺术学院',require('image/graduate/21.jpeg')],
-    ['王博约', '真要是清水一潭也有点可怕。但世界拥挤不堪。', '',require('image/graduate/22.jpeg')],
-    ['周蒙', 'byebye~', '',require('image/graduate/23.jpeg')],
-    ['刘千千', '世上有多少个缤纷乐园 任你行', '佐治亚理工学院',require('image/graduate/24.jpeg')],
-    ['林浩宇', '祝天大工设蒸蒸日上，祝各位老师万事胜意，祝各位同学学业有成。', '',require('image/graduate/25.png')],
-    ['张广林', '好好生活好好努力，谢谢天大谢谢设计', '天津大学',require('image/graduate/26.jpeg')],
-    ['边巴次仁', '不想毕业', '',require('image/graduate/27.png')],
-    ['乔博宇', '继续加油！', '佐治亚理工学院',require('image/graduate/28.png')],
-    ['耿旭冉', '感谢相遇，不说再见', '天津大学',require('image/graduate/29.jpeg')],
-    ['林思怡', '期待未来', '香港大学',require('image/graduate/30.jpeg')],
-    ['特列克', '感谢天大让我们相遇', '',require('image/graduate/31.jpeg')],
-    ['王欣然', '坚持就会听见奇迹的声响', '代尔夫特理工大学',require('image/graduate/32.jpeg')],
-    ['杨子杰', '感谢陪伴 ', '皇家艺术学院',require('image/graduate/33.jpeg')],
-    ['哈林', 'Alhamdulillah', '天津大学',require('image/graduate/34.jpeg')]
+    ['于米提江·托乎提', '短暂的四年以精彩多样的形式快速闪过。这四年里我学到了很多，感受了很多，有了一些成就，更是找到了自己的爱好和兴趣。非常感谢遇到的所有同学和老师，接下来我将在天津大学继续我的研学之旅。', '天津大学',require('image/graduate/0.webp')],
+    ['于业淼', 'Ok啊ok，最~喜欢的1895啊，最~喜欢的年展啊，最~~喜欢的毕业啊，天津大学，启动！', '西安交通大学',require('image/graduate/1.webp')],
+    ['王紫桐', '“人生是一场打不完的仗。”', '西安交通大学',require('image/graduate/2.webp')],
+    ['杜琬琪', '此去一展鸿鹄志，此生由己不由人', '伦敦大学学院',require('image/graduate/3.webp')],
+    ['王宁宁', '匆匆四年，观察落叶鲜花，在平凡的日子里播撒快乐的种子，一切尽意，此后种种，亦当用心去感受，用生命去热爱', '天津大学',require('image/graduate/4.webp')],
+    ['赵书苇', '感谢这一程的春光，所以把海棠别在襟上。', '',require('image/graduate/5.webp')],
+    ['赵芳悦', '时光匆匆', '天津大学',require('image/graduate/6.webp')],
+    ['赵彦硕', '再见', '',require('image/graduate/7.webp')],
+    ['陈书恒', '在此间的四年是短暂和充实的时光，在这里你可以遇到各不相同的事件，学习一切知识和技能。虽然不可避免地存在诸多遗憾，但总体来说是瑕不掩瑜的。我十分感激自己在这段时间中做出的各种决定和付出的一切努力。感谢所有同学、好友、老师以及我亲爱的伴侣的长久以来的关心和照顾。至于天津大学及工业设计，让我们祝她好运！', '约翰霍普金斯大学',require('image/graduate/8.webp')],
+    ['胡可昕', '在毕业倒计时的滴答声里，以前那评价为枯燥、单调的日子，也咂出那些难忘的记忆来，回顾了一遍又一遍。或许下次再见吧，但愿各位前程似锦。', '',require('image/graduate/9.webp')],
+    ['白悦', '感谢浮光跃金的理想，感谢一路上涌现的爱和迷雾，感谢所有的隐喻、遗憾与挫折。', '天津大学',require('image/graduate/10.webp')],
+    ['贾皓璇', '毕业啦，充实、跌宕起伏的四年，把能体验的走遍，生，万，人，未！', '',require('image/graduate/11.webp')],
+    ['邸杨', '大学四年充实且忙碌，有成长，有收获，也有遗憾，但一定是难忘的四年。追风赶月莫停留，平芜尽处是春山，希望我们前路光明灿烂。', '天津大学',require('image/graduate/12.webp')],
+    ['宋海雯', '是一起坐在教室里上课，是一起在实验室看螺杆，是在图书馆里熬夜办展，是在完成项目后深夜在校园游走欢笑，是这所学校，也是大家留下的身影；有在磨合中成长，有在困境中体悟，是我们共同经历的往事，造就如今我的内涵。陪伴如细雨，良言如和风，让我从弱小变强大。谨以此心，拙表感谢与祝福。', '北京理工大学',require('image/graduate/13.webp')],
+    ['张淋悦', '江湖再会', '于默奥',require('image/graduate/14.webp')],
+    ['许诺', '千千万万遍', '天津大学',require('image/graduate/15.webp')],
+    ['何子文', '敬友情，敬无常，敬谁都好，敬我们自己……好了，再见，我去2024下半年', '天津大学',require('image/graduate/16.webp')],
+    ['杨晰然', '四年时间无憾，感谢设计。', '',require('image/graduate/17.webp')],
+    ['王铸涛', '你想活出怎样的人生', '东南大学',require('image/graduate/18.webp')],
+    ['王浩', '所以词穷致谢，因为来日方长。', '天津大学',require('image/graduate/19.webp')],
+    ['方宇凌', '感谢天大，再见天大！', '佐治亚理工学院',require('image/graduate/20.webp')],
+    ['周双彦', '辛苦啦，毕业快乐！', '皇家艺术学院',require('image/graduate/21.webp')],
+    ['王博约', '真要是清水一潭也有点可怕。但世界拥挤不堪。', '',require('image/graduate/22.webp')],
+    ['周蒙', 'byebye~', '',require('image/graduate/23.webp')],
+    ['刘千千', '世上有多少个缤纷乐园 任你行', '佐治亚理工学院',require('image/graduate/24.webp')],
+    ['林浩宇', '祝天大工设蒸蒸日上，祝各位老师万事胜意，祝各位同学学业有成。', '',require('image/graduate/25.webp')],
+    ['张广林', '好好生活好好努力，谢谢天大谢谢设计', '天津大学',require('image/graduate/26.webp')],
+    ['边巴次仁', '不想毕业', '',require('image/graduate/27.webp')],
+    ['乔博宇', '继续加油！', '佐治亚理工学院',require('image/graduate/28.webp')],
+    ['耿旭冉', '感谢相遇，不说再见', '天津大学',require('image/graduate/29.webp')],
+    ['林思怡', '期待未来', '香港大学',require('image/graduate/30.webp')],
+    ['特列克', '感谢天大让我们相遇', '',require('image/graduate/31.webp')],
+    ['王欣然', '坚持就会听见奇迹的声响', '代尔夫特理工大学',require('image/graduate/32.webp')],
+    ['杨子杰', '感谢陪伴 ', '皇家艺术学院',require('image/graduate/33.webp')],
+    ['哈林', 'Alhamdulillah', '天津大学',require('image/graduate/34.webp')]
 ]
 
 export const offsetList = [

@@ -39,13 +39,13 @@
         <transition name="scale">
           <template v-if="props.notMobile">
             <div v-if="isVisible(7.75)">
-              <img v-preview:name="4" src="@/assets/image/graduate/-1.jpg">
+              <img v-preview:name="4" src="@/assets/image/graduate/-1.webp">
               <p>李巨韬</p>
             </div>
           </template>
           <template v-else>
             <div v-if="isVisible(1)" @click="showInfo">
-              <img src="@/assets/image/graduate/-1.jpg">
+              <img src="@/assets/image/graduate/-1.webp">
               <p>李巨韬</p>
             </div>
           </template>
@@ -55,13 +55,13 @@
         <transition name="scale">
           <template v-if="props.notMobile">
             <div v-if="isVisible(7.75)">
-              <img v-preview:name="4" src="@/assets/image/graduate/-2.jpeg">
+              <img v-preview:name="4" src="@/assets/image/graduate/-2.webp">
               <p>张赫晨</p>
             </div>
           </template>
           <template v-else>
             <div v-if="isVisible(1)" @click="showInfo">
-              <img src="@/assets/image/graduate/-2.jpeg">
+              <img src="@/assets/image/graduate/-2.webp">
               <p>张赫晨</p>
             </div>
           </template>
@@ -169,10 +169,10 @@ function isVisible(left: number) {
 function showDesc(index: number) {
     currentNo.value = index;
     if (currentNo.value === -1) {
-        currentDesc.value = [teacherList[0][0], teacherList[0][1], teacherList[0][3], teacherList[0][2],require('image/graduate/-1.jpg')];
+        currentDesc.value = [teacherList[0][0], teacherList[0][1], teacherList[0][3], teacherList[0][2],require('image/graduate/-1.webp')];
     }
     else if (currentNo.value === -2) {
-        currentDesc.value = [teacherList[1][0], teacherList[1][1], teacherList[1][3], teacherList[1][2],require('image/graduate/-2.jpeg')];
+        currentDesc.value = [teacherList[1][0], teacherList[1][1], teacherList[1][3], teacherList[1][2],require('image/graduate/-2.webp')];
     }
     else if (currentNo.value >= 0) {
         currentDesc.value = [randomGraduateList.value[index][0], randomGraduateList.value[index][1], randomGraduateList.value[index][2], '',randomGraduateList.value[index][3]];

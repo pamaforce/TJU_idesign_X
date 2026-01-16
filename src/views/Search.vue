@@ -170,7 +170,7 @@ const debouncedSearch = debounce(search, 300);
 async function getRecommend() {
     recommendList.value = [];
     try {
-        const response = await service(`http://idesign.tju.edu.cn/portal/api_v1/get_keywords_by_key?cate_ids=66,67,68,69,70.71`);
+        const response = await service(`/portal/api_v1/get_keywords_by_key?cate_ids=66,67,68,69,70.71`);
         const newData = response.data;
         recommendList.value = newData;
     }

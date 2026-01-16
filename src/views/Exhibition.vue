@@ -29,7 +29,7 @@
           {{ item.desc_en }}
         </p>
       </div>
-      <img :src="getIconSource(item)" alt="icon" class="icon">
+      <div class="icon" :style="getIconStyle(item)"></div>
       <img
         :src="item.icon"
         alt="logo"
@@ -705,8 +705,18 @@ const updateMargins = () => {
 function resetExhibitionList() {
     return rawExhibitionList.map(item => ({...item}));
 }
-function getIconSource(item: Exhibition) {
-    return require(`${item.iconAnimationPath}/frame_${item.currentFrame}-min.png`);
+// 使用精灵图实现动画，避免 Hover 时加载多张图片
+function getIconStyle(item: Exhibition) {
+    const spriteUrl = require(`${item.spritePath}`);
+    // 使用百分比计算：width = 帧数 * 100%，每帧偏移 = 帧索引 * (100 / (帧数-1))%
+    const widthPercent = item.iconFrames * 100;
+    const positionPercent = item.currentFrame * (100 / (item.iconFrames - 1));
+    return {
+        backgroundImage: `url(${spriteUrl})`,
+        backgroundPosition: `${positionPercent}% 0`,
+        backgroundSize: `${widthPercent}% 100%`,
+        backgroundRepeat: 'no-repeat'
+    };
 }
 function startAnimation(index: number) {
     const item = exhibitionList.value[index];
@@ -930,10 +940,20 @@ function handleScroll(event: Event) {
     const target = event.target as HTMLElement;
     scrollTop.value = target.scrollTop;
 }
+// 预加载所有展厅的帧动画图片，避免 Hover 时大量请求
+function preloadAnimationFrames() {
+    rawExhibitionList.forEach(item => {
+        for (let i = 0; i < item.iconFrames; i++) {
+            const img = new Image();
+            img.src = require(`${item.iconAnimationPath}/frame_${i}-min.webp`);
+        }
+    });
+}
 onMounted(() => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('keydown', handleKeyDown);
     handleInit();
+    preloadAnimationFrames(); // 预加载帧图片
 });
 onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
@@ -1026,7 +1046,8 @@ const transitionName = computed(() => {
         width: 180px;
         height: 180px;
         margin-bottom: 60px;
-        transition: all 0.3s ease-in-out;
+        /* 特意不对 background-position 添加 transition，实现逐帧跳变 */
+        transition: width 0.3s ease-in-out, height 0.3s ease-in-out, margin 0.3s ease-in-out, opacity 0.3s ease-in-out;
       }
 
       & .logo {

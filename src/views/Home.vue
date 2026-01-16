@@ -35,7 +35,8 @@
               class="text-7"
               alt="text-7"
               @click="toExhibition"
-              @mousemove.stop
+              @mouseenter="isSnapped = true"
+              @mouseleave="isSnapped = false"
             />
             <img src="@/assets/image/text_8.svg" class="text-8" :class="{'rotate-together-1':isSnapped}" alt="text-8" />
             <img
@@ -98,15 +99,9 @@ const cursorStyle = computed(() => {
 });
 function updateCursorPosition(event: MouseEvent) {
     cursorPosition.value = {x: event.clientX, y: event.clientY};
-    checkSnapToText7();
+    // isSnapped 由 mouseenter/mouseleave 事件控制
 }
-function checkSnapToText7() {
-    if (text7El.value) {
-        const rect = text7El.value.getBoundingClientRect();
-        isSnapped.value = (cursorPosition.value.x > rect.left && cursorPosition.value.x < rect.right &&
-                           cursorPosition.value.y > rect.top && cursorPosition.value.y < rect.bottom);
-    }
-}
+
 function handleWheel(event: WheelEvent) {
     if (event.deltaY > 0) {
         changeState(2);
@@ -365,6 +360,14 @@ const loadImages = () => {
         opacity: 0;
         animation: text_7 8s linear infinite, fade 1.2s linear 0.5s forwards;
         cursor: pointer;
+    }
+    & .snap-area {
+        position: absolute;
+        right: 136px;
+        top: 700px;
+        width: 173.81px;
+        height: 173.56px;
+        pointer-events: none;
     }
     & .text-8{
         position: absolute;

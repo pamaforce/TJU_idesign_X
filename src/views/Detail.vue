@@ -319,7 +319,7 @@ p {
 .fork-icon-class-1 {
   width: 32px;
   height: 32px;
-  background-image: url("@/assets/image/left.png");
+  background-image: url("@/assets/image/left.webp");
   background-size: 24px 24px;
   background-position: center center;
   background-repeat: no-repeat;
@@ -327,7 +327,7 @@ p {
 .fork-icon-class-2 {
   width: 32px;
   height: 32px;
-  background-image: url("@/assets/image/right.png");
+  background-image: url("@/assets/image/right.webp");
   background-size: 24px 24px;
   background-position: center center;
   background-repeat: no-repeat;
@@ -474,7 +474,7 @@ p {
   width: 25px;
   height: 25px;
   border-radius: 50% 50%;
-  background-image: url("@/assets/image/back.png");
+  background-image: url("@/assets/image/back.webp");
   background-size: 18px 18px;
   background-position: 3px center;
   background-repeat: no-repeat;
@@ -597,7 +597,7 @@ p {
     width: 20px;
     height: 20px;
     border-radius: 50% 50%;
-    background-image: url("@/assets/image/back.png");
+    background-image: url("@/assets/image/back.webp");
     background-size: 10px 10px;
     background-position: 5px center;
     background-repeat: no-repeat;
